@@ -21,7 +21,7 @@ export default function Navbar() {
           { path: '/', name: 'Dashboard' },
           { path: '/lacak-pengajuan', name: 'Lacak Pengajuan' },
           { path: '/panduan', name: 'Panduan' },
-          { path: '/masuk', name: 'Masuk' }
+          { path: '/login', name: 'Masuk' }
         ].map((item) => (
           <Link 
             key={item.path}
