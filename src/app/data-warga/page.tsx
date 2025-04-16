@@ -1,20 +1,46 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function DataWarga() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeMenu, setActiveMenu] = useState('Data Warga');
+  const [wargaData, setWargaData] = useState<Array<{
+    id: number;
+    nama: string;
+    nik: string;
+    noKK: string;
+  }>>([]);
+  const router = useRouter();
 
-  const [wargaData] = useState([
-    { id: 1, nama: 'Affan_xD', nik: '3201234567890001', noKK: '3209876543210001' },
-    { id: 2, nama: 'Affan_xD', nik: '3201234567890002', noKK: '3209876543210001' },
-    { id: 3, nama: 'Budi Santoso', nik: '3201234567890003', noKK: '3209876543210002' },
-    { id: 4, nama: 'Citra Dewi', nik: '3201234567890004', noKK: '3209876543210003' },
-    { id: 5, nama: 'Doni Pratama', nik: '3201234567890005', noKK: '3209876543210004' },
-    { id: 6, nama: 'Eka Wijaya', nik: '3201234567890006', noKK: '3209876543210005' },
-  ]);
+  // Load data from localStorage on component mount
+  useEffect(() => {
+    const loadData = () => {
+      try {
+        const savedData = localStorage.getItem('wargaData');
+        if (savedData) {
+          setWargaData(JSON.parse(savedData));
+        } else {
+          // Initialize with sample data if nothing in storage
+          const initialData = [
+            { id: 1, nama: 'Affan_xD', nik: '3201234567890001', noKK: '3209876543210001' },
+            { id: 2, nama: 'Affan_xD', nik: '3201234567890002', noKK: '3209876543210001' },
+            { id: 3, nama: 'Budi Santoso', nik: '3201234567890003', noKK: '3209876543210002' },
+            { id: 4, nama: 'Citra Dewi', nik: '3201234567890004', noKK: '3209876543210003' },
+            { id: 5, nama: 'Doni Pratama', nik: '3201234567890005', noKK: '3209876543210004' },
+            { id: 6, nama: 'Eka Wijaya', nik: '3201234567890006', noKK: '3209876543210005' },
+          ];
+          setWargaData(initialData);
+          localStorage.setItem('wargaData', JSON.stringify(initialData));
+        }
+      } catch (error) {
+        console.error('Error loading data:', error);
+      }
+    };
+
+    loadData();
+  }, []);
 
   const filteredData = wargaData.filter(warga =>
     warga.nama.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -22,14 +48,17 @@ export default function DataWarga() {
     warga.noKK.includes(searchQuery)
   );
 
+  const handleTambahData = () => {
+    router.push('/data-warga/tambah');
+  };
+
   return (
     <div style={{ fontFamily: 'var(--font-poppins)' }} className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-0 font-sans flex">
       {/* Sidebar */}
       <div className="w-64 min-w-[16rem] bg-[#FFE08A] shadow-md z-10 h-screen fixed left-0 top-0">
         <div className="p-4 border-b border-[#E6D9A5] flex items-center justify-center h-20">
-             <h1 className="text-xl font-bold text-gray-800">SIMAK</h1>
-    </div>
-
+          <h1 className="text-xl font-bold text-gray-800">SIMAK</h1>
+        </div>
 
         <nav className="p-4">
           <div className="mb-6">
@@ -109,10 +138,12 @@ export default function DataWarga() {
 
       {/* Main Content */}
       <div className="flex-1 ml-64 p-8 overflow-auto">
-        {/* Title and Add Button */}
         <div className="flex items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800 mr-4">Data Warga</h2>
-          <button className="bg-[#FFD233] hover:bg-[#E6BD2E] text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors flex items-center">
+          <button 
+            onClick={handleTambahData}
+            className="bg-[#FFD233] hover:bg-[#E6BD2E] text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors flex items-center"
+          >
             <span className="mr-1">+</span> Tambah Data
           </button>
         </div>
@@ -159,7 +190,6 @@ export default function DataWarga() {
           </div>
         </div>
 
-        {/* Empty State */}
         {filteredData.length === 0 && (
           <div className="text-center py-12">
             <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
