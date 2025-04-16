@@ -7,25 +7,30 @@ import Footer from "../../components/Footer";
 const steps = [
   {
     number: 1,
-    title: "Akses Menu",
-    description: "Klik menu 'Lacak Pengajuan' dengan NIK/No. KK",
-    icon: "🔍",
-  },
-  {
-    number: 2,
     title: "Isi Form Online",
     description: [
-      "Akses website → Menu 'Beranda'",
+      "Akses website → Menu 'Dashboard'",
       "Isi Form + upload syarat",
       "Klik 'Ajukan Sekarang'",
     ],
     icon: "📝",
   },
   {
-    number: 3,
-    title: "Tunggu Verifikasi",
-    description: "Cek Status secara berkala (1-3 Hari Kerja)",
+    number: 2,
+    title: "Melihat Pengajuan",
+    description: [
+    "Klik menu 'Lacak Pengajuan",
+    "Lacak pengajuan dengan NIK/No. Tracking" ],
     icon: "⏳",
+  },
+  {
+    number: 3,
+    title: "Cek Status",
+    description: [
+      'Ikuti Langkah 2',
+      "Cek Status secara berkala (1-3 Hari Kerja)"
+],
+    icon: "🔍",
   },
   {
     number: 4,

@@ -78,7 +78,7 @@ export default function LacakPengajuan() {
           <form onSubmit={handleSearch} className="flex gap-4 mt-25">
             <input
                 type="text"
-                placeholder="Masukkan NIK atau No KK"
+                placeholder="Masukkan NIK atau No Tracking"
                 className="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -106,7 +106,7 @@ export default function LacakPengajuan() {
           <form onSubmit={handleSearch} className="flex gap-4">
             <input
               type="text"
-              placeholder="Masukkan NIK atau No KK"
+              placeholder="Masukkan NIK atau No Tracking"
               className="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
