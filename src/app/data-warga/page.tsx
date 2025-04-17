@@ -1,21 +1,20 @@
-'use client';
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
+'use client'; // Tambahkan baris ini
+
+import { useState, useEffect, SetStateAction } from 'react';
 import { useRouter } from 'next/navigation';
 import NavbarAdmin from '@/components/NavbarAdmin'; // Adjust the path based on your project structure
 
 export default function DataWarga() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeMenu, setActiveMenu] = useState('Data Warga');
   const [wargaData, setWargaData] = useState<Array<{
     id: number;
     nama: string;
     nik: string;
     noKK: string;
   }>>([]);
+  const [activeMenu, setActiveMenu] = useState('dataWarga'); // Set activeMenu
   const router = useRouter();
 
-  // Load data from localStorage on component mount
   useEffect(() => {
     const loadData = () => {
       try {
@@ -23,7 +22,6 @@ export default function DataWarga() {
         if (savedData) {
           setWargaData(JSON.parse(savedData));
         } else {
-          // Initialize with sample data if nothing in storage
           const initialData = [
             { id: 1, nama: 'Affan_xD', nik: '3201234567890001', noKK: '3209876543210001' },
             { id: 2, nama: 'Affan_xD', nik: '3201234567890002', noKK: '3209876543210001' },
@@ -59,7 +57,7 @@ export default function DataWarga() {
       <NavbarAdmin currentPath="/data-warga" />
 
       {/* Main Content */}
-      <div className="flex-1 ml-64 p-8 overflow-auto">
+      <div className="flex-1 p-8 overflow-auto ml-64">
         <div className="flex items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800 mr-4">Data Warga</h2>
           <button 
@@ -103,24 +101,14 @@ export default function DataWarga() {
                 {filteredData.map((warga) => (
                   <tr key={warga.id} className="hover:bg-[#FFF5D9]">
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{warga.nama}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{warga.nik}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{warga.noKK}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{warga.nik}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{warga.noKK}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
-
-        {filteredData.length === 0 && (
-          <div className="text-center py-12">
-            <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <h3 className="mt-2 text-sm font-medium text-gray-700">Data tidak ditemukan</h3>
-            <p className="mt-1 text-sm text-gray-500">Coba dengan kata kunci pencarian yang berbeda.</p>
-          </div>
-        )}
       </div>
     </div>
   );

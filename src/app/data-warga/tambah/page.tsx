@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import NavbarAdmin from "../../../components/NavbarAdmin"; // Import NavbarAdmin
 
 export default function TambahDataWarga() {
   const router = useRouter();
@@ -10,7 +11,7 @@ export default function TambahDataWarga() {
     nik: '',
     noKK: ''
   });
-  const [activeMenu, setActiveMenu] = useState('Data Warga');
+  const [activeMenu, setActiveMenu] = useState('Data Warga'); // Set activeMenu
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,87 +54,8 @@ export default function TambahDataWarga() {
 
   return (
     <div style={{ fontFamily: 'var(--font-poppins)' }} className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-0 font-sans flex">
-      {/* Sidebar */}
-      <div className="w-64 min-w-[16rem] bg-[#FFE08A] shadow-md z-10 h-screen fixed left-0 top-0">
-        <div className="p-4 border-b border-[#E6D9A5] flex items-center justify-center h-20">
-          <h1 className="text-xl font-bold text-gray-800">SIMAK</h1>
-        </div>
-
-        <nav className="p-4">
-          <div className="mb-6">
-            <h3 className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Menu Utama</h3>
-            <Link
-              href="/dashboard"
-              className={`block p-2 rounded-md ${activeMenu === 'Dashboard' ? 'bg-[#F5D778] text-gray-800' : 'text-gray-700 hover:bg-[#F5D778]'}`}
-              onClick={() => setActiveMenu('Dashboard')}
-            >
-              Dashboard
-            </Link>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">SURAT</h3>
-            <ul className="space-y-1">
-              <li>
-                <Link
-                  href="/pengajuan-masuk"
-                  className={`block p-2 rounded-md ${activeMenu === 'Pengajuan Masuk' ? 'bg-[#F5D778] text-gray-800' : 'text-gray-700 hover:bg-[#F5D778]'}`}
-                  onClick={() => setActiveMenu('Pengajuan Masuk')}
-                >
-                  Pengajuan Masuk
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/arsip"
-                  className={`block p-2 rounded-md ${activeMenu === 'Arsip' ? 'bg-[#F5D778] text-gray-800' : 'text-gray-700 hover:bg-[#F5D778]'}`}
-                  onClick={() => setActiveMenu('Arsip')}
-                >
-                  Arsip
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/template-surat"
-                  className={`block p-2 rounded-md ${activeMenu === 'Template Surat' ? 'bg-[#F5D778] text-gray-800' : 'text-gray-700 hover:bg-[#F5D778]'}`}
-                  onClick={() => setActiveMenu('Template Surat')}
-                >
-                  Template Surat
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/laporan"
-                  className={`block p-2 rounded-md ${activeMenu === 'Laporan' ? 'bg-[#F5D778] text-gray-800' : 'text-gray-700 hover:bg-[#F5D778]'}`}
-                  onClick={() => setActiveMenu('Laporan')}
-                >
-                  Laporan
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">PENGATURAN</h3>
-            <Link
-              href="/data-warga"
-              className={`block p-2 rounded-md ${activeMenu === 'Data Warga' ? 'bg-[#F5D778] text-gray-800' : 'text-gray-700 hover:bg-[#F5D778]'}`}
-              onClick={() => setActiveMenu('Data Warga')}
-            >
-              Data Warga
-            </Link>
-          </div>
-
-          <div className="mt-8">
-            <Link
-              href="/logout"
-              className="block p-2 text-gray-700 hover:bg-[#F5D778] rounded-md"
-            >
-              Keluar
-            </Link>
-          </div>
-        </nav>
-      </div>
+      {/* NavbarAdmin Component */}
+      <NavbarAdmin/> {/* Navbar Admin */}
 
       {/* Main Content */}
       <div className="flex-1 ml-64 p-8 overflow-auto">
