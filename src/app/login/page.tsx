@@ -20,7 +20,7 @@ export default function Masuk() {
           transition={{ duration: 0.6 }}
         >
           <img
-            src="/illustration-login.svg"
+            src="/login-ilustrasii.png"
             alt="Login Illustration"
             className="max-w-md w-full"
           />
