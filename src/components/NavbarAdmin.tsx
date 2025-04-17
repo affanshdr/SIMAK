@@ -72,7 +72,7 @@ const NavbarAdmin = ({ currentPath }: { currentPath: string }) => {
 
           {/* Surat Section */}
           <div>
-            <h2 className="text-xs text-gray-500 uppercase tracking-wider mb-3 pl-2">
+            <h2 className="text-xs text-gray-500 uppercase tracking-wider pl-2">
               SURAT
             </h2>
             <ul className="space-y-2">
