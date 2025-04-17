@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import NavbarAdmin from "../../components/NavbarAdmin";
+import NavbarAdmin from "../../../components/NavbarAdmin";
 import { FaEdit } from "react-icons/fa";
 
 const TemplateSurat = () => {
