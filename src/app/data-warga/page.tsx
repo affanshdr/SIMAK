@@ -2,7 +2,7 @@
 
 import { useState, useEffect, SetStateAction } from 'react';
 import { useRouter } from 'next/navigation';
-import NavbarAdmin from "../../components/NavbarAdmin"; // Import NavbarAdmin
+import NavbarAdmin from '@/components/NavbarAdmin'; // Adjust the path based on your project structure
 
 export default function DataWarga() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -52,9 +52,9 @@ export default function DataWarga() {
   };
 
   return (
-    <div style={{ fontFamily: 'var(--font-poppins)' }} className="min-h-screen bg-gradient-to-br from-yellow-50 to-white p-6">
-      {/* NavbarAdmin Component */}
-      <NavbarAdmin/> {/* Menetapkan activeMenu dan setActiveMenu */}
+    <div style={{ fontFamily: 'var(--font-poppins)' }} className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-0 font-sans flex">
+      {/* Sidebar */}
+      <NavbarAdmin currentPath="/data-warga" />
 
       {/* Main Content */}
       <div className="flex-1 p-8 overflow-auto ml-64">
