@@ -93,6 +93,8 @@ const TemplateSurat = () => {
     setTemplateToDelete(null);
   };
 
+  const warna = '#8B8B8B';
+
   return (
     <div className="ml-64 min-h-screen bg-gradient-to-br from-yellow-50 to-white p-8">
       {/* Navbar */}
@@ -104,6 +106,7 @@ const TemplateSurat = () => {
           type="text"
           placeholder="Cari Nama / Nomor Surat . . ."
           className="w-full max-w-xl px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300"
+          style={{ color: warna }}
         />
         <div className="ml-4 flex items-center">
           <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden" />
@@ -113,11 +116,12 @@ const TemplateSurat = () => {
 
       {/* Nama Keuchik */}
       <div className="flex items-center mb-8">
-        <label className="mr-4 font-semibold text-gray-800">Nama Keuchik</label>
+      <label className="mr-4 font-semibold" style={{ color: warna }}>Nama Keuchik</label>
         <input
           type="text"
           defaultValue="Yushadi, S.Ag,"
           className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300"
+          style={{ color: warna }}
         />
         <button className="ml-4 bg-orange-400 hover:bg-orange-500 text-white font-semibold px-4 py-2 rounded-lg transition">
           Simpan
@@ -167,8 +171,8 @@ const TemplateSurat = () => {
       {showModal && selectedTemplate && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-xl shadow-lg w-[400px]">
-            <h2 className="text-xl font-semibold mb-4">Edit Template</h2>
-            <label className="block mb-2">Judul Surat</label>
+            <h2 className="text-xl font-semibold mb-4" style={{ color: warna }}>Edit Template</h2>
+            <label className="block mb-2" style={{ color: warna }}>Judul Surat</label>
             <input
               type="text"
               value={selectedTemplate.judul}
@@ -179,8 +183,9 @@ const TemplateSurat = () => {
                 })
               }
               className="w-full p-2 border rounded mb-4"
+              style={{ color: warna }}
             />
-            <label className="block mb-2">Terakhir Diubah</label>
+            <label className="block mb-2" style={{ color: warna }}>Terakhir Diubah</label>
             <input
               type="date"
               value={selectedTemplate.terakhirDiubah}
@@ -191,6 +196,7 @@ const TemplateSurat = () => {
                 })
               }
               className="w-full p-2 border rounded mb-4"
+              style={{ color: warna }}
             />
             <div className="flex justify-end gap-2">
               <button
@@ -214,8 +220,8 @@ const TemplateSurat = () => {
       {showAddModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-xl shadow-lg w-[400px]">
-            <h2 className="text-xl font-semibold mb-4">Tambah Template Baru</h2>
-            <label className="block mb-2">Judul Surat</label>
+            <h2 className="text-xl font-semibold mb-4" style={{ color: warna }}>Tambah Template Baru</h2>
+            <label className="block mb-2" style={{ color: warna }}>Judul Surat</label>
             <input
               type="text"
               value={newTemplate.judul}
@@ -226,8 +232,9 @@ const TemplateSurat = () => {
                 })
               }
               className="w-full p-2 border rounded mb-4"
+              style={{ color: warna }}
             />
-            <label className="block mb-2">Warna Latar (opsional)</label>
+            <label className="block mb-2" style={{ color: warna }}>Warna Latar (opsional)</label>
             <input
               type="color"
               value={newTemplate.warna}
@@ -238,8 +245,9 @@ const TemplateSurat = () => {
                 })
               }
               className="w-full p-2 border rounded mb-4"
+              style={{ color: warna }}
             />
-            <label className="block mb-2">Warna Tombol (opsional)</label>
+            <label className="block mb-2" style={{ color: warna }}>Warna Tombol (opsional)</label>
             <input
               type="color"
               value={newTemplate.warnaBtn}
@@ -250,6 +258,7 @@ const TemplateSurat = () => {
                 })
               }
               className="w-full p-2 border rounded mb-4"
+              style={{ color: warna }}
             />
             <div className="flex justify-end gap-2">
               <button
