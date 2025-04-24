@@ -120,6 +120,12 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email'
 };
 
+exports.Prisma.TemplateSuratScalarFieldEnum = {
+  id: 'id',
+  judul: 'judul',
+  terakhirDiubah: 'terakhirDiubah'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -127,7 +133,8 @@ exports.Prisma.SortOrder = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  TemplateSurat: 'TemplateSurat'
 };
 
 /**

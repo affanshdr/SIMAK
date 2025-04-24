@@ -77,7 +77,7 @@ const TemplateSurat = () => {
         {templates.map((item) => (
           <div
             key={item.id}
-            className="bg-[#211e0c] text-white p-6 rounded-xl shadow-md"
+            className="bg-[#BDB176] text-white p-6 rounded-xl shadow-md"
           >
             <h2 className="text-lg font-semibold">{item.judul}</h2>
             <p className="text-sm mt-1">Terakhir diubah: {item.terakhirDiubah}</p>
