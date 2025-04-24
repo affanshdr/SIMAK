@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model TemplateSurat
+ * 
+ */
+export type TemplateSurat = $Result.DefaultSelection<Prisma.$TemplateSuratPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -153,6 +158,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.templateSurat`: Exposes CRUD operations for the **TemplateSurat** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TemplateSurats
+    * const templateSurats = await prisma.templateSurat.findMany()
+    * ```
+    */
+  get templateSurat(): Prisma.TemplateSuratDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +608,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    TemplateSurat: 'TemplateSurat'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,7 +628,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "templateSurat"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -687,6 +703,80 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      TemplateSurat: {
+        payload: Prisma.$TemplateSuratPayload<ExtArgs>
+        fields: Prisma.TemplateSuratFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TemplateSuratFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TemplateSuratPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TemplateSuratFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TemplateSuratPayload>
+          }
+          findFirst: {
+            args: Prisma.TemplateSuratFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TemplateSuratPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TemplateSuratFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TemplateSuratPayload>
+          }
+          findMany: {
+            args: Prisma.TemplateSuratFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TemplateSuratPayload>[]
+          }
+          create: {
+            args: Prisma.TemplateSuratCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TemplateSuratPayload>
+          }
+          createMany: {
+            args: Prisma.TemplateSuratCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TemplateSuratCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TemplateSuratPayload>[]
+          }
+          delete: {
+            args: Prisma.TemplateSuratDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TemplateSuratPayload>
+          }
+          update: {
+            args: Prisma.TemplateSuratUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TemplateSuratPayload>
+          }
+          deleteMany: {
+            args: Prisma.TemplateSuratDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TemplateSuratUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TemplateSuratUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TemplateSuratPayload>[]
+          }
+          upsert: {
+            args: Prisma.TemplateSuratUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TemplateSuratPayload>
+          }
+          aggregate: {
+            args: Prisma.TemplateSuratAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTemplateSurat>
+          }
+          groupBy: {
+            args: Prisma.TemplateSuratGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TemplateSuratGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TemplateSuratCountArgs<ExtArgs>
+            result: $Utils.Optional<TemplateSuratCountAggregateOutputType> | number
           }
         }
       }
@@ -775,6 +865,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    templateSurat?: TemplateSuratOmit
   }
 
   /* Types for Logging */
@@ -1871,6 +1962,1007 @@ export namespace Prisma {
 
 
   /**
+   * Model TemplateSurat
+   */
+
+  export type AggregateTemplateSurat = {
+    _count: TemplateSuratCountAggregateOutputType | null
+    _avg: TemplateSuratAvgAggregateOutputType | null
+    _sum: TemplateSuratSumAggregateOutputType | null
+    _min: TemplateSuratMinAggregateOutputType | null
+    _max: TemplateSuratMaxAggregateOutputType | null
+  }
+
+  export type TemplateSuratAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type TemplateSuratSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type TemplateSuratMinAggregateOutputType = {
+    id: number | null
+    judul: string | null
+    terakhirDiubah: string | null
+  }
+
+  export type TemplateSuratMaxAggregateOutputType = {
+    id: number | null
+    judul: string | null
+    terakhirDiubah: string | null
+  }
+
+  export type TemplateSuratCountAggregateOutputType = {
+    id: number
+    judul: number
+    terakhirDiubah: number
+    _all: number
+  }
+
+
+  export type TemplateSuratAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type TemplateSuratSumAggregateInputType = {
+    id?: true
+  }
+
+  export type TemplateSuratMinAggregateInputType = {
+    id?: true
+    judul?: true
+    terakhirDiubah?: true
+  }
+
+  export type TemplateSuratMaxAggregateInputType = {
+    id?: true
+    judul?: true
+    terakhirDiubah?: true
+  }
+
+  export type TemplateSuratCountAggregateInputType = {
+    id?: true
+    judul?: true
+    terakhirDiubah?: true
+    _all?: true
+  }
+
+  export type TemplateSuratAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TemplateSurat to aggregate.
+     */
+    where?: TemplateSuratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TemplateSurats to fetch.
+     */
+    orderBy?: TemplateSuratOrderByWithRelationInput | TemplateSuratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TemplateSuratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TemplateSurats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TemplateSurats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TemplateSurats
+    **/
+    _count?: true | TemplateSuratCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TemplateSuratAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TemplateSuratSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TemplateSuratMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TemplateSuratMaxAggregateInputType
+  }
+
+  export type GetTemplateSuratAggregateType<T extends TemplateSuratAggregateArgs> = {
+        [P in keyof T & keyof AggregateTemplateSurat]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTemplateSurat[P]>
+      : GetScalarType<T[P], AggregateTemplateSurat[P]>
+  }
+
+
+
+
+  export type TemplateSuratGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TemplateSuratWhereInput
+    orderBy?: TemplateSuratOrderByWithAggregationInput | TemplateSuratOrderByWithAggregationInput[]
+    by: TemplateSuratScalarFieldEnum[] | TemplateSuratScalarFieldEnum
+    having?: TemplateSuratScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TemplateSuratCountAggregateInputType | true
+    _avg?: TemplateSuratAvgAggregateInputType
+    _sum?: TemplateSuratSumAggregateInputType
+    _min?: TemplateSuratMinAggregateInputType
+    _max?: TemplateSuratMaxAggregateInputType
+  }
+
+  export type TemplateSuratGroupByOutputType = {
+    id: number
+    judul: string
+    terakhirDiubah: string
+    _count: TemplateSuratCountAggregateOutputType | null
+    _avg: TemplateSuratAvgAggregateOutputType | null
+    _sum: TemplateSuratSumAggregateOutputType | null
+    _min: TemplateSuratMinAggregateOutputType | null
+    _max: TemplateSuratMaxAggregateOutputType | null
+  }
+
+  type GetTemplateSuratGroupByPayload<T extends TemplateSuratGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TemplateSuratGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TemplateSuratGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TemplateSuratGroupByOutputType[P]>
+            : GetScalarType<T[P], TemplateSuratGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TemplateSuratSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    judul?: boolean
+    terakhirDiubah?: boolean
+  }, ExtArgs["result"]["templateSurat"]>
+
+  export type TemplateSuratSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    judul?: boolean
+    terakhirDiubah?: boolean
+  }, ExtArgs["result"]["templateSurat"]>
+
+  export type TemplateSuratSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    judul?: boolean
+    terakhirDiubah?: boolean
+  }, ExtArgs["result"]["templateSurat"]>
+
+  export type TemplateSuratSelectScalar = {
+    id?: boolean
+    judul?: boolean
+    terakhirDiubah?: boolean
+  }
+
+  export type TemplateSuratOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "judul" | "terakhirDiubah", ExtArgs["result"]["templateSurat"]>
+
+  export type $TemplateSuratPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TemplateSurat"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      judul: string
+      terakhirDiubah: string
+    }, ExtArgs["result"]["templateSurat"]>
+    composites: {}
+  }
+
+  type TemplateSuratGetPayload<S extends boolean | null | undefined | TemplateSuratDefaultArgs> = $Result.GetResult<Prisma.$TemplateSuratPayload, S>
+
+  type TemplateSuratCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TemplateSuratFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TemplateSuratCountAggregateInputType | true
+    }
+
+  export interface TemplateSuratDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TemplateSurat'], meta: { name: 'TemplateSurat' } }
+    /**
+     * Find zero or one TemplateSurat that matches the filter.
+     * @param {TemplateSuratFindUniqueArgs} args - Arguments to find a TemplateSurat
+     * @example
+     * // Get one TemplateSurat
+     * const templateSurat = await prisma.templateSurat.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TemplateSuratFindUniqueArgs>(args: SelectSubset<T, TemplateSuratFindUniqueArgs<ExtArgs>>): Prisma__TemplateSuratClient<$Result.GetResult<Prisma.$TemplateSuratPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TemplateSurat that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TemplateSuratFindUniqueOrThrowArgs} args - Arguments to find a TemplateSurat
+     * @example
+     * // Get one TemplateSurat
+     * const templateSurat = await prisma.templateSurat.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TemplateSuratFindUniqueOrThrowArgs>(args: SelectSubset<T, TemplateSuratFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TemplateSuratClient<$Result.GetResult<Prisma.$TemplateSuratPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TemplateSurat that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TemplateSuratFindFirstArgs} args - Arguments to find a TemplateSurat
+     * @example
+     * // Get one TemplateSurat
+     * const templateSurat = await prisma.templateSurat.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TemplateSuratFindFirstArgs>(args?: SelectSubset<T, TemplateSuratFindFirstArgs<ExtArgs>>): Prisma__TemplateSuratClient<$Result.GetResult<Prisma.$TemplateSuratPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TemplateSurat that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TemplateSuratFindFirstOrThrowArgs} args - Arguments to find a TemplateSurat
+     * @example
+     * // Get one TemplateSurat
+     * const templateSurat = await prisma.templateSurat.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TemplateSuratFindFirstOrThrowArgs>(args?: SelectSubset<T, TemplateSuratFindFirstOrThrowArgs<ExtArgs>>): Prisma__TemplateSuratClient<$Result.GetResult<Prisma.$TemplateSuratPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TemplateSurats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TemplateSuratFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TemplateSurats
+     * const templateSurats = await prisma.templateSurat.findMany()
+     * 
+     * // Get first 10 TemplateSurats
+     * const templateSurats = await prisma.templateSurat.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const templateSuratWithIdOnly = await prisma.templateSurat.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TemplateSuratFindManyArgs>(args?: SelectSubset<T, TemplateSuratFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TemplateSuratPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TemplateSurat.
+     * @param {TemplateSuratCreateArgs} args - Arguments to create a TemplateSurat.
+     * @example
+     * // Create one TemplateSurat
+     * const TemplateSurat = await prisma.templateSurat.create({
+     *   data: {
+     *     // ... data to create a TemplateSurat
+     *   }
+     * })
+     * 
+     */
+    create<T extends TemplateSuratCreateArgs>(args: SelectSubset<T, TemplateSuratCreateArgs<ExtArgs>>): Prisma__TemplateSuratClient<$Result.GetResult<Prisma.$TemplateSuratPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TemplateSurats.
+     * @param {TemplateSuratCreateManyArgs} args - Arguments to create many TemplateSurats.
+     * @example
+     * // Create many TemplateSurats
+     * const templateSurat = await prisma.templateSurat.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TemplateSuratCreateManyArgs>(args?: SelectSubset<T, TemplateSuratCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TemplateSurats and returns the data saved in the database.
+     * @param {TemplateSuratCreateManyAndReturnArgs} args - Arguments to create many TemplateSurats.
+     * @example
+     * // Create many TemplateSurats
+     * const templateSurat = await prisma.templateSurat.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TemplateSurats and only return the `id`
+     * const templateSuratWithIdOnly = await prisma.templateSurat.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TemplateSuratCreateManyAndReturnArgs>(args?: SelectSubset<T, TemplateSuratCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TemplateSuratPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TemplateSurat.
+     * @param {TemplateSuratDeleteArgs} args - Arguments to delete one TemplateSurat.
+     * @example
+     * // Delete one TemplateSurat
+     * const TemplateSurat = await prisma.templateSurat.delete({
+     *   where: {
+     *     // ... filter to delete one TemplateSurat
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TemplateSuratDeleteArgs>(args: SelectSubset<T, TemplateSuratDeleteArgs<ExtArgs>>): Prisma__TemplateSuratClient<$Result.GetResult<Prisma.$TemplateSuratPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TemplateSurat.
+     * @param {TemplateSuratUpdateArgs} args - Arguments to update one TemplateSurat.
+     * @example
+     * // Update one TemplateSurat
+     * const templateSurat = await prisma.templateSurat.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TemplateSuratUpdateArgs>(args: SelectSubset<T, TemplateSuratUpdateArgs<ExtArgs>>): Prisma__TemplateSuratClient<$Result.GetResult<Prisma.$TemplateSuratPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TemplateSurats.
+     * @param {TemplateSuratDeleteManyArgs} args - Arguments to filter TemplateSurats to delete.
+     * @example
+     * // Delete a few TemplateSurats
+     * const { count } = await prisma.templateSurat.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TemplateSuratDeleteManyArgs>(args?: SelectSubset<T, TemplateSuratDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TemplateSurats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TemplateSuratUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TemplateSurats
+     * const templateSurat = await prisma.templateSurat.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TemplateSuratUpdateManyArgs>(args: SelectSubset<T, TemplateSuratUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TemplateSurats and returns the data updated in the database.
+     * @param {TemplateSuratUpdateManyAndReturnArgs} args - Arguments to update many TemplateSurats.
+     * @example
+     * // Update many TemplateSurats
+     * const templateSurat = await prisma.templateSurat.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TemplateSurats and only return the `id`
+     * const templateSuratWithIdOnly = await prisma.templateSurat.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TemplateSuratUpdateManyAndReturnArgs>(args: SelectSubset<T, TemplateSuratUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TemplateSuratPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TemplateSurat.
+     * @param {TemplateSuratUpsertArgs} args - Arguments to update or create a TemplateSurat.
+     * @example
+     * // Update or create a TemplateSurat
+     * const templateSurat = await prisma.templateSurat.upsert({
+     *   create: {
+     *     // ... data to create a TemplateSurat
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TemplateSurat we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TemplateSuratUpsertArgs>(args: SelectSubset<T, TemplateSuratUpsertArgs<ExtArgs>>): Prisma__TemplateSuratClient<$Result.GetResult<Prisma.$TemplateSuratPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TemplateSurats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TemplateSuratCountArgs} args - Arguments to filter TemplateSurats to count.
+     * @example
+     * // Count the number of TemplateSurats
+     * const count = await prisma.templateSurat.count({
+     *   where: {
+     *     // ... the filter for the TemplateSurats we want to count
+     *   }
+     * })
+    **/
+    count<T extends TemplateSuratCountArgs>(
+      args?: Subset<T, TemplateSuratCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TemplateSuratCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TemplateSurat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TemplateSuratAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TemplateSuratAggregateArgs>(args: Subset<T, TemplateSuratAggregateArgs>): Prisma.PrismaPromise<GetTemplateSuratAggregateType<T>>
+
+    /**
+     * Group by TemplateSurat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TemplateSuratGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TemplateSuratGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TemplateSuratGroupByArgs['orderBy'] }
+        : { orderBy?: TemplateSuratGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TemplateSuratGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTemplateSuratGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TemplateSurat model
+   */
+  readonly fields: TemplateSuratFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TemplateSurat.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TemplateSuratClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TemplateSurat model
+   */
+  interface TemplateSuratFieldRefs {
+    readonly id: FieldRef<"TemplateSurat", 'Int'>
+    readonly judul: FieldRef<"TemplateSurat", 'String'>
+    readonly terakhirDiubah: FieldRef<"TemplateSurat", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TemplateSurat findUnique
+   */
+  export type TemplateSuratFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+    /**
+     * Filter, which TemplateSurat to fetch.
+     */
+    where: TemplateSuratWhereUniqueInput
+  }
+
+  /**
+   * TemplateSurat findUniqueOrThrow
+   */
+  export type TemplateSuratFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+    /**
+     * Filter, which TemplateSurat to fetch.
+     */
+    where: TemplateSuratWhereUniqueInput
+  }
+
+  /**
+   * TemplateSurat findFirst
+   */
+  export type TemplateSuratFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+    /**
+     * Filter, which TemplateSurat to fetch.
+     */
+    where?: TemplateSuratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TemplateSurats to fetch.
+     */
+    orderBy?: TemplateSuratOrderByWithRelationInput | TemplateSuratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TemplateSurats.
+     */
+    cursor?: TemplateSuratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TemplateSurats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TemplateSurats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TemplateSurats.
+     */
+    distinct?: TemplateSuratScalarFieldEnum | TemplateSuratScalarFieldEnum[]
+  }
+
+  /**
+   * TemplateSurat findFirstOrThrow
+   */
+  export type TemplateSuratFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+    /**
+     * Filter, which TemplateSurat to fetch.
+     */
+    where?: TemplateSuratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TemplateSurats to fetch.
+     */
+    orderBy?: TemplateSuratOrderByWithRelationInput | TemplateSuratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TemplateSurats.
+     */
+    cursor?: TemplateSuratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TemplateSurats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TemplateSurats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TemplateSurats.
+     */
+    distinct?: TemplateSuratScalarFieldEnum | TemplateSuratScalarFieldEnum[]
+  }
+
+  /**
+   * TemplateSurat findMany
+   */
+  export type TemplateSuratFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+    /**
+     * Filter, which TemplateSurats to fetch.
+     */
+    where?: TemplateSuratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TemplateSurats to fetch.
+     */
+    orderBy?: TemplateSuratOrderByWithRelationInput | TemplateSuratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TemplateSurats.
+     */
+    cursor?: TemplateSuratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TemplateSurats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TemplateSurats.
+     */
+    skip?: number
+    distinct?: TemplateSuratScalarFieldEnum | TemplateSuratScalarFieldEnum[]
+  }
+
+  /**
+   * TemplateSurat create
+   */
+  export type TemplateSuratCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+    /**
+     * The data needed to create a TemplateSurat.
+     */
+    data: XOR<TemplateSuratCreateInput, TemplateSuratUncheckedCreateInput>
+  }
+
+  /**
+   * TemplateSurat createMany
+   */
+  export type TemplateSuratCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TemplateSurats.
+     */
+    data: TemplateSuratCreateManyInput | TemplateSuratCreateManyInput[]
+  }
+
+  /**
+   * TemplateSurat createManyAndReturn
+   */
+  export type TemplateSuratCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+    /**
+     * The data used to create many TemplateSurats.
+     */
+    data: TemplateSuratCreateManyInput | TemplateSuratCreateManyInput[]
+  }
+
+  /**
+   * TemplateSurat update
+   */
+  export type TemplateSuratUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+    /**
+     * The data needed to update a TemplateSurat.
+     */
+    data: XOR<TemplateSuratUpdateInput, TemplateSuratUncheckedUpdateInput>
+    /**
+     * Choose, which TemplateSurat to update.
+     */
+    where: TemplateSuratWhereUniqueInput
+  }
+
+  /**
+   * TemplateSurat updateMany
+   */
+  export type TemplateSuratUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TemplateSurats.
+     */
+    data: XOR<TemplateSuratUpdateManyMutationInput, TemplateSuratUncheckedUpdateManyInput>
+    /**
+     * Filter which TemplateSurats to update
+     */
+    where?: TemplateSuratWhereInput
+    /**
+     * Limit how many TemplateSurats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TemplateSurat updateManyAndReturn
+   */
+  export type TemplateSuratUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+    /**
+     * The data used to update TemplateSurats.
+     */
+    data: XOR<TemplateSuratUpdateManyMutationInput, TemplateSuratUncheckedUpdateManyInput>
+    /**
+     * Filter which TemplateSurats to update
+     */
+    where?: TemplateSuratWhereInput
+    /**
+     * Limit how many TemplateSurats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TemplateSurat upsert
+   */
+  export type TemplateSuratUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+    /**
+     * The filter to search for the TemplateSurat to update in case it exists.
+     */
+    where: TemplateSuratWhereUniqueInput
+    /**
+     * In case the TemplateSurat found by the `where` argument doesn't exist, create a new TemplateSurat with this data.
+     */
+    create: XOR<TemplateSuratCreateInput, TemplateSuratUncheckedCreateInput>
+    /**
+     * In case the TemplateSurat was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TemplateSuratUpdateInput, TemplateSuratUncheckedUpdateInput>
+  }
+
+  /**
+   * TemplateSurat delete
+   */
+  export type TemplateSuratDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+    /**
+     * Filter which TemplateSurat to delete.
+     */
+    where: TemplateSuratWhereUniqueInput
+  }
+
+  /**
+   * TemplateSurat deleteMany
+   */
+  export type TemplateSuratDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TemplateSurats to delete
+     */
+    where?: TemplateSuratWhereInput
+    /**
+     * Limit how many TemplateSurats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TemplateSurat without action
+   */
+  export type TemplateSuratDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TemplateSurat
+     */
+    select?: TemplateSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TemplateSurat
+     */
+    omit?: TemplateSuratOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -1888,6 +2980,15 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const TemplateSuratScalarFieldEnum: {
+    id: 'id',
+    judul: 'judul',
+    terakhirDiubah: 'terakhirDiubah'
+  };
+
+  export type TemplateSuratScalarFieldEnum = (typeof TemplateSuratScalarFieldEnum)[keyof typeof TemplateSuratScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1971,6 +3072,50 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
   }
 
+  export type TemplateSuratWhereInput = {
+    AND?: TemplateSuratWhereInput | TemplateSuratWhereInput[]
+    OR?: TemplateSuratWhereInput[]
+    NOT?: TemplateSuratWhereInput | TemplateSuratWhereInput[]
+    id?: IntFilter<"TemplateSurat"> | number
+    judul?: StringFilter<"TemplateSurat"> | string
+    terakhirDiubah?: StringFilter<"TemplateSurat"> | string
+  }
+
+  export type TemplateSuratOrderByWithRelationInput = {
+    id?: SortOrder
+    judul?: SortOrder
+    terakhirDiubah?: SortOrder
+  }
+
+  export type TemplateSuratWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TemplateSuratWhereInput | TemplateSuratWhereInput[]
+    OR?: TemplateSuratWhereInput[]
+    NOT?: TemplateSuratWhereInput | TemplateSuratWhereInput[]
+    judul?: StringFilter<"TemplateSurat"> | string
+    terakhirDiubah?: StringFilter<"TemplateSurat"> | string
+  }, "id">
+
+  export type TemplateSuratOrderByWithAggregationInput = {
+    id?: SortOrder
+    judul?: SortOrder
+    terakhirDiubah?: SortOrder
+    _count?: TemplateSuratCountOrderByAggregateInput
+    _avg?: TemplateSuratAvgOrderByAggregateInput
+    _max?: TemplateSuratMaxOrderByAggregateInput
+    _min?: TemplateSuratMinOrderByAggregateInput
+    _sum?: TemplateSuratSumOrderByAggregateInput
+  }
+
+  export type TemplateSuratScalarWhereWithAggregatesInput = {
+    AND?: TemplateSuratScalarWhereWithAggregatesInput | TemplateSuratScalarWhereWithAggregatesInput[]
+    OR?: TemplateSuratScalarWhereWithAggregatesInput[]
+    NOT?: TemplateSuratScalarWhereWithAggregatesInput | TemplateSuratScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"TemplateSurat"> | number
+    judul?: StringWithAggregatesFilter<"TemplateSurat"> | string
+    terakhirDiubah?: StringWithAggregatesFilter<"TemplateSurat"> | string
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -2008,6 +3153,45 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TemplateSuratCreateInput = {
+    judul: string
+    terakhirDiubah: string
+  }
+
+  export type TemplateSuratUncheckedCreateInput = {
+    id?: number
+    judul: string
+    terakhirDiubah: string
+  }
+
+  export type TemplateSuratUpdateInput = {
+    judul?: StringFieldUpdateOperationsInput | string
+    terakhirDiubah?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TemplateSuratUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    judul?: StringFieldUpdateOperationsInput | string
+    terakhirDiubah?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TemplateSuratCreateManyInput = {
+    id?: number
+    judul: string
+    terakhirDiubah: string
+  }
+
+  export type TemplateSuratUpdateManyMutationInput = {
+    judul?: StringFieldUpdateOperationsInput | string
+    terakhirDiubah?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TemplateSuratUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    judul?: StringFieldUpdateOperationsInput | string
+    terakhirDiubah?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2092,6 +3276,32 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type TemplateSuratCountOrderByAggregateInput = {
+    id?: SortOrder
+    judul?: SortOrder
+    terakhirDiubah?: SortOrder
+  }
+
+  export type TemplateSuratAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type TemplateSuratMaxOrderByAggregateInput = {
+    id?: SortOrder
+    judul?: SortOrder
+    terakhirDiubah?: SortOrder
+  }
+
+  export type TemplateSuratMinOrderByAggregateInput = {
+    id?: SortOrder
+    judul?: SortOrder
+    terakhirDiubah?: SortOrder
+  }
+
+  export type TemplateSuratSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
