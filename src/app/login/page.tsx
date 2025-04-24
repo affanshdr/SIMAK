@@ -1,9 +1,25 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { FiMail, FiLock } from 'react-icons/fi';
 import Navbar from '../../components/Navbar';
+import { loginAdmin } from '@/lib/auth';
 
 export default function Masuk() {
+  const router = useRouter();
+  
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const password = (document.getElementById('password') as HTMLInputElement).value;
+
+    if (email === 'admin@email.com' && password === 'admin123') {
+      router.push('/Admin-Dashboard');
+    } else {
+      alert('Email atau password salah!');
+    }    
+  }
+
   return (
     <div
       style={{ fontFamily: 'var(--font-poppins)' }}
