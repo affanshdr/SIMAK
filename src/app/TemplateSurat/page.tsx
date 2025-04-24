@@ -2,14 +2,23 @@
 
 import React, { useEffect, useState } from "react";
 import NavbarAdmin from "../../components/NavbarAdmin";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 
 const TemplateSurat = () => {
   const [templates, setTemplates] = useState<any[]>([]);
   const [showModal, setShowModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
+  const [templateToDelete, setTemplateToDelete] = useState<string | null>(null);
+  const [newTemplate, setNewTemplate] = useState({
+    judul: "",
+    terakhirDiubah: new Date().toISOString().split('T')[0],
+    warna: "",
+    warnaBtn: ""
+  });
 
-  // Ambil data dari API saat pertama kali halaman dibuka
+  // Fetch templates on component mount
   useEffect(() => {
     const fetchTemplates = async () => {
       const res = await fetch("/api/template-surat");
@@ -24,21 +33,64 @@ const TemplateSurat = () => {
     setShowModal(true);
   };
 
+  const handleDeleteClick = (id: string) => {
+    setTemplateToDelete(id);
+    setShowDeleteModal(true);
+  };
+
+  const handleAddClick = () => {
+    setNewTemplate({
+      judul: "",
+      terakhirDiubah: new Date().toISOString().split('T')[0],
+      warna: "",
+      warnaBtn: ""
+    });
+    setShowAddModal(true);
+  };
+
   const handleSave = async () => {
-    await fetch("/api/template-surat", {
+    const response = await fetch("/api/template-surat", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(selectedTemplate),
     });
 
-    // Update tampilan setelah edit
-    setTemplates((prev) =>
-      prev.map((item) =>
-        item.id === selectedTemplate.id ? selectedTemplate : item
-      )
-    );
-
+    if (response.ok) {
+      const updatedTemplates = await response.json();
+      setTemplates(updatedTemplates);
+    }
     setShowModal(false);
+  };
+
+  const handleAddTemplate = async () => {
+    const response = await fetch("/api/template-surat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newTemplate),
+    });
+
+    if (response.ok) {
+      const updatedTemplates = await response.json();
+      setTemplates(updatedTemplates);
+      setShowAddModal(false);
+    }
+  };
+
+  const handleDeleteTemplate = async () => {
+    if (!templateToDelete) return;
+
+    const response = await fetch("/api/template-surat", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: templateToDelete }),
+    });
+
+    if (response.ok) {
+      const updatedTemplates = await response.json();
+      setTemplates(updatedTemplates);
+    }
+    setShowDeleteModal(false);
+    setTemplateToDelete(null);
   };
 
   return (
@@ -72,21 +124,41 @@ const TemplateSurat = () => {
         </button>
       </div>
 
+      {/* Add Template Button */}
+      <div className="mb-6">
+        <button
+          onClick={handleAddClick}
+          className="flex items-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg transition"
+        >
+          <FaPlus className="mr-2" /> Tambah Template
+        </button>
+      </div>
+
       {/* Template Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {templates.map((item) => (
           <div
             key={item.id}
-            className="bg-[#BDB176] text-white p-6 rounded-xl shadow-md"
+            className="text-white p-6 rounded-xl shadow-md relative"
+            style={{ backgroundColor: item.warna }}
           >
             <h2 className="text-lg font-semibold">{item.judul}</h2>
             <p className="text-sm mt-1">Terakhir diubah: {item.terakhirDiubah}</p>
-            <button
-              className="mt-4 bg-[#EBDDC6] text-black px-4 py-2 rounded-full font-semibold hover:brightness-110"
-              onClick={() => handleEditClick(item)}
-            >
-              <FaEdit className="inline mr-2" /> Edit
-            </button>
+            <div className="mt-4 flex gap-2">
+              <button
+                className="bg-[#EBDDC6] text-black px-4 py-2 rounded-full font-semibold hover:brightness-110 flex items-center"
+                style={{ backgroundColor: item.warnaBtn }}
+                onClick={() => handleEditClick(item)}
+              >
+                <FaEdit className="inline mr-2" /> Edit
+              </button>
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded-full font-semibold hover:brightness-110 flex items-center"
+                onClick={() => handleDeleteClick(item.id)}
+              >
+                <FaTrash className="inline mr-2" /> Hapus
+              </button>
+            </div>
           </div>
         ))}
       </div>
@@ -132,6 +204,89 @@ const TemplateSurat = () => {
                 className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
               >
                 Simpan
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Tambah Template */}
+      {showAddModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-xl shadow-lg w-[400px]">
+            <h2 className="text-xl font-semibold mb-4">Tambah Template Baru</h2>
+            <label className="block mb-2">Judul Surat</label>
+            <input
+              type="text"
+              value={newTemplate.judul}
+              onChange={(e) =>
+                setNewTemplate({
+                  ...newTemplate,
+                  judul: e.target.value,
+                })
+              }
+              className="w-full p-2 border rounded mb-4"
+            />
+            <label className="block mb-2">Warna Latar (opsional)</label>
+            <input
+              type="color"
+              value={newTemplate.warna}
+              onChange={(e) =>
+                setNewTemplate({
+                  ...newTemplate,
+                  warna: e.target.value,
+                })
+              }
+              className="w-full p-2 border rounded mb-4"
+            />
+            <label className="block mb-2">Warna Tombol (opsional)</label>
+            <input
+              type="color"
+              value={newTemplate.warnaBtn}
+              onChange={(e) =>
+                setNewTemplate({
+                  ...newTemplate,
+                  warnaBtn: e.target.value,
+                })
+              }
+              className="w-full p-2 border rounded mb-4"
+            />
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setShowAddModal(false)}
+                className="px-4 py-2 bg-gray-300 rounded"
+              >
+                Batal
+              </button>
+              <button
+                onClick={handleAddTemplate}
+                className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+              >
+                Tambah
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Hapus Template */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-xl shadow-lg w-[400px]">
+            <h2 className="text-xl font-semibold mb-4">Konfirmasi Hapus</h2>
+            <p className="mb-6">Apakah Anda yakin ingin menghapus template ini? Tindakan ini tidak dapat dibatalkan.</p>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setShowDeleteModal(false)}
+                className="px-4 py-2 bg-gray-300 rounded"
+              >
+                Batal
+              </button>
+              <button
+                onClick={handleDeleteTemplate}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              >
+                Hapus
               </button>
             </div>
           </div>
