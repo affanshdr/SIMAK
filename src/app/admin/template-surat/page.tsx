@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import NavbarAdmin from "../../components/NavbarAdmin";
-import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
+import NavbarAdmin from "../../../components/NavbarAdmin";
+import { FaEdit } from "react-icons/fa";
 
 const TemplateSurat = () => {
   const [templates, setTemplates] = useState<any[]>([]);
