@@ -28,6 +28,11 @@ export type TemplateSurat = $Result.DefaultSelection<Prisma.$TemplateSuratPayloa
  * 
  */
 export type PengajuanSurat = $Result.DefaultSelection<Prisma.$PengajuanSuratPayload>
+/**
+ * Model Warga
+ * 
+ */
+export type Warga = $Result.DefaultSelection<Prisma.$WargaPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -183,6 +188,16 @@ export class PrismaClient<
     * ```
     */
   get pengajuanSurat(): Prisma.PengajuanSuratDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.warga`: Exposes CRUD operations for the **Warga** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Wargas
+    * const wargas = await prisma.warga.findMany()
+    * ```
+    */
+  get warga(): Prisma.WargaDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -625,7 +640,8 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     TemplateSurat: 'TemplateSurat',
-    PengajuanSurat: 'PengajuanSurat'
+    PengajuanSurat: 'PengajuanSurat',
+    Warga: 'Warga'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -644,7 +660,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "templateSurat" | "pengajuanSurat"
+      modelProps: "user" | "templateSurat" | "pengajuanSurat" | "warga"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -870,6 +886,80 @@ export namespace Prisma {
           }
         }
       }
+      Warga: {
+        payload: Prisma.$WargaPayload<ExtArgs>
+        fields: Prisma.WargaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WargaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WargaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          findFirst: {
+            args: Prisma.WargaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WargaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          findMany: {
+            args: Prisma.WargaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>[]
+          }
+          create: {
+            args: Prisma.WargaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          createMany: {
+            args: Prisma.WargaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WargaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>[]
+          }
+          delete: {
+            args: Prisma.WargaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          update: {
+            args: Prisma.WargaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          deleteMany: {
+            args: Prisma.WargaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WargaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WargaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>[]
+          }
+          upsert: {
+            args: Prisma.WargaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          aggregate: {
+            args: Prisma.WargaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWarga>
+          }
+          groupBy: {
+            args: Prisma.WargaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WargaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WargaCountArgs<ExtArgs>
+            result: $Utils.Optional<WargaCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -957,6 +1047,7 @@ export namespace Prisma {
     user?: UserOmit
     templateSurat?: TemplateSuratOmit
     pengajuanSurat?: PengajuanSuratOmit
+    warga?: WargaOmit
   }
 
   /* Types for Logging */
@@ -4276,6 +4367,1059 @@ export namespace Prisma {
 
 
   /**
+   * Model Warga
+   */
+
+  export type AggregateWarga = {
+    _count: WargaCountAggregateOutputType | null
+    _avg: WargaAvgAggregateOutputType | null
+    _sum: WargaSumAggregateOutputType | null
+    _min: WargaMinAggregateOutputType | null
+    _max: WargaMaxAggregateOutputType | null
+  }
+
+  export type WargaAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type WargaSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type WargaMinAggregateOutputType = {
+    id: number | null
+    nama: string | null
+    no_nik: string | null
+    no_kk: string | null
+    alamat: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WargaMaxAggregateOutputType = {
+    id: number | null
+    nama: string | null
+    no_nik: string | null
+    no_kk: string | null
+    alamat: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WargaCountAggregateOutputType = {
+    id: number
+    nama: number
+    no_nik: number
+    no_kk: number
+    alamat: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type WargaAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type WargaSumAggregateInputType = {
+    id?: true
+  }
+
+  export type WargaMinAggregateInputType = {
+    id?: true
+    nama?: true
+    no_nik?: true
+    no_kk?: true
+    alamat?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WargaMaxAggregateInputType = {
+    id?: true
+    nama?: true
+    no_nik?: true
+    no_kk?: true
+    alamat?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WargaCountAggregateInputType = {
+    id?: true
+    nama?: true
+    no_nik?: true
+    no_kk?: true
+    alamat?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type WargaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Warga to aggregate.
+     */
+    where?: WargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wargas to fetch.
+     */
+    orderBy?: WargaOrderByWithRelationInput | WargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wargas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Wargas
+    **/
+    _count?: true | WargaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: WargaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: WargaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WargaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WargaMaxAggregateInputType
+  }
+
+  export type GetWargaAggregateType<T extends WargaAggregateArgs> = {
+        [P in keyof T & keyof AggregateWarga]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWarga[P]>
+      : GetScalarType<T[P], AggregateWarga[P]>
+  }
+
+
+
+
+  export type WargaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WargaWhereInput
+    orderBy?: WargaOrderByWithAggregationInput | WargaOrderByWithAggregationInput[]
+    by: WargaScalarFieldEnum[] | WargaScalarFieldEnum
+    having?: WargaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WargaCountAggregateInputType | true
+    _avg?: WargaAvgAggregateInputType
+    _sum?: WargaSumAggregateInputType
+    _min?: WargaMinAggregateInputType
+    _max?: WargaMaxAggregateInputType
+  }
+
+  export type WargaGroupByOutputType = {
+    id: number
+    nama: string
+    no_nik: string
+    no_kk: string
+    alamat: string
+    createdAt: Date
+    updatedAt: Date
+    _count: WargaCountAggregateOutputType | null
+    _avg: WargaAvgAggregateOutputType | null
+    _sum: WargaSumAggregateOutputType | null
+    _min: WargaMinAggregateOutputType | null
+    _max: WargaMaxAggregateOutputType | null
+  }
+
+  type GetWargaGroupByPayload<T extends WargaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WargaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WargaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WargaGroupByOutputType[P]>
+            : GetScalarType<T[P], WargaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WargaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nama?: boolean
+    no_nik?: boolean
+    no_kk?: boolean
+    alamat?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["warga"]>
+
+  export type WargaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nama?: boolean
+    no_nik?: boolean
+    no_kk?: boolean
+    alamat?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["warga"]>
+
+  export type WargaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nama?: boolean
+    no_nik?: boolean
+    no_kk?: boolean
+    alamat?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["warga"]>
+
+  export type WargaSelectScalar = {
+    id?: boolean
+    nama?: boolean
+    no_nik?: boolean
+    no_kk?: boolean
+    alamat?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type WargaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "no_nik" | "no_kk" | "alamat" | "createdAt" | "updatedAt", ExtArgs["result"]["warga"]>
+
+  export type $WargaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Warga"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nama: string
+      no_nik: string
+      no_kk: string
+      alamat: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["warga"]>
+    composites: {}
+  }
+
+  type WargaGetPayload<S extends boolean | null | undefined | WargaDefaultArgs> = $Result.GetResult<Prisma.$WargaPayload, S>
+
+  type WargaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WargaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WargaCountAggregateInputType | true
+    }
+
+  export interface WargaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Warga'], meta: { name: 'Warga' } }
+    /**
+     * Find zero or one Warga that matches the filter.
+     * @param {WargaFindUniqueArgs} args - Arguments to find a Warga
+     * @example
+     * // Get one Warga
+     * const warga = await prisma.warga.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WargaFindUniqueArgs>(args: SelectSubset<T, WargaFindUniqueArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Warga that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WargaFindUniqueOrThrowArgs} args - Arguments to find a Warga
+     * @example
+     * // Get one Warga
+     * const warga = await prisma.warga.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WargaFindUniqueOrThrowArgs>(args: SelectSubset<T, WargaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Warga that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaFindFirstArgs} args - Arguments to find a Warga
+     * @example
+     * // Get one Warga
+     * const warga = await prisma.warga.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WargaFindFirstArgs>(args?: SelectSubset<T, WargaFindFirstArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Warga that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaFindFirstOrThrowArgs} args - Arguments to find a Warga
+     * @example
+     * // Get one Warga
+     * const warga = await prisma.warga.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WargaFindFirstOrThrowArgs>(args?: SelectSubset<T, WargaFindFirstOrThrowArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Wargas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Wargas
+     * const wargas = await prisma.warga.findMany()
+     * 
+     * // Get first 10 Wargas
+     * const wargas = await prisma.warga.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const wargaWithIdOnly = await prisma.warga.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WargaFindManyArgs>(args?: SelectSubset<T, WargaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Warga.
+     * @param {WargaCreateArgs} args - Arguments to create a Warga.
+     * @example
+     * // Create one Warga
+     * const Warga = await prisma.warga.create({
+     *   data: {
+     *     // ... data to create a Warga
+     *   }
+     * })
+     * 
+     */
+    create<T extends WargaCreateArgs>(args: SelectSubset<T, WargaCreateArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Wargas.
+     * @param {WargaCreateManyArgs} args - Arguments to create many Wargas.
+     * @example
+     * // Create many Wargas
+     * const warga = await prisma.warga.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WargaCreateManyArgs>(args?: SelectSubset<T, WargaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Wargas and returns the data saved in the database.
+     * @param {WargaCreateManyAndReturnArgs} args - Arguments to create many Wargas.
+     * @example
+     * // Create many Wargas
+     * const warga = await prisma.warga.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Wargas and only return the `id`
+     * const wargaWithIdOnly = await prisma.warga.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WargaCreateManyAndReturnArgs>(args?: SelectSubset<T, WargaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Warga.
+     * @param {WargaDeleteArgs} args - Arguments to delete one Warga.
+     * @example
+     * // Delete one Warga
+     * const Warga = await prisma.warga.delete({
+     *   where: {
+     *     // ... filter to delete one Warga
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WargaDeleteArgs>(args: SelectSubset<T, WargaDeleteArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Warga.
+     * @param {WargaUpdateArgs} args - Arguments to update one Warga.
+     * @example
+     * // Update one Warga
+     * const warga = await prisma.warga.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WargaUpdateArgs>(args: SelectSubset<T, WargaUpdateArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Wargas.
+     * @param {WargaDeleteManyArgs} args - Arguments to filter Wargas to delete.
+     * @example
+     * // Delete a few Wargas
+     * const { count } = await prisma.warga.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WargaDeleteManyArgs>(args?: SelectSubset<T, WargaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Wargas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Wargas
+     * const warga = await prisma.warga.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WargaUpdateManyArgs>(args: SelectSubset<T, WargaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Wargas and returns the data updated in the database.
+     * @param {WargaUpdateManyAndReturnArgs} args - Arguments to update many Wargas.
+     * @example
+     * // Update many Wargas
+     * const warga = await prisma.warga.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Wargas and only return the `id`
+     * const wargaWithIdOnly = await prisma.warga.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WargaUpdateManyAndReturnArgs>(args: SelectSubset<T, WargaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Warga.
+     * @param {WargaUpsertArgs} args - Arguments to update or create a Warga.
+     * @example
+     * // Update or create a Warga
+     * const warga = await prisma.warga.upsert({
+     *   create: {
+     *     // ... data to create a Warga
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Warga we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WargaUpsertArgs>(args: SelectSubset<T, WargaUpsertArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Wargas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaCountArgs} args - Arguments to filter Wargas to count.
+     * @example
+     * // Count the number of Wargas
+     * const count = await prisma.warga.count({
+     *   where: {
+     *     // ... the filter for the Wargas we want to count
+     *   }
+     * })
+    **/
+    count<T extends WargaCountArgs>(
+      args?: Subset<T, WargaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WargaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Warga.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WargaAggregateArgs>(args: Subset<T, WargaAggregateArgs>): Prisma.PrismaPromise<GetWargaAggregateType<T>>
+
+    /**
+     * Group by Warga.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WargaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WargaGroupByArgs['orderBy'] }
+        : { orderBy?: WargaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WargaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWargaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Warga model
+   */
+  readonly fields: WargaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Warga.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WargaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Warga model
+   */
+  interface WargaFieldRefs {
+    readonly id: FieldRef<"Warga", 'Int'>
+    readonly nama: FieldRef<"Warga", 'String'>
+    readonly no_nik: FieldRef<"Warga", 'String'>
+    readonly no_kk: FieldRef<"Warga", 'String'>
+    readonly alamat: FieldRef<"Warga", 'String'>
+    readonly createdAt: FieldRef<"Warga", 'DateTime'>
+    readonly updatedAt: FieldRef<"Warga", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Warga findUnique
+   */
+  export type WargaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+    /**
+     * Filter, which Warga to fetch.
+     */
+    where: WargaWhereUniqueInput
+  }
+
+  /**
+   * Warga findUniqueOrThrow
+   */
+  export type WargaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+    /**
+     * Filter, which Warga to fetch.
+     */
+    where: WargaWhereUniqueInput
+  }
+
+  /**
+   * Warga findFirst
+   */
+  export type WargaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+    /**
+     * Filter, which Warga to fetch.
+     */
+    where?: WargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wargas to fetch.
+     */
+    orderBy?: WargaOrderByWithRelationInput | WargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Wargas.
+     */
+    cursor?: WargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wargas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Wargas.
+     */
+    distinct?: WargaScalarFieldEnum | WargaScalarFieldEnum[]
+  }
+
+  /**
+   * Warga findFirstOrThrow
+   */
+  export type WargaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+    /**
+     * Filter, which Warga to fetch.
+     */
+    where?: WargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wargas to fetch.
+     */
+    orderBy?: WargaOrderByWithRelationInput | WargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Wargas.
+     */
+    cursor?: WargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wargas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Wargas.
+     */
+    distinct?: WargaScalarFieldEnum | WargaScalarFieldEnum[]
+  }
+
+  /**
+   * Warga findMany
+   */
+  export type WargaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+    /**
+     * Filter, which Wargas to fetch.
+     */
+    where?: WargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wargas to fetch.
+     */
+    orderBy?: WargaOrderByWithRelationInput | WargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Wargas.
+     */
+    cursor?: WargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wargas.
+     */
+    skip?: number
+    distinct?: WargaScalarFieldEnum | WargaScalarFieldEnum[]
+  }
+
+  /**
+   * Warga create
+   */
+  export type WargaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Warga.
+     */
+    data: XOR<WargaCreateInput, WargaUncheckedCreateInput>
+  }
+
+  /**
+   * Warga createMany
+   */
+  export type WargaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Wargas.
+     */
+    data: WargaCreateManyInput | WargaCreateManyInput[]
+  }
+
+  /**
+   * Warga createManyAndReturn
+   */
+  export type WargaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+    /**
+     * The data used to create many Wargas.
+     */
+    data: WargaCreateManyInput | WargaCreateManyInput[]
+  }
+
+  /**
+   * Warga update
+   */
+  export type WargaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Warga.
+     */
+    data: XOR<WargaUpdateInput, WargaUncheckedUpdateInput>
+    /**
+     * Choose, which Warga to update.
+     */
+    where: WargaWhereUniqueInput
+  }
+
+  /**
+   * Warga updateMany
+   */
+  export type WargaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Wargas.
+     */
+    data: XOR<WargaUpdateManyMutationInput, WargaUncheckedUpdateManyInput>
+    /**
+     * Filter which Wargas to update
+     */
+    where?: WargaWhereInput
+    /**
+     * Limit how many Wargas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Warga updateManyAndReturn
+   */
+  export type WargaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+    /**
+     * The data used to update Wargas.
+     */
+    data: XOR<WargaUpdateManyMutationInput, WargaUncheckedUpdateManyInput>
+    /**
+     * Filter which Wargas to update
+     */
+    where?: WargaWhereInput
+    /**
+     * Limit how many Wargas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Warga upsert
+   */
+  export type WargaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Warga to update in case it exists.
+     */
+    where: WargaWhereUniqueInput
+    /**
+     * In case the Warga found by the `where` argument doesn't exist, create a new Warga with this data.
+     */
+    create: XOR<WargaCreateInput, WargaUncheckedCreateInput>
+    /**
+     * In case the Warga was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WargaUpdateInput, WargaUncheckedUpdateInput>
+  }
+
+  /**
+   * Warga delete
+   */
+  export type WargaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+    /**
+     * Filter which Warga to delete.
+     */
+    where: WargaWhereUniqueInput
+  }
+
+  /**
+   * Warga deleteMany
+   */
+  export type WargaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Wargas to delete
+     */
+    where?: WargaWhereInput
+    /**
+     * Limit how many Wargas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Warga without action
+   */
+  export type WargaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Warga
+     */
+    omit?: WargaOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4328,6 +5472,19 @@ export namespace Prisma {
   };
 
   export type PengajuanSuratScalarFieldEnum = (typeof PengajuanSuratScalarFieldEnum)[keyof typeof PengajuanSuratScalarFieldEnum]
+
+
+  export const WargaScalarFieldEnum: {
+    id: 'id',
+    nama: 'nama',
+    no_nik: 'no_nik',
+    no_kk: 'no_kk',
+    alamat: 'alamat',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type WargaScalarFieldEnum = (typeof WargaScalarFieldEnum)[keyof typeof WargaScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4599,6 +5756,70 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"PengajuanSurat"> | Date | string
   }
 
+  export type WargaWhereInput = {
+    AND?: WargaWhereInput | WargaWhereInput[]
+    OR?: WargaWhereInput[]
+    NOT?: WargaWhereInput | WargaWhereInput[]
+    id?: IntFilter<"Warga"> | number
+    nama?: StringFilter<"Warga"> | string
+    no_nik?: StringFilter<"Warga"> | string
+    no_kk?: StringFilter<"Warga"> | string
+    alamat?: StringFilter<"Warga"> | string
+    createdAt?: DateTimeFilter<"Warga"> | Date | string
+    updatedAt?: DateTimeFilter<"Warga"> | Date | string
+  }
+
+  export type WargaOrderByWithRelationInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    no_nik?: SortOrder
+    no_kk?: SortOrder
+    alamat?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WargaWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    no_nik?: string
+    AND?: WargaWhereInput | WargaWhereInput[]
+    OR?: WargaWhereInput[]
+    NOT?: WargaWhereInput | WargaWhereInput[]
+    nama?: StringFilter<"Warga"> | string
+    no_kk?: StringFilter<"Warga"> | string
+    alamat?: StringFilter<"Warga"> | string
+    createdAt?: DateTimeFilter<"Warga"> | Date | string
+    updatedAt?: DateTimeFilter<"Warga"> | Date | string
+  }, "id" | "no_nik">
+
+  export type WargaOrderByWithAggregationInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    no_nik?: SortOrder
+    no_kk?: SortOrder
+    alamat?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: WargaCountOrderByAggregateInput
+    _avg?: WargaAvgOrderByAggregateInput
+    _max?: WargaMaxOrderByAggregateInput
+    _min?: WargaMinOrderByAggregateInput
+    _sum?: WargaSumOrderByAggregateInput
+  }
+
+  export type WargaScalarWhereWithAggregatesInput = {
+    AND?: WargaScalarWhereWithAggregatesInput | WargaScalarWhereWithAggregatesInput[]
+    OR?: WargaScalarWhereWithAggregatesInput[]
+    NOT?: WargaScalarWhereWithAggregatesInput | WargaScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Warga"> | number
+    nama?: StringWithAggregatesFilter<"Warga"> | string
+    no_nik?: StringWithAggregatesFilter<"Warga"> | string
+    no_kk?: StringWithAggregatesFilter<"Warga"> | string
+    alamat?: StringWithAggregatesFilter<"Warga"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Warga"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Warga"> | Date | string
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -4833,6 +6054,73 @@ export namespace Prisma {
     tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
     tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WargaCreateInput = {
+    nama: string
+    no_nik: string
+    no_kk: string
+    alamat: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WargaUncheckedCreateInput = {
+    id?: number
+    nama: string
+    no_nik: string
+    no_kk: string
+    alamat: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WargaUpdateInput = {
+    nama?: StringFieldUpdateOperationsInput | string
+    no_nik?: StringFieldUpdateOperationsInput | string
+    no_kk?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WargaUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nama?: StringFieldUpdateOperationsInput | string
+    no_nik?: StringFieldUpdateOperationsInput | string
+    no_kk?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WargaCreateManyInput = {
+    id?: number
+    nama: string
+    no_nik: string
+    no_kk: string
+    alamat: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WargaUpdateManyMutationInput = {
+    nama?: StringFieldUpdateOperationsInput | string
+    no_nik?: StringFieldUpdateOperationsInput | string
+    no_kk?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WargaUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nama?: StringFieldUpdateOperationsInput | string
+    no_nik?: StringFieldUpdateOperationsInput | string
+    no_kk?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -5106,6 +6394,44 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type WargaCountOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    no_nik?: SortOrder
+    no_kk?: SortOrder
+    alamat?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WargaAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type WargaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    no_nik?: SortOrder
+    no_kk?: SortOrder
+    alamat?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WargaMinOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    no_nik?: SortOrder
+    no_kk?: SortOrder
+    alamat?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WargaSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {

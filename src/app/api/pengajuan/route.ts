@@ -162,42 +162,61 @@ export async function POST(request: Request) {
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const status = searchParams.get('status');
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '10');
+    const search = searchParams.get('search') || '';
 
-    const whereClause = status ? { status } : {};
-    
-    const [pengajuan, total] = await Promise.all([
+    const whereClause = search
+      ? {
+          OR: [
+            { no_pengajuan: { contains: search } },
+            { no_nik: { contains: search } },
+          ],
+        }
+      : {};
+
+    const [data, total] = await Promise.all([
       prisma.pengajuanSurat.findMany({
         where: whereClause,
         orderBy: { tanggal_pengajuan: 'desc' },
-        skip: (page - 1) * limit,
         take: limit,
+        skip: (page - 1) * limit,
+        select: {
+          id: true,
+          no_pengajuan: true,
+          no_nik: true,
+          nama_lengkap: true,
+          jenis_surat: true,
+          status: true,
+          tanggal_pengajuan: true,
+        },
       }),
-      prisma.pengajuanSurat.count({ where: whereClause })
+      prisma.pengajuanSurat.count({ where: whereClause }),
     ]);
 
     return NextResponse.json({
       success: true,
-      data: pengajuan,
+      data,
       meta: {
         total,
         page,
         limit,
-        totalPages: Math.ceil(total / limit)
-      }
+        totalPages: Math.ceil(total / limit),
+      },
     });
-
   } catch (error) {
     console.error('Error fetching pengajuan:', error);
-    return NextResponse.json({
-      success: false,
-      error: 'Internal Server Error',
-      message: 'Gagal mengambil data pengajuan'
-    }, { status: 500 });
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Internal Server Error',
+        message: 'Gagal mengambil data pengajuan',
+      },
+      { status: 500 }
+    );
   }
 }
+
 
 export async function PUT(request: Request) {
   try {

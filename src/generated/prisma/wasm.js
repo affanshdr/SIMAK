@@ -152,6 +152,16 @@ exports.Prisma.PengajuanSuratScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.WargaScalarFieldEnum = {
+  id: 'id',
+  nama: 'nama',
+  no_nik: 'no_nik',
+  no_kk: 'no_kk',
+  alamat: 'alamat',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -166,7 +176,8 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   User: 'User',
   TemplateSurat: 'TemplateSurat',
-  PengajuanSurat: 'PengajuanSurat'
+  PengajuanSurat: 'PengajuanSurat',
+  Warga: 'Warga'
 };
 
 /**

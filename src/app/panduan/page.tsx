@@ -19,17 +19,18 @@ const steps = [
     number: 2,
     title: "Melihat Pengajuan",
     description: [
-    "Klik menu 'Lacak Pengajuan",
-    "Lacak pengajuan dengan NIK/No. Tracking" ],
+      "Klik menu 'Lacak Pengajuan'",
+      "Lacak pengajuan dengan NIK/No. Tracking",
+    ],
     icon: "⏳",
   },
   {
     number: 3,
     title: "Cek Status",
     description: [
-      'Ikuti Langkah 2',
-      "Cek Status secara berkala (1-3 Hari Kerja)"
-],
+      "Ikuti Langkah 2",
+      "Cek Status secara berkala (1-3 Hari Kerja)",
+    ],
     icon: "🔍",
   },
   {
@@ -101,7 +102,7 @@ const letterTypes = [
 
 export default function Panduan() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
+  const [selectedLetter, setSelectedLetter] = useState<string>("");
 
   const handleLetterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedLetter(e.target.value);
@@ -114,7 +115,8 @@ export default function Panduan() {
   return (
     <div
       style={{ fontFamily: "var(--font-poppins)" }}
-      className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-50 font-poppins">
+      className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-50 font-poppins"
+    >
       <Navbar />
 
       {/* Hero Section */}
@@ -179,10 +181,11 @@ export default function Panduan() {
 
           <div className="relative group">
             <select
+              value={selectedLetter}
               onChange={handleLetterChange}
               className="w-full p-4 pr-10 text-lg border border-gray-300 rounded-xl appearance-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 bg-white cursor-pointer transition-all hover:shadow-md"
             >
-              <option value="" disabled selected className="text-gray-400">
+              <option value="" disabled className="text-gray-400">
                 Pilih jenis surat...
               </option>
               {letterTypes
