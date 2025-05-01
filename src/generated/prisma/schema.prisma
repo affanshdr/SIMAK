@@ -49,3 +49,13 @@ model PengajuanSurat {
   tanggal_selesai       DateTime?
   createdAt             DateTime  @default(now())
 }
+
+model Warga {
+  id        Int      @id @default(autoincrement())
+  nama      String
+  no_nik    String   @unique
+  no_kk     String
+  alamat    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

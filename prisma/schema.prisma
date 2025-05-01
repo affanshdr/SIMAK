@@ -35,7 +35,7 @@ model PengajuanSurat {
   // Data Pemohon
   no_pengajuan            String?
   nama_lengkap            String
-  no_nik                     String
+  no_nik                  String
   no_kk                   String
   alamat                  String
   keterangan              String
@@ -53,4 +53,14 @@ model PengajuanSurat {
   tanggal_selesai         DateTime?
   createdAt               DateTime @default(now())
 
+}
+
+model Warga {
+  id                  Int      @id @default(autoincrement())
+  nama_lengkap        String
+  no_nik              String   @unique
+  no_kk               String
+  alamat              String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
 }

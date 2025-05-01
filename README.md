@@ -12,9 +12,7 @@
 
 4. Adinda Muarriva (2308107010001)
 
-
 ![image](https://github.com/user-attachments/assets/c06f8814-2f0d-4c7c-8986-bb2bcf9ee265)
-
 
 Sistem Informasi untuk mempermudah pengurusan surat keterangan di tingkat desa/kelurahan dengan database SQLite.
 
@@ -50,3 +48,4 @@ Sistem Informasi untuk mempermudah pengurusan surat keterangan di tingkat desa/k
 5. **Database GUI:**:
    ```bash
    npx prisma studio
+
