@@ -23,6 +23,11 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type TemplateSurat = $Result.DefaultSelection<Prisma.$TemplateSuratPayload>
+/**
+ * Model PengajuanSurat
+ * 
+ */
+export type PengajuanSurat = $Result.DefaultSelection<Prisma.$PengajuanSuratPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -168,6 +173,16 @@ export class PrismaClient<
     * ```
     */
   get templateSurat(): Prisma.TemplateSuratDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.pengajuanSurat`: Exposes CRUD operations for the **PengajuanSurat** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PengajuanSurats
+    * const pengajuanSurats = await prisma.pengajuanSurat.findMany()
+    * ```
+    */
+  get pengajuanSurat(): Prisma.PengajuanSuratDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -226,8 +241,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.6.0
-   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -609,7 +624,8 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    TemplateSurat: 'TemplateSurat'
+    TemplateSurat: 'TemplateSurat',
+    PengajuanSurat: 'PengajuanSurat'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -628,7 +644,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "templateSurat"
+      modelProps: "user" | "templateSurat" | "pengajuanSurat"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -780,6 +796,80 @@ export namespace Prisma {
           }
         }
       }
+      PengajuanSurat: {
+        payload: Prisma.$PengajuanSuratPayload<ExtArgs>
+        fields: Prisma.PengajuanSuratFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PengajuanSuratFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PengajuanSuratPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PengajuanSuratFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PengajuanSuratPayload>
+          }
+          findFirst: {
+            args: Prisma.PengajuanSuratFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PengajuanSuratPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PengajuanSuratFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PengajuanSuratPayload>
+          }
+          findMany: {
+            args: Prisma.PengajuanSuratFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PengajuanSuratPayload>[]
+          }
+          create: {
+            args: Prisma.PengajuanSuratCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PengajuanSuratPayload>
+          }
+          createMany: {
+            args: Prisma.PengajuanSuratCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PengajuanSuratCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PengajuanSuratPayload>[]
+          }
+          delete: {
+            args: Prisma.PengajuanSuratDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PengajuanSuratPayload>
+          }
+          update: {
+            args: Prisma.PengajuanSuratUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PengajuanSuratPayload>
+          }
+          deleteMany: {
+            args: Prisma.PengajuanSuratDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PengajuanSuratUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PengajuanSuratUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PengajuanSuratPayload>[]
+          }
+          upsert: {
+            args: Prisma.PengajuanSuratUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PengajuanSuratPayload>
+          }
+          aggregate: {
+            args: Prisma.PengajuanSuratAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePengajuanSurat>
+          }
+          groupBy: {
+            args: Prisma.PengajuanSuratGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PengajuanSuratGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PengajuanSuratCountArgs<ExtArgs>
+            result: $Utils.Optional<PengajuanSuratCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -866,6 +956,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     templateSurat?: TemplateSuratOmit
+    pengajuanSurat?: PengajuanSuratOmit
   }
 
   /* Types for Logging */
@@ -2963,6 +3054,1228 @@ export namespace Prisma {
 
 
   /**
+   * Model PengajuanSurat
+   */
+
+  export type AggregatePengajuanSurat = {
+    _count: PengajuanSuratCountAggregateOutputType | null
+    _avg: PengajuanSuratAvgAggregateOutputType | null
+    _sum: PengajuanSuratSumAggregateOutputType | null
+    _min: PengajuanSuratMinAggregateOutputType | null
+    _max: PengajuanSuratMaxAggregateOutputType | null
+  }
+
+  export type PengajuanSuratAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type PengajuanSuratSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type PengajuanSuratMinAggregateOutputType = {
+    id: number | null
+    no_pengajuan: string | null
+    nama_lengkap: string | null
+    no_nik: string | null
+    no_kk: string | null
+    alamat: string | null
+    keterangan: string | null
+    jenis_surat: string | null
+    file_ktp: string | null
+    file_kk: string | null
+    file_pengantar_rtrw: string | null
+    file_surat_permohonan: string | null
+    file_izin_usaha: string | null
+    file_pas_foto: string | null
+    file_pernyataan_tm: string | null
+    file_rekening_listrik: string | null
+    status: string | null
+    tanggal_pengajuan: Date | null
+    tanggal_selesai: Date | null
+    createdAt: Date | null
+  }
+
+  export type PengajuanSuratMaxAggregateOutputType = {
+    id: number | null
+    no_pengajuan: string | null
+    nama_lengkap: string | null
+    no_nik: string | null
+    no_kk: string | null
+    alamat: string | null
+    keterangan: string | null
+    jenis_surat: string | null
+    file_ktp: string | null
+    file_kk: string | null
+    file_pengantar_rtrw: string | null
+    file_surat_permohonan: string | null
+    file_izin_usaha: string | null
+    file_pas_foto: string | null
+    file_pernyataan_tm: string | null
+    file_rekening_listrik: string | null
+    status: string | null
+    tanggal_pengajuan: Date | null
+    tanggal_selesai: Date | null
+    createdAt: Date | null
+  }
+
+  export type PengajuanSuratCountAggregateOutputType = {
+    id: number
+    no_pengajuan: number
+    nama_lengkap: number
+    no_nik: number
+    no_kk: number
+    alamat: number
+    keterangan: number
+    jenis_surat: number
+    file_ktp: number
+    file_kk: number
+    file_pengantar_rtrw: number
+    file_surat_permohonan: number
+    file_izin_usaha: number
+    file_pas_foto: number
+    file_pernyataan_tm: number
+    file_rekening_listrik: number
+    status: number
+    tanggal_pengajuan: number
+    tanggal_selesai: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type PengajuanSuratAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type PengajuanSuratSumAggregateInputType = {
+    id?: true
+  }
+
+  export type PengajuanSuratMinAggregateInputType = {
+    id?: true
+    no_pengajuan?: true
+    nama_lengkap?: true
+    no_nik?: true
+    no_kk?: true
+    alamat?: true
+    keterangan?: true
+    jenis_surat?: true
+    file_ktp?: true
+    file_kk?: true
+    file_pengantar_rtrw?: true
+    file_surat_permohonan?: true
+    file_izin_usaha?: true
+    file_pas_foto?: true
+    file_pernyataan_tm?: true
+    file_rekening_listrik?: true
+    status?: true
+    tanggal_pengajuan?: true
+    tanggal_selesai?: true
+    createdAt?: true
+  }
+
+  export type PengajuanSuratMaxAggregateInputType = {
+    id?: true
+    no_pengajuan?: true
+    nama_lengkap?: true
+    no_nik?: true
+    no_kk?: true
+    alamat?: true
+    keterangan?: true
+    jenis_surat?: true
+    file_ktp?: true
+    file_kk?: true
+    file_pengantar_rtrw?: true
+    file_surat_permohonan?: true
+    file_izin_usaha?: true
+    file_pas_foto?: true
+    file_pernyataan_tm?: true
+    file_rekening_listrik?: true
+    status?: true
+    tanggal_pengajuan?: true
+    tanggal_selesai?: true
+    createdAt?: true
+  }
+
+  export type PengajuanSuratCountAggregateInputType = {
+    id?: true
+    no_pengajuan?: true
+    nama_lengkap?: true
+    no_nik?: true
+    no_kk?: true
+    alamat?: true
+    keterangan?: true
+    jenis_surat?: true
+    file_ktp?: true
+    file_kk?: true
+    file_pengantar_rtrw?: true
+    file_surat_permohonan?: true
+    file_izin_usaha?: true
+    file_pas_foto?: true
+    file_pernyataan_tm?: true
+    file_rekening_listrik?: true
+    status?: true
+    tanggal_pengajuan?: true
+    tanggal_selesai?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type PengajuanSuratAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PengajuanSurat to aggregate.
+     */
+    where?: PengajuanSuratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PengajuanSurats to fetch.
+     */
+    orderBy?: PengajuanSuratOrderByWithRelationInput | PengajuanSuratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PengajuanSuratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PengajuanSurats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PengajuanSurats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PengajuanSurats
+    **/
+    _count?: true | PengajuanSuratCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PengajuanSuratAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PengajuanSuratSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PengajuanSuratMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PengajuanSuratMaxAggregateInputType
+  }
+
+  export type GetPengajuanSuratAggregateType<T extends PengajuanSuratAggregateArgs> = {
+        [P in keyof T & keyof AggregatePengajuanSurat]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePengajuanSurat[P]>
+      : GetScalarType<T[P], AggregatePengajuanSurat[P]>
+  }
+
+
+
+
+  export type PengajuanSuratGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PengajuanSuratWhereInput
+    orderBy?: PengajuanSuratOrderByWithAggregationInput | PengajuanSuratOrderByWithAggregationInput[]
+    by: PengajuanSuratScalarFieldEnum[] | PengajuanSuratScalarFieldEnum
+    having?: PengajuanSuratScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PengajuanSuratCountAggregateInputType | true
+    _avg?: PengajuanSuratAvgAggregateInputType
+    _sum?: PengajuanSuratSumAggregateInputType
+    _min?: PengajuanSuratMinAggregateInputType
+    _max?: PengajuanSuratMaxAggregateInputType
+  }
+
+  export type PengajuanSuratGroupByOutputType = {
+    id: number
+    no_pengajuan: string | null
+    nama_lengkap: string
+    no_nik: string
+    no_kk: string
+    alamat: string
+    keterangan: string
+    jenis_surat: string
+    file_ktp: string | null
+    file_kk: string | null
+    file_pengantar_rtrw: string | null
+    file_surat_permohonan: string | null
+    file_izin_usaha: string | null
+    file_pas_foto: string | null
+    file_pernyataan_tm: string | null
+    file_rekening_listrik: string | null
+    status: string
+    tanggal_pengajuan: Date
+    tanggal_selesai: Date | null
+    createdAt: Date
+    _count: PengajuanSuratCountAggregateOutputType | null
+    _avg: PengajuanSuratAvgAggregateOutputType | null
+    _sum: PengajuanSuratSumAggregateOutputType | null
+    _min: PengajuanSuratMinAggregateOutputType | null
+    _max: PengajuanSuratMaxAggregateOutputType | null
+  }
+
+  type GetPengajuanSuratGroupByPayload<T extends PengajuanSuratGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PengajuanSuratGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PengajuanSuratGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PengajuanSuratGroupByOutputType[P]>
+            : GetScalarType<T[P], PengajuanSuratGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PengajuanSuratSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    no_pengajuan?: boolean
+    nama_lengkap?: boolean
+    no_nik?: boolean
+    no_kk?: boolean
+    alamat?: boolean
+    keterangan?: boolean
+    jenis_surat?: boolean
+    file_ktp?: boolean
+    file_kk?: boolean
+    file_pengantar_rtrw?: boolean
+    file_surat_permohonan?: boolean
+    file_izin_usaha?: boolean
+    file_pas_foto?: boolean
+    file_pernyataan_tm?: boolean
+    file_rekening_listrik?: boolean
+    status?: boolean
+    tanggal_pengajuan?: boolean
+    tanggal_selesai?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["pengajuanSurat"]>
+
+  export type PengajuanSuratSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    no_pengajuan?: boolean
+    nama_lengkap?: boolean
+    no_nik?: boolean
+    no_kk?: boolean
+    alamat?: boolean
+    keterangan?: boolean
+    jenis_surat?: boolean
+    file_ktp?: boolean
+    file_kk?: boolean
+    file_pengantar_rtrw?: boolean
+    file_surat_permohonan?: boolean
+    file_izin_usaha?: boolean
+    file_pas_foto?: boolean
+    file_pernyataan_tm?: boolean
+    file_rekening_listrik?: boolean
+    status?: boolean
+    tanggal_pengajuan?: boolean
+    tanggal_selesai?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["pengajuanSurat"]>
+
+  export type PengajuanSuratSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    no_pengajuan?: boolean
+    nama_lengkap?: boolean
+    no_nik?: boolean
+    no_kk?: boolean
+    alamat?: boolean
+    keterangan?: boolean
+    jenis_surat?: boolean
+    file_ktp?: boolean
+    file_kk?: boolean
+    file_pengantar_rtrw?: boolean
+    file_surat_permohonan?: boolean
+    file_izin_usaha?: boolean
+    file_pas_foto?: boolean
+    file_pernyataan_tm?: boolean
+    file_rekening_listrik?: boolean
+    status?: boolean
+    tanggal_pengajuan?: boolean
+    tanggal_selesai?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["pengajuanSurat"]>
+
+  export type PengajuanSuratSelectScalar = {
+    id?: boolean
+    no_pengajuan?: boolean
+    nama_lengkap?: boolean
+    no_nik?: boolean
+    no_kk?: boolean
+    alamat?: boolean
+    keterangan?: boolean
+    jenis_surat?: boolean
+    file_ktp?: boolean
+    file_kk?: boolean
+    file_pengantar_rtrw?: boolean
+    file_surat_permohonan?: boolean
+    file_izin_usaha?: boolean
+    file_pas_foto?: boolean
+    file_pernyataan_tm?: boolean
+    file_rekening_listrik?: boolean
+    status?: boolean
+    tanggal_pengajuan?: boolean
+    tanggal_selesai?: boolean
+    createdAt?: boolean
+  }
+
+  export type PengajuanSuratOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "no_pengajuan" | "nama_lengkap" | "no_nik" | "no_kk" | "alamat" | "keterangan" | "jenis_surat" | "file_ktp" | "file_kk" | "file_pengantar_rtrw" | "file_surat_permohonan" | "file_izin_usaha" | "file_pas_foto" | "file_pernyataan_tm" | "file_rekening_listrik" | "status" | "tanggal_pengajuan" | "tanggal_selesai" | "createdAt", ExtArgs["result"]["pengajuanSurat"]>
+
+  export type $PengajuanSuratPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PengajuanSurat"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      no_pengajuan: string | null
+      nama_lengkap: string
+      no_nik: string
+      no_kk: string
+      alamat: string
+      keterangan: string
+      jenis_surat: string
+      file_ktp: string | null
+      file_kk: string | null
+      file_pengantar_rtrw: string | null
+      file_surat_permohonan: string | null
+      file_izin_usaha: string | null
+      file_pas_foto: string | null
+      file_pernyataan_tm: string | null
+      file_rekening_listrik: string | null
+      status: string
+      tanggal_pengajuan: Date
+      tanggal_selesai: Date | null
+      createdAt: Date
+    }, ExtArgs["result"]["pengajuanSurat"]>
+    composites: {}
+  }
+
+  type PengajuanSuratGetPayload<S extends boolean | null | undefined | PengajuanSuratDefaultArgs> = $Result.GetResult<Prisma.$PengajuanSuratPayload, S>
+
+  type PengajuanSuratCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PengajuanSuratFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PengajuanSuratCountAggregateInputType | true
+    }
+
+  export interface PengajuanSuratDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PengajuanSurat'], meta: { name: 'PengajuanSurat' } }
+    /**
+     * Find zero or one PengajuanSurat that matches the filter.
+     * @param {PengajuanSuratFindUniqueArgs} args - Arguments to find a PengajuanSurat
+     * @example
+     * // Get one PengajuanSurat
+     * const pengajuanSurat = await prisma.pengajuanSurat.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PengajuanSuratFindUniqueArgs>(args: SelectSubset<T, PengajuanSuratFindUniqueArgs<ExtArgs>>): Prisma__PengajuanSuratClient<$Result.GetResult<Prisma.$PengajuanSuratPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PengajuanSurat that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PengajuanSuratFindUniqueOrThrowArgs} args - Arguments to find a PengajuanSurat
+     * @example
+     * // Get one PengajuanSurat
+     * const pengajuanSurat = await prisma.pengajuanSurat.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PengajuanSuratFindUniqueOrThrowArgs>(args: SelectSubset<T, PengajuanSuratFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PengajuanSuratClient<$Result.GetResult<Prisma.$PengajuanSuratPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PengajuanSurat that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PengajuanSuratFindFirstArgs} args - Arguments to find a PengajuanSurat
+     * @example
+     * // Get one PengajuanSurat
+     * const pengajuanSurat = await prisma.pengajuanSurat.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PengajuanSuratFindFirstArgs>(args?: SelectSubset<T, PengajuanSuratFindFirstArgs<ExtArgs>>): Prisma__PengajuanSuratClient<$Result.GetResult<Prisma.$PengajuanSuratPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PengajuanSurat that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PengajuanSuratFindFirstOrThrowArgs} args - Arguments to find a PengajuanSurat
+     * @example
+     * // Get one PengajuanSurat
+     * const pengajuanSurat = await prisma.pengajuanSurat.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PengajuanSuratFindFirstOrThrowArgs>(args?: SelectSubset<T, PengajuanSuratFindFirstOrThrowArgs<ExtArgs>>): Prisma__PengajuanSuratClient<$Result.GetResult<Prisma.$PengajuanSuratPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PengajuanSurats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PengajuanSuratFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PengajuanSurats
+     * const pengajuanSurats = await prisma.pengajuanSurat.findMany()
+     * 
+     * // Get first 10 PengajuanSurats
+     * const pengajuanSurats = await prisma.pengajuanSurat.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pengajuanSuratWithIdOnly = await prisma.pengajuanSurat.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PengajuanSuratFindManyArgs>(args?: SelectSubset<T, PengajuanSuratFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PengajuanSuratPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PengajuanSurat.
+     * @param {PengajuanSuratCreateArgs} args - Arguments to create a PengajuanSurat.
+     * @example
+     * // Create one PengajuanSurat
+     * const PengajuanSurat = await prisma.pengajuanSurat.create({
+     *   data: {
+     *     // ... data to create a PengajuanSurat
+     *   }
+     * })
+     * 
+     */
+    create<T extends PengajuanSuratCreateArgs>(args: SelectSubset<T, PengajuanSuratCreateArgs<ExtArgs>>): Prisma__PengajuanSuratClient<$Result.GetResult<Prisma.$PengajuanSuratPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PengajuanSurats.
+     * @param {PengajuanSuratCreateManyArgs} args - Arguments to create many PengajuanSurats.
+     * @example
+     * // Create many PengajuanSurats
+     * const pengajuanSurat = await prisma.pengajuanSurat.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PengajuanSuratCreateManyArgs>(args?: SelectSubset<T, PengajuanSuratCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PengajuanSurats and returns the data saved in the database.
+     * @param {PengajuanSuratCreateManyAndReturnArgs} args - Arguments to create many PengajuanSurats.
+     * @example
+     * // Create many PengajuanSurats
+     * const pengajuanSurat = await prisma.pengajuanSurat.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PengajuanSurats and only return the `id`
+     * const pengajuanSuratWithIdOnly = await prisma.pengajuanSurat.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PengajuanSuratCreateManyAndReturnArgs>(args?: SelectSubset<T, PengajuanSuratCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PengajuanSuratPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PengajuanSurat.
+     * @param {PengajuanSuratDeleteArgs} args - Arguments to delete one PengajuanSurat.
+     * @example
+     * // Delete one PengajuanSurat
+     * const PengajuanSurat = await prisma.pengajuanSurat.delete({
+     *   where: {
+     *     // ... filter to delete one PengajuanSurat
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PengajuanSuratDeleteArgs>(args: SelectSubset<T, PengajuanSuratDeleteArgs<ExtArgs>>): Prisma__PengajuanSuratClient<$Result.GetResult<Prisma.$PengajuanSuratPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PengajuanSurat.
+     * @param {PengajuanSuratUpdateArgs} args - Arguments to update one PengajuanSurat.
+     * @example
+     * // Update one PengajuanSurat
+     * const pengajuanSurat = await prisma.pengajuanSurat.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PengajuanSuratUpdateArgs>(args: SelectSubset<T, PengajuanSuratUpdateArgs<ExtArgs>>): Prisma__PengajuanSuratClient<$Result.GetResult<Prisma.$PengajuanSuratPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PengajuanSurats.
+     * @param {PengajuanSuratDeleteManyArgs} args - Arguments to filter PengajuanSurats to delete.
+     * @example
+     * // Delete a few PengajuanSurats
+     * const { count } = await prisma.pengajuanSurat.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PengajuanSuratDeleteManyArgs>(args?: SelectSubset<T, PengajuanSuratDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PengajuanSurats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PengajuanSuratUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PengajuanSurats
+     * const pengajuanSurat = await prisma.pengajuanSurat.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PengajuanSuratUpdateManyArgs>(args: SelectSubset<T, PengajuanSuratUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PengajuanSurats and returns the data updated in the database.
+     * @param {PengajuanSuratUpdateManyAndReturnArgs} args - Arguments to update many PengajuanSurats.
+     * @example
+     * // Update many PengajuanSurats
+     * const pengajuanSurat = await prisma.pengajuanSurat.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PengajuanSurats and only return the `id`
+     * const pengajuanSuratWithIdOnly = await prisma.pengajuanSurat.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PengajuanSuratUpdateManyAndReturnArgs>(args: SelectSubset<T, PengajuanSuratUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PengajuanSuratPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PengajuanSurat.
+     * @param {PengajuanSuratUpsertArgs} args - Arguments to update or create a PengajuanSurat.
+     * @example
+     * // Update or create a PengajuanSurat
+     * const pengajuanSurat = await prisma.pengajuanSurat.upsert({
+     *   create: {
+     *     // ... data to create a PengajuanSurat
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PengajuanSurat we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PengajuanSuratUpsertArgs>(args: SelectSubset<T, PengajuanSuratUpsertArgs<ExtArgs>>): Prisma__PengajuanSuratClient<$Result.GetResult<Prisma.$PengajuanSuratPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PengajuanSurats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PengajuanSuratCountArgs} args - Arguments to filter PengajuanSurats to count.
+     * @example
+     * // Count the number of PengajuanSurats
+     * const count = await prisma.pengajuanSurat.count({
+     *   where: {
+     *     // ... the filter for the PengajuanSurats we want to count
+     *   }
+     * })
+    **/
+    count<T extends PengajuanSuratCountArgs>(
+      args?: Subset<T, PengajuanSuratCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PengajuanSuratCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PengajuanSurat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PengajuanSuratAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PengajuanSuratAggregateArgs>(args: Subset<T, PengajuanSuratAggregateArgs>): Prisma.PrismaPromise<GetPengajuanSuratAggregateType<T>>
+
+    /**
+     * Group by PengajuanSurat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PengajuanSuratGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PengajuanSuratGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PengajuanSuratGroupByArgs['orderBy'] }
+        : { orderBy?: PengajuanSuratGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PengajuanSuratGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPengajuanSuratGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PengajuanSurat model
+   */
+  readonly fields: PengajuanSuratFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PengajuanSurat.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PengajuanSuratClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PengajuanSurat model
+   */
+  interface PengajuanSuratFieldRefs {
+    readonly id: FieldRef<"PengajuanSurat", 'Int'>
+    readonly no_pengajuan: FieldRef<"PengajuanSurat", 'String'>
+    readonly nama_lengkap: FieldRef<"PengajuanSurat", 'String'>
+    readonly no_nik: FieldRef<"PengajuanSurat", 'String'>
+    readonly no_kk: FieldRef<"PengajuanSurat", 'String'>
+    readonly alamat: FieldRef<"PengajuanSurat", 'String'>
+    readonly keterangan: FieldRef<"PengajuanSurat", 'String'>
+    readonly jenis_surat: FieldRef<"PengajuanSurat", 'String'>
+    readonly file_ktp: FieldRef<"PengajuanSurat", 'String'>
+    readonly file_kk: FieldRef<"PengajuanSurat", 'String'>
+    readonly file_pengantar_rtrw: FieldRef<"PengajuanSurat", 'String'>
+    readonly file_surat_permohonan: FieldRef<"PengajuanSurat", 'String'>
+    readonly file_izin_usaha: FieldRef<"PengajuanSurat", 'String'>
+    readonly file_pas_foto: FieldRef<"PengajuanSurat", 'String'>
+    readonly file_pernyataan_tm: FieldRef<"PengajuanSurat", 'String'>
+    readonly file_rekening_listrik: FieldRef<"PengajuanSurat", 'String'>
+    readonly status: FieldRef<"PengajuanSurat", 'String'>
+    readonly tanggal_pengajuan: FieldRef<"PengajuanSurat", 'DateTime'>
+    readonly tanggal_selesai: FieldRef<"PengajuanSurat", 'DateTime'>
+    readonly createdAt: FieldRef<"PengajuanSurat", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PengajuanSurat findUnique
+   */
+  export type PengajuanSuratFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+    /**
+     * Filter, which PengajuanSurat to fetch.
+     */
+    where: PengajuanSuratWhereUniqueInput
+  }
+
+  /**
+   * PengajuanSurat findUniqueOrThrow
+   */
+  export type PengajuanSuratFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+    /**
+     * Filter, which PengajuanSurat to fetch.
+     */
+    where: PengajuanSuratWhereUniqueInput
+  }
+
+  /**
+   * PengajuanSurat findFirst
+   */
+  export type PengajuanSuratFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+    /**
+     * Filter, which PengajuanSurat to fetch.
+     */
+    where?: PengajuanSuratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PengajuanSurats to fetch.
+     */
+    orderBy?: PengajuanSuratOrderByWithRelationInput | PengajuanSuratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PengajuanSurats.
+     */
+    cursor?: PengajuanSuratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PengajuanSurats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PengajuanSurats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PengajuanSurats.
+     */
+    distinct?: PengajuanSuratScalarFieldEnum | PengajuanSuratScalarFieldEnum[]
+  }
+
+  /**
+   * PengajuanSurat findFirstOrThrow
+   */
+  export type PengajuanSuratFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+    /**
+     * Filter, which PengajuanSurat to fetch.
+     */
+    where?: PengajuanSuratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PengajuanSurats to fetch.
+     */
+    orderBy?: PengajuanSuratOrderByWithRelationInput | PengajuanSuratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PengajuanSurats.
+     */
+    cursor?: PengajuanSuratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PengajuanSurats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PengajuanSurats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PengajuanSurats.
+     */
+    distinct?: PengajuanSuratScalarFieldEnum | PengajuanSuratScalarFieldEnum[]
+  }
+
+  /**
+   * PengajuanSurat findMany
+   */
+  export type PengajuanSuratFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+    /**
+     * Filter, which PengajuanSurats to fetch.
+     */
+    where?: PengajuanSuratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PengajuanSurats to fetch.
+     */
+    orderBy?: PengajuanSuratOrderByWithRelationInput | PengajuanSuratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PengajuanSurats.
+     */
+    cursor?: PengajuanSuratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PengajuanSurats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PengajuanSurats.
+     */
+    skip?: number
+    distinct?: PengajuanSuratScalarFieldEnum | PengajuanSuratScalarFieldEnum[]
+  }
+
+  /**
+   * PengajuanSurat create
+   */
+  export type PengajuanSuratCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+    /**
+     * The data needed to create a PengajuanSurat.
+     */
+    data: XOR<PengajuanSuratCreateInput, PengajuanSuratUncheckedCreateInput>
+  }
+
+  /**
+   * PengajuanSurat createMany
+   */
+  export type PengajuanSuratCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PengajuanSurats.
+     */
+    data: PengajuanSuratCreateManyInput | PengajuanSuratCreateManyInput[]
+  }
+
+  /**
+   * PengajuanSurat createManyAndReturn
+   */
+  export type PengajuanSuratCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+    /**
+     * The data used to create many PengajuanSurats.
+     */
+    data: PengajuanSuratCreateManyInput | PengajuanSuratCreateManyInput[]
+  }
+
+  /**
+   * PengajuanSurat update
+   */
+  export type PengajuanSuratUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+    /**
+     * The data needed to update a PengajuanSurat.
+     */
+    data: XOR<PengajuanSuratUpdateInput, PengajuanSuratUncheckedUpdateInput>
+    /**
+     * Choose, which PengajuanSurat to update.
+     */
+    where: PengajuanSuratWhereUniqueInput
+  }
+
+  /**
+   * PengajuanSurat updateMany
+   */
+  export type PengajuanSuratUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PengajuanSurats.
+     */
+    data: XOR<PengajuanSuratUpdateManyMutationInput, PengajuanSuratUncheckedUpdateManyInput>
+    /**
+     * Filter which PengajuanSurats to update
+     */
+    where?: PengajuanSuratWhereInput
+    /**
+     * Limit how many PengajuanSurats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PengajuanSurat updateManyAndReturn
+   */
+  export type PengajuanSuratUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+    /**
+     * The data used to update PengajuanSurats.
+     */
+    data: XOR<PengajuanSuratUpdateManyMutationInput, PengajuanSuratUncheckedUpdateManyInput>
+    /**
+     * Filter which PengajuanSurats to update
+     */
+    where?: PengajuanSuratWhereInput
+    /**
+     * Limit how many PengajuanSurats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PengajuanSurat upsert
+   */
+  export type PengajuanSuratUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+    /**
+     * The filter to search for the PengajuanSurat to update in case it exists.
+     */
+    where: PengajuanSuratWhereUniqueInput
+    /**
+     * In case the PengajuanSurat found by the `where` argument doesn't exist, create a new PengajuanSurat with this data.
+     */
+    create: XOR<PengajuanSuratCreateInput, PengajuanSuratUncheckedCreateInput>
+    /**
+     * In case the PengajuanSurat was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PengajuanSuratUpdateInput, PengajuanSuratUncheckedUpdateInput>
+  }
+
+  /**
+   * PengajuanSurat delete
+   */
+  export type PengajuanSuratDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+    /**
+     * Filter which PengajuanSurat to delete.
+     */
+    where: PengajuanSuratWhereUniqueInput
+  }
+
+  /**
+   * PengajuanSurat deleteMany
+   */
+  export type PengajuanSuratDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PengajuanSurats to delete
+     */
+    where?: PengajuanSuratWhereInput
+    /**
+     * Limit how many PengajuanSurats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PengajuanSurat without action
+   */
+  export type PengajuanSuratDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PengajuanSurat
+     */
+    select?: PengajuanSuratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PengajuanSurat
+     */
+    omit?: PengajuanSuratOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -2991,12 +4304,46 @@ export namespace Prisma {
   export type TemplateSuratScalarFieldEnum = (typeof TemplateSuratScalarFieldEnum)[keyof typeof TemplateSuratScalarFieldEnum]
 
 
+  export const PengajuanSuratScalarFieldEnum: {
+    id: 'id',
+    no_pengajuan: 'no_pengajuan',
+    nama_lengkap: 'nama_lengkap',
+    no_nik: 'no_nik',
+    no_kk: 'no_kk',
+    alamat: 'alamat',
+    keterangan: 'keterangan',
+    jenis_surat: 'jenis_surat',
+    file_ktp: 'file_ktp',
+    file_kk: 'file_kk',
+    file_pengantar_rtrw: 'file_pengantar_rtrw',
+    file_surat_permohonan: 'file_surat_permohonan',
+    file_izin_usaha: 'file_izin_usaha',
+    file_pas_foto: 'file_pas_foto',
+    file_pernyataan_tm: 'file_pernyataan_tm',
+    file_rekening_listrik: 'file_rekening_listrik',
+    status: 'status',
+    tanggal_pengajuan: 'tanggal_pengajuan',
+    tanggal_selesai: 'tanggal_selesai',
+    createdAt: 'createdAt'
+  };
+
+  export type PengajuanSuratScalarFieldEnum = (typeof PengajuanSuratScalarFieldEnum)[keyof typeof PengajuanSuratScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -3015,6 +4362,13 @@ export namespace Prisma {
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
@@ -3116,6 +4470,135 @@ export namespace Prisma {
     terakhirDiubah?: StringWithAggregatesFilter<"TemplateSurat"> | string
   }
 
+  export type PengajuanSuratWhereInput = {
+    AND?: PengajuanSuratWhereInput | PengajuanSuratWhereInput[]
+    OR?: PengajuanSuratWhereInput[]
+    NOT?: PengajuanSuratWhereInput | PengajuanSuratWhereInput[]
+    id?: IntFilter<"PengajuanSurat"> | number
+    no_pengajuan?: StringNullableFilter<"PengajuanSurat"> | string | null
+    nama_lengkap?: StringFilter<"PengajuanSurat"> | string
+    no_nik?: StringFilter<"PengajuanSurat"> | string
+    no_kk?: StringFilter<"PengajuanSurat"> | string
+    alamat?: StringFilter<"PengajuanSurat"> | string
+    keterangan?: StringFilter<"PengajuanSurat"> | string
+    jenis_surat?: StringFilter<"PengajuanSurat"> | string
+    file_ktp?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_kk?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_pengantar_rtrw?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_surat_permohonan?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_izin_usaha?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_pas_foto?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_pernyataan_tm?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_rekening_listrik?: StringNullableFilter<"PengajuanSurat"> | string | null
+    status?: StringFilter<"PengajuanSurat"> | string
+    tanggal_pengajuan?: DateTimeFilter<"PengajuanSurat"> | Date | string
+    tanggal_selesai?: DateTimeNullableFilter<"PengajuanSurat"> | Date | string | null
+    createdAt?: DateTimeFilter<"PengajuanSurat"> | Date | string
+  }
+
+  export type PengajuanSuratOrderByWithRelationInput = {
+    id?: SortOrder
+    no_pengajuan?: SortOrderInput | SortOrder
+    nama_lengkap?: SortOrder
+    no_nik?: SortOrder
+    no_kk?: SortOrder
+    alamat?: SortOrder
+    keterangan?: SortOrder
+    jenis_surat?: SortOrder
+    file_ktp?: SortOrderInput | SortOrder
+    file_kk?: SortOrderInput | SortOrder
+    file_pengantar_rtrw?: SortOrderInput | SortOrder
+    file_surat_permohonan?: SortOrderInput | SortOrder
+    file_izin_usaha?: SortOrderInput | SortOrder
+    file_pas_foto?: SortOrderInput | SortOrder
+    file_pernyataan_tm?: SortOrderInput | SortOrder
+    file_rekening_listrik?: SortOrderInput | SortOrder
+    status?: SortOrder
+    tanggal_pengajuan?: SortOrder
+    tanggal_selesai?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PengajuanSuratWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PengajuanSuratWhereInput | PengajuanSuratWhereInput[]
+    OR?: PengajuanSuratWhereInput[]
+    NOT?: PengajuanSuratWhereInput | PengajuanSuratWhereInput[]
+    no_pengajuan?: StringNullableFilter<"PengajuanSurat"> | string | null
+    nama_lengkap?: StringFilter<"PengajuanSurat"> | string
+    no_nik?: StringFilter<"PengajuanSurat"> | string
+    no_kk?: StringFilter<"PengajuanSurat"> | string
+    alamat?: StringFilter<"PengajuanSurat"> | string
+    keterangan?: StringFilter<"PengajuanSurat"> | string
+    jenis_surat?: StringFilter<"PengajuanSurat"> | string
+    file_ktp?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_kk?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_pengantar_rtrw?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_surat_permohonan?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_izin_usaha?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_pas_foto?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_pernyataan_tm?: StringNullableFilter<"PengajuanSurat"> | string | null
+    file_rekening_listrik?: StringNullableFilter<"PengajuanSurat"> | string | null
+    status?: StringFilter<"PengajuanSurat"> | string
+    tanggal_pengajuan?: DateTimeFilter<"PengajuanSurat"> | Date | string
+    tanggal_selesai?: DateTimeNullableFilter<"PengajuanSurat"> | Date | string | null
+    createdAt?: DateTimeFilter<"PengajuanSurat"> | Date | string
+  }, "id">
+
+  export type PengajuanSuratOrderByWithAggregationInput = {
+    id?: SortOrder
+    no_pengajuan?: SortOrderInput | SortOrder
+    nama_lengkap?: SortOrder
+    no_nik?: SortOrder
+    no_kk?: SortOrder
+    alamat?: SortOrder
+    keterangan?: SortOrder
+    jenis_surat?: SortOrder
+    file_ktp?: SortOrderInput | SortOrder
+    file_kk?: SortOrderInput | SortOrder
+    file_pengantar_rtrw?: SortOrderInput | SortOrder
+    file_surat_permohonan?: SortOrderInput | SortOrder
+    file_izin_usaha?: SortOrderInput | SortOrder
+    file_pas_foto?: SortOrderInput | SortOrder
+    file_pernyataan_tm?: SortOrderInput | SortOrder
+    file_rekening_listrik?: SortOrderInput | SortOrder
+    status?: SortOrder
+    tanggal_pengajuan?: SortOrder
+    tanggal_selesai?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: PengajuanSuratCountOrderByAggregateInput
+    _avg?: PengajuanSuratAvgOrderByAggregateInput
+    _max?: PengajuanSuratMaxOrderByAggregateInput
+    _min?: PengajuanSuratMinOrderByAggregateInput
+    _sum?: PengajuanSuratSumOrderByAggregateInput
+  }
+
+  export type PengajuanSuratScalarWhereWithAggregatesInput = {
+    AND?: PengajuanSuratScalarWhereWithAggregatesInput | PengajuanSuratScalarWhereWithAggregatesInput[]
+    OR?: PengajuanSuratScalarWhereWithAggregatesInput[]
+    NOT?: PengajuanSuratScalarWhereWithAggregatesInput | PengajuanSuratScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PengajuanSurat"> | number
+    no_pengajuan?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
+    nama_lengkap?: StringWithAggregatesFilter<"PengajuanSurat"> | string
+    no_nik?: StringWithAggregatesFilter<"PengajuanSurat"> | string
+    no_kk?: StringWithAggregatesFilter<"PengajuanSurat"> | string
+    alamat?: StringWithAggregatesFilter<"PengajuanSurat"> | string
+    keterangan?: StringWithAggregatesFilter<"PengajuanSurat"> | string
+    jenis_surat?: StringWithAggregatesFilter<"PengajuanSurat"> | string
+    file_ktp?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
+    file_kk?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
+    file_pengantar_rtrw?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
+    file_surat_permohonan?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
+    file_izin_usaha?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
+    file_pas_foto?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
+    file_pernyataan_tm?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
+    file_rekening_listrik?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
+    status?: StringWithAggregatesFilter<"PengajuanSurat"> | string
+    tanggal_pengajuan?: DateTimeWithAggregatesFilter<"PengajuanSurat"> | Date | string
+    tanggal_selesai?: DateTimeNullableWithAggregatesFilter<"PengajuanSurat"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"PengajuanSurat"> | Date | string
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -3192,6 +4675,164 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     judul?: StringFieldUpdateOperationsInput | string
     terakhirDiubah?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PengajuanSuratCreateInput = {
+    no_pengajuan?: string | null
+    nama_lengkap: string
+    no_nik: string
+    no_kk: string
+    alamat: string
+    keterangan: string
+    jenis_surat: string
+    file_ktp?: string | null
+    file_kk?: string | null
+    file_pengantar_rtrw?: string | null
+    file_surat_permohonan?: string | null
+    file_izin_usaha?: string | null
+    file_pas_foto?: string | null
+    file_pernyataan_tm?: string | null
+    file_rekening_listrik?: string | null
+    status?: string
+    tanggal_pengajuan?: Date | string
+    tanggal_selesai?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type PengajuanSuratUncheckedCreateInput = {
+    id?: number
+    no_pengajuan?: string | null
+    nama_lengkap: string
+    no_nik: string
+    no_kk: string
+    alamat: string
+    keterangan: string
+    jenis_surat: string
+    file_ktp?: string | null
+    file_kk?: string | null
+    file_pengantar_rtrw?: string | null
+    file_surat_permohonan?: string | null
+    file_izin_usaha?: string | null
+    file_pas_foto?: string | null
+    file_pernyataan_tm?: string | null
+    file_rekening_listrik?: string | null
+    status?: string
+    tanggal_pengajuan?: Date | string
+    tanggal_selesai?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type PengajuanSuratUpdateInput = {
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
+    nama_lengkap?: StringFieldUpdateOperationsInput | string
+    no_nik?: StringFieldUpdateOperationsInput | string
+    no_kk?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    keterangan?: StringFieldUpdateOperationsInput | string
+    jenis_surat?: StringFieldUpdateOperationsInput | string
+    file_ktp?: NullableStringFieldUpdateOperationsInput | string | null
+    file_kk?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pengantar_rtrw?: NullableStringFieldUpdateOperationsInput | string | null
+    file_surat_permohonan?: NullableStringFieldUpdateOperationsInput | string | null
+    file_izin_usaha?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pas_foto?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
+    file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
+    tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PengajuanSuratUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
+    nama_lengkap?: StringFieldUpdateOperationsInput | string
+    no_nik?: StringFieldUpdateOperationsInput | string
+    no_kk?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    keterangan?: StringFieldUpdateOperationsInput | string
+    jenis_surat?: StringFieldUpdateOperationsInput | string
+    file_ktp?: NullableStringFieldUpdateOperationsInput | string | null
+    file_kk?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pengantar_rtrw?: NullableStringFieldUpdateOperationsInput | string | null
+    file_surat_permohonan?: NullableStringFieldUpdateOperationsInput | string | null
+    file_izin_usaha?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pas_foto?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
+    file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
+    tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PengajuanSuratCreateManyInput = {
+    id?: number
+    no_pengajuan?: string | null
+    nama_lengkap: string
+    no_nik: string
+    no_kk: string
+    alamat: string
+    keterangan: string
+    jenis_surat: string
+    file_ktp?: string | null
+    file_kk?: string | null
+    file_pengantar_rtrw?: string | null
+    file_surat_permohonan?: string | null
+    file_izin_usaha?: string | null
+    file_pas_foto?: string | null
+    file_pernyataan_tm?: string | null
+    file_rekening_listrik?: string | null
+    status?: string
+    tanggal_pengajuan?: Date | string
+    tanggal_selesai?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type PengajuanSuratUpdateManyMutationInput = {
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
+    nama_lengkap?: StringFieldUpdateOperationsInput | string
+    no_nik?: StringFieldUpdateOperationsInput | string
+    no_kk?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    keterangan?: StringFieldUpdateOperationsInput | string
+    jenis_surat?: StringFieldUpdateOperationsInput | string
+    file_ktp?: NullableStringFieldUpdateOperationsInput | string | null
+    file_kk?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pengantar_rtrw?: NullableStringFieldUpdateOperationsInput | string | null
+    file_surat_permohonan?: NullableStringFieldUpdateOperationsInput | string | null
+    file_izin_usaha?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pas_foto?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
+    file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
+    tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PengajuanSuratUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
+    nama_lengkap?: StringFieldUpdateOperationsInput | string
+    no_nik?: StringFieldUpdateOperationsInput | string
+    no_kk?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    keterangan?: StringFieldUpdateOperationsInput | string
+    jenis_surat?: StringFieldUpdateOperationsInput | string
+    file_ktp?: NullableStringFieldUpdateOperationsInput | string | null
+    file_kk?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pengantar_rtrw?: NullableStringFieldUpdateOperationsInput | string | null
+    file_surat_permohonan?: NullableStringFieldUpdateOperationsInput | string | null
+    file_izin_usaha?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pas_foto?: NullableStringFieldUpdateOperationsInput | string | null
+    file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
+    file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
+    tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3304,6 +4945,169 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type PengajuanSuratCountOrderByAggregateInput = {
+    id?: SortOrder
+    no_pengajuan?: SortOrder
+    nama_lengkap?: SortOrder
+    no_nik?: SortOrder
+    no_kk?: SortOrder
+    alamat?: SortOrder
+    keterangan?: SortOrder
+    jenis_surat?: SortOrder
+    file_ktp?: SortOrder
+    file_kk?: SortOrder
+    file_pengantar_rtrw?: SortOrder
+    file_surat_permohonan?: SortOrder
+    file_izin_usaha?: SortOrder
+    file_pas_foto?: SortOrder
+    file_pernyataan_tm?: SortOrder
+    file_rekening_listrik?: SortOrder
+    status?: SortOrder
+    tanggal_pengajuan?: SortOrder
+    tanggal_selesai?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PengajuanSuratAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type PengajuanSuratMaxOrderByAggregateInput = {
+    id?: SortOrder
+    no_pengajuan?: SortOrder
+    nama_lengkap?: SortOrder
+    no_nik?: SortOrder
+    no_kk?: SortOrder
+    alamat?: SortOrder
+    keterangan?: SortOrder
+    jenis_surat?: SortOrder
+    file_ktp?: SortOrder
+    file_kk?: SortOrder
+    file_pengantar_rtrw?: SortOrder
+    file_surat_permohonan?: SortOrder
+    file_izin_usaha?: SortOrder
+    file_pas_foto?: SortOrder
+    file_pernyataan_tm?: SortOrder
+    file_rekening_listrik?: SortOrder
+    status?: SortOrder
+    tanggal_pengajuan?: SortOrder
+    tanggal_selesai?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PengajuanSuratMinOrderByAggregateInput = {
+    id?: SortOrder
+    no_pengajuan?: SortOrder
+    nama_lengkap?: SortOrder
+    no_nik?: SortOrder
+    no_kk?: SortOrder
+    alamat?: SortOrder
+    keterangan?: SortOrder
+    jenis_surat?: SortOrder
+    file_ktp?: SortOrder
+    file_kk?: SortOrder
+    file_pengantar_rtrw?: SortOrder
+    file_surat_permohonan?: SortOrder
+    file_izin_usaha?: SortOrder
+    file_pas_foto?: SortOrder
+    file_pernyataan_tm?: SortOrder
+    file_rekening_listrik?: SortOrder
+    status?: SortOrder
+    tanggal_pengajuan?: SortOrder
+    tanggal_selesai?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PengajuanSuratSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -3314,6 +5118,18 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -3383,6 +5199,98 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
 

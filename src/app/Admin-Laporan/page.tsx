@@ -42,7 +42,7 @@ const COLORS = {
 const LaporanAdmin = () => {
   return (
     <div className="ml-64 min-h-screen bg-gradient-to-br from-yellow-50 to-white p-6">
-      <NavbarAdmin />
+      <NavbarAdmin currentPath="/Admin-Laporan" />
 
       {/* Search + Profile */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
