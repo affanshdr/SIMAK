@@ -116,7 +116,7 @@ const NavbarAdmin = ({ currentPath }: { currentPath: string }) => {
                 </motion.li>
               </Link>
 
-              <Link href="/admin/template-surat" passHref>
+              <Link href="/template-surat" passHref>
                 <motion.li
                   whileHover={{ x: 5 }}
                   className={`flex items-center space-x-3 p-2 rounded-lg transition-colors cursor-pointer ${

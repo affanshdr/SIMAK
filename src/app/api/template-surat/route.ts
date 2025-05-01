@@ -39,7 +39,6 @@ export async function GET() {
 export async function PUT(request: Request) {
   const updated = await request.json();
   
-  // Update the template in the array
   templateSurat = templateSurat.map(template => 
     template.id === updated.id ? updated : template
   );
@@ -50,11 +49,11 @@ export async function PUT(request: Request) {
 export async function POST(request: Request) {
   const newTemplate = await request.json();
   
-  // Generate ID and set default values
+
   newTemplate.id = newTemplate.judul.toLowerCase().replace(/\s+/g, '-');
   newTemplate.terakhirDiubah = new Date().toISOString().split('T')[0];
   
-  // Set default colors if not provided
+
   if (!newTemplate.warna) {
     const colors = ['#BDB176', '#68BAA6', '#797A9E', '#D9B4A9'];
     newTemplate.warna = colors[Math.floor(Math.random() * colors.length)];
@@ -64,19 +63,19 @@ export async function POST(request: Request) {
     newTemplate.warnaBtn = btnColors[Math.floor(Math.random() * btnColors.length)];
   }
   
-  // Add the new template
+
   templateSurat.push(newTemplate);
   
-  // Return the updated list
+
   return NextResponse.json(templateSurat);
 }
 
 export async function DELETE(request: Request) {
   const { id } = await request.json();
   
-  // Filter out the deleted template
+
   templateSurat = templateSurat.filter(template => template.id !== id);
   
-  // Return the updated list
+
   return NextResponse.json(templateSurat);
 }

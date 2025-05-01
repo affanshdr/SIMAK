@@ -21,10 +21,14 @@ model User {
 }
 
 model TemplateSurat {
-  id              Int      @id @default(autoincrement())
-  judul           String
-  terakhirDiubah  String
-}
+id            String   @id @default(cuid())
+  judul         String
+  terakhirDiubah DateTime
+  warna         String
+  warnaBtn      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  }
 
 model PengajuanSurat {
   id                      Int      @id @default(autoincrement())
@@ -48,4 +52,5 @@ model PengajuanSurat {
   tanggal_pengajuan       DateTime @default(now())
   tanggal_selesai         DateTime?
   createdAt               DateTime @default(now())
+
 }
