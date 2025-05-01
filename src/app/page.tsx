@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
+
+
 // Definisi lengkap semua jenis surat dan dokumen yang diperlukan
 const documentRequirements: Record<string, { label: string; docs: string[] }> = {
   'surat-keterangan-domisili': {
