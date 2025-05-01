@@ -1,6 +1,20 @@
 # SIMAK - Sistem Informasi Manajemen Administrasi Kependudukan
 
-![image](https://github.com/user-attachments/assets/537fa1f5-1d87-4604-985b-d586e1aa40a3)
+**Kelompok : 4**
+
+**Anggota** :
+
+1. Aulia Vika Rahman (2208107010001)
+
+2. Nitiya Rihadatul ‘Aisy (2108107010003)
+
+3. Affan Suhendar (2308107010003)
+
+4. Adinda Muarriva (2308107010001)
+
+
+![image](https://github.com/user-attachments/assets/c06f8814-2f0d-4c7c-8986-bb2bcf9ee265)
+
 
 Sistem Informasi untuk mempermudah pengurusan surat keterangan di tingkat desa/kelurahan dengan database SQLite.
 
