@@ -1,17 +1,42 @@
-
-
 'use client';
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+// Tipe data untuk dokumen
+type DocType = 
+  | 'KTP' 
+  | 'KK' 
+  | 'Surat Pengantar RT/RW'
+  | 'Surat Permohonan Bermaterai'
+  | 'Izin Usaha'
+  | 'Pas Foto 3X4 (latar Merah)'
+  | 'Surat Pernyataan tidak mampu dari RT/RW'
+  | 'Rekening listrik/air 3 bulan terakhir';
 
+// Interface untuk data form
+interface FormData {
+  noKK: string;
+  noNIK: string;
+  namaLengkap: string;
+  alamat: string;
+  keterangan: string;
+}
 
-// Definisi lengkap semua jenis surat dan dokumen yang diperlukan
-const documentRequirements: Record<string, { label: string; docs: string[] }> = {
+// Jenis surat yang tersedia
+type LetterType = 
+  | 'surat-keterangan-domisili'
+  | 'surat-keterangan-usaha'
+  | 'surat-keterangan-belum-menikah'
+  | 'surat-keterangan-tidak-mampu';
+
+// Definisi persyaratan dokumen
+const documentRequirements: Record<LetterType, { label: string; docs: DocType[] }> = {
   'surat-keterangan-domisili': {
     label: 'Surat Keterangan Domisili',
-    docs: ['KTP', 'KK', 'Surat Pengantar RT/RW' , 'Surat Permohonan Bermaterai']
+    docs: ['KTP', 'KK', 'Surat Pengantar RT/RW', 'Surat Permohonan Bermaterai']
   },
   'surat-keterangan-usaha': {
     label: 'Surat Keterangan Usaha',
@@ -27,8 +52,8 @@ const documentRequirements: Record<string, { label: string; docs: string[] }> = 
   }
 }; 
 
-// Deskripsi untuk setiap jenis dokumen
-const documentDescriptions: Record<string, string> = {
+// Deskripsi dokumen
+const documentDescriptions: Record<DocType, string> = {
   'KTP': 'Kartu Tanda Penduduk (format JPG/PNG, max 2MB)',
   'KK': 'Kartu Keluarga (format JPG/PNG, max 2MB)',
   'Surat Pengantar RT/RW': 'Surat pengantar dari RT/RW setempat (format PDF/DOC, max 2MB)',
@@ -36,13 +61,22 @@ const documentDescriptions: Record<string, string> = {
   'Izin Usaha': 'Dokumen izin usaha jika ada (format PDF/JPG, max 2MB)',
   'Pas Foto 3X4 (latar Merah)': 'Pas foto terbaru ukuran 3x4 dengan latar belakang merah (format JPG/PNG, max 2MB)',
   'Surat Pernyataan tidak mampu dari RT/RW': 'Surat pernyataan tidak mampu dari RT/RW (format PDF/DOC, max 2MB)',
-  'Rekening listrik/air 3 bulan terakhir': 'Rekening listrik/air 3 bulan terakhir (format PDF/DOC, max 2MB)',
-
+  'Rekening listrik/air 3 bulan terakhir': 'Rekening listrik/air 3 bulan terakhir (format PDF/DOC, max 2MB)'
 };
 
+// Inisialisasi state untuk file
+const initialFileState = Object.keys(documentDescriptions).reduce((acc, doc) => {
+  return { ...acc, [doc]: null };
+}, {} as Record<DocType, File | null>);
+
+// Inisialisasi state untuk preview
+const initialPreviewState = Object.keys(documentDescriptions).reduce((acc, doc) => {
+  return { ...acc, [doc]: null };
+}, {} as Record<DocType, string | null>);
+
 export default function FormPengajuanSurat() {
-  const [selectedLetter, setSelectedLetter] = useState<string>('');
-  const [formData, setFormData] = useState({
+  const [selectedLetter, setSelectedLetter] = useState<LetterType | ''>('');
+  const [formData, setFormData] = useState<FormData>({
     noKK: '',
     noNIK: '',
     namaLengkap: '',
@@ -50,18 +84,93 @@ export default function FormPengajuanSurat() {
     keterangan: ''
   });
   
-  // Inisialisasi state untuk file dan preview
-  const initialFileState = Object.keys(documentDescriptions).reduce((acc, doc) => {
-    return { ...acc, [doc]: null };
-  }, {} as Record<string, File | null>);
-  
-  const initialPreviewState = Object.keys(documentDescriptions).reduce((acc, doc) => {
-    return { ...acc, [doc]: null };
-  }, {} as Record<string, string | null>);
-  
-  const [selectedFiles, setSelectedFiles] = useState<Record<string, File | null>>(initialFileState);
-  const [previews, setPreviews] = useState<Record<string, string | null>>(initialPreviewState);
+  const [selectedFiles, setSelectedFiles] = useState<Record<DocType, File | null>>(initialFileState);
+  const [previews, setPreviews] = useState<Record<DocType, string | null>>(initialPreviewState);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState({
+    title: '',
+    message: '',
+    isSuccess: false
+  });
+
+  // Fungsi untuk menampilkan modal
+  const showModal = (title: string, message: string, isSuccess: boolean) => {
+    setModalContent({
+      title,
+      message,
+      isSuccess
+    });
+    setIsModalOpen(true);
+  };
+
+  // Fungsi untuk menutup modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  // Modifikasi handleSubmit untuk menggunakan modal
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+  
+    try {
+      if (!selectedLetter) {
+        throw new Error('Jenis surat belum dipilih');
+      }
+  
+      const formPayload = new FormData();
+      
+      // Tambahkan data form
+      formPayload.append('jenis_surat', documentRequirements[selectedLetter].label);
+      formPayload.append('no_kk', formData.noKK);
+      formPayload.append('no_nik', formData.noNIK);
+      formPayload.append('nama_lengkap', formData.namaLengkap);
+      formPayload.append('alamat', formData.alamat);
+      formPayload.append('keterangan', formData.keterangan);
+  
+      // Tambahkan file
+      documentRequirements[selectedLetter].docs.forEach(doc => {
+        const file = selectedFiles[doc];
+        if (file) {
+          formPayload.append(doc, file);
+        }
+      });
+  
+      const response = await fetch('/api/pengajuan', {
+        method: 'POST',
+        body: formPayload,
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Gagal mengajukan surat');
+      }
+      
+      const result = await response.json();
+      
+      // Tampilkan modal sukses dengan nomor pengajuan
+      showModal(
+        'Pengajuan Berhasil!', 
+        `Data pengajuan surat Anda telah berhasil dikirim dengan nomor pengajuan: ${result.data.no_pengajuan}. Silakan catat nomor ini untuk keperluan tracking.`,
+        true
+      );
+      
+      // Reset form setelah berhasil
+      resetForm();
+  
+    } catch (error) {
+      showModal(
+        'Pengajuan Gagal',
+        error instanceof Error ? error.message : 'Terjadi kesalahan saat mengajukan surat',
+        false
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
 
   // Handle perubahan input form
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -71,15 +180,11 @@ export default function FormPengajuanSurat() {
 
   // Handle perubahan jenis surat
   const handleLetterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedLetter(e.target.value);
+    setSelectedLetter(e.target.value as LetterType);
   };
 
-  // Handle upload file
-  const handleFileChange = (docType: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Validasi file
+  // Validasi file
+  const validateFile = (file: File, docType: DocType): boolean => {
     const isImage = file.type.startsWith('image/');
     const isPDF = file.type === 'application/pdf';
     const isDoc = file.type === 'application/msword' || 
@@ -87,116 +192,94 @@ export default function FormPengajuanSurat() {
 
     // Validasi tipe file
     if ((docType === 'KTP' || docType === 'KK' || docType === 'Pas Foto 3X4 (latar Merah)') && !isImage) {
-      alert('Hanya file gambar yang diperbolehkan untuk KTP/KK!');
-      return;
+      toast.error('Hanya file gambar yang diperbolehkan untuk KTP/KK!');
+      return false;
     }
     
-    if ((docType.includes('Surat') || docType === 'Izin Usaha' || docType === 'Surat Pengantar RT/RW' || docType === 'Surat Permohonan Bermaterai'
-  || docType === 'Surat Pernyataan tidak mampu dari RT/RW') && 
-        !(isPDF || isDoc || isImage)) {
-      alert('Hanya file PDF, DOC, atau gambar yang diperbolehkan!');
-      return;
+    if ((docType.includes('Surat') || docType === 'Izin Usaha') && !(isPDF || isDoc || isImage)) {
+      toast.error('Hanya file PDF, DOC, atau gambar yang diperbolehkan!');
+      return false;
     }
 
     // Validasi ukuran file
     if (file.size > 2 * 1024 * 1024) {
-      alert('Ukuran file maksimal 2MB!');
-      return;
+      toast.error('Ukuran file maksimal 2MB!');
+      return false;
     }
+
+    return true;
+  };
+
+  // Handle upload file
+  const handleFileChange = useCallback((docType: DocType) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!validateFile(file, docType)) return;
 
     // Update state
     setSelectedFiles(prev => ({ ...prev, [docType]: file }));
 
     // Preview untuk gambar
-    if (isImage) {
+    if (file.type.startsWith('image/')) {
       const reader = new FileReader();
       reader.onload = () => {
         setPreviews(prev => ({ ...prev, [docType]: reader.result as string }));
       };
       reader.readAsDataURL(file);
     } else {
-      // Untuk non-gambar, set preview ke null
       setPreviews(prev => ({ ...prev, [docType]: null }));
     }
-  };
+  }, []);
 
   // Hapus file
-  const removeFile = (docType: string) => {
+  const removeFile = (docType: DocType) => {
     setSelectedFiles(prev => ({ ...prev, [docType]: null }));
     setPreviews(prev => ({ ...prev, [docType]: null }));
   };
 
-  // Handle submit form
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      // Validasi form
-      if (!selectedLetter) {
-        alert('Silakan pilih jenis surat!');
-        return;
-      }
-      
-      // Validasi data pribadi
-      if (!formData.noKK || !formData.noNIK || !formData.namaLengkap || !formData.alamat) {
-        alert('Harap lengkapi semua data pribadi!');
-        return;
-      }
-
-      // Validasi file yang diperlukan
-      const requiredDocs = documentRequirements[selectedLetter].docs;
-      for (const doc of requiredDocs) {
-        if (!selectedFiles[doc]) {
-          alert(`Harap upload ${doc}!`);
-          return;
-        }
-      }
-
-      // Simulasi pengiriman data
-      const formDataToSend = new FormData();
-      
-      // Tambahkan data pribadi
-      formDataToSend.append('jenis_surat', documentRequirements[selectedLetter].label);
-      formDataToSend.append('no_kk', formData.noKK);
-      formDataToSend.append('no_nik', formData.noNIK);
-      formDataToSend.append('nama_lengkap', formData.namaLengkap);
-      formDataToSend.append('alamat', formData.alamat);
-      formDataToSend.append('keterangan', formData.keterangan);
-      
-      // Tambahkan file
-      requiredDocs.forEach(doc => {
-        if (selectedFiles[doc]) {
-          formDataToSend.append(doc, selectedFiles[doc] as File);
-        }
-      });
-
-      // Simulasi API call
-      console.log('Data yang dikirim:', Object.fromEntries(formDataToSend.entries()));
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      alert('Pengajuan surat berhasil dikirim!');
-      
-      // Reset form
-      setSelectedLetter('');
-      setFormData({
-        noKK: '',
-        noNIK: '',
-        namaLengkap: '',
-        alamat: '',
-        keterangan: ''
-      });
-      setSelectedFiles(initialFileState);
-      setPreviews(initialPreviewState);
-      
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Terjadi kesalahan saat mengajukan surat');
-    } finally {
-      setIsSubmitting(false);
-    }
+  // Reset form
+  const resetForm = () => {
+    setSelectedLetter('');
+    setFormData({
+      noKK: '',
+      noNIK: '',
+      namaLengkap: '',
+      alamat: '',
+      keterangan: ''
+    });
+    setSelectedFiles(initialFileState);
+    setPreviews(initialPreviewState);
   };
 
+  // Buat FormData untuk dikirim ke API
+  const createFormDataPayload = () => {
+    const formDataToSend = new FormData();
+    
+    if (!selectedLetter) throw new Error('Jenis surat belum dipilih');
+    
+    // Data pribadi
+    formDataToSend.append('jenis_surat', documentRequirements[selectedLetter].label);
+    formDataToSend.append('no_kk', formData.noKK);
+    formDataToSend.append('no_nik', formData.noNIK);
+    formDataToSend.append('nama_lengkap', formData.namaLengkap);
+    formDataToSend.append('alamat', formData.alamat);
+    formDataToSend.append('keterangan', formData.keterangan);
+    
+    // File
+    documentRequirements[selectedLetter].docs.forEach(doc => {
+      const file = selectedFiles[doc];
+      if (file) {
+        formDataToSend.append(doc, file);
+      }
+    });
+
+    return formDataToSend;
+  };
+
+  // Handle submit form
+  
+  
   // Dokumen yang diperlukan berdasarkan jenis surat
   const requiredDocuments = selectedLetter ? documentRequirements[selectedLetter].docs : [];
 
@@ -244,17 +327,23 @@ export default function FormPengajuanSurat() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Nomor NIK</label>
-                  <input
-                    type="text"
-                    name="noNIK"
-                    placeholder="Masukkan Nomor NIK"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
-                    required
-                    value={formData.noNIK}
-                    onChange={handleInputChange}
-                  />
-                </div>
+  <label className="block text-sm font-medium text-gray-700 mb-1">Nomor NIK</label>
+  <input
+    type="text"
+    name="noNIK"
+    placeholder="Masukkan Nomor NIK (16 digit)"
+    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+    required
+    value={formData.noNIK}
+    onChange={handleInputChange}
+    maxLength={16}
+    pattern="\d{16}"
+    title="Harus 16 digit angka"
+  />
+  {formData.noNIK.length !== 16 && formData.noNIK.length > 0 && (
+    <p className="text-red-500 text-xs mt-1">NIK harus 16 digit angka</p>
+  )}
+</div>
               </div>
               
               <div>
@@ -437,8 +526,54 @@ export default function FormPengajuanSurat() {
           </form>
         </div>
       </div>
-      
+
+      {/* Modal Notification */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl">
+            <div className="flex flex-col items-center">
+              {/* Icon */}
+              {modalContent.isSuccess ? (
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                  <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+              ) : (
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                  <svg className="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </div>
+              )}
+              
+              {/* Title */}
+              <h3 className={`text-xl font-bold mb-2 ${modalContent.isSuccess ? 'text-green-600' : 'text-red-600'}`}>
+                {modalContent.title}
+              </h3>
+              
+              {/* Message */}
+              <p className="text-gray-600 text-center mb-6">
+                {modalContent.message}
+              </p>
+              
+              {/* Button */}
+              <button
+                onClick={closeModal}
+                className={`px-6 py-2 rounded-md font-medium ${modalContent.isSuccess 
+                  ? 'bg-green-500 text-white hover:bg-green-600' 
+                  : 'bg-red-500 text-white hover:bg-red-600'} transition-colors`}
+              >
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <ToastContainer />
       <Footer />
     </div>
   );
 }
+      
