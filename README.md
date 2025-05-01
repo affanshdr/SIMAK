@@ -23,21 +23,16 @@ Sistem Informasi untuk mempermudah pengurusan surat keterangan di tingkat desa/k
    ```bash
    git clone https://github.com/affanshdr/SIMAK.git
    cd simak
-```
-
 2. **Install dependencies**:
    ```bash
-  npm install```
-
+   npm install
 3. **Jalankan migrasi database**:
    ```bash
-  npx prisma migrate dev --name init
-  npx prisma generate```
-
+   npx prisma migrate dev --name init
+   npx prisma generate```
 4. **Cara menjalankan**:
    ```bash
-  npm run dev
-
+   npm run dev
 5. **Database GUI:**:
    ```bash
-  npx prisma studio
+   npx prisma studio
