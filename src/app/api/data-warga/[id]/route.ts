@@ -64,7 +64,11 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
         nama: body.nama_lengkap,
         no_nik: body.no_nik,
         no_kk: body.no_kk,
-        alamat: body.alamat
+        alamat: body.alamat,
+        tempat_lahir: body.tempat_lahir,
+        tanggal_lahir: body.tanggal_lahir ? new Date(body.tanggal_lahir) : null,
+        jenis_kelamin: body.jenis_kelamin,
+        agama: body.agama
       }
     });
 

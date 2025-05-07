@@ -56,11 +56,15 @@ model PengajuanSurat {
 }
 
 model Warga {
-  id                  Int      @id @default(autoincrement())
-  nama_lengkap        String
-  no_nik              String   @unique
-  no_kk               String
-  alamat              String
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  nama          String   // atau nama_lengkap jika itu yang ada di DB
+  no_nik        String   @unique
+  no_kk         String
+  alamat        String
+  tempat_lahir  String?
+  tanggal_lahir DateTime?
+  agama         String?
+  jenis_kelamin String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

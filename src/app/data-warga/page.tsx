@@ -5,10 +5,14 @@ import NavbarAdmin from "@/components/NavbarAdmin";
 
 interface Warga {
   id: number;
-  nama: string;
+  nama: string; // atau nama_lengkap
   no_nik: string;
   no_kk: string;
   alamat: string;
+  tempat_lahir?: string;
+  tanggal_lahir?: Date;
+  agama?: string;
+  jenis_kelamin?: string;
 }
 
 export default function DataWarga() {
@@ -139,6 +143,12 @@ export default function DataWarga() {
                       No KK
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      Jenis Kelamin
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      Agama
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Alamat
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
@@ -157,6 +167,12 @@ export default function DataWarga() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {warga.no_kk}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {warga.jenis_kelamin}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {warga.agama}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {warga.alamat}

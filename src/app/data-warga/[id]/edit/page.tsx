@@ -12,7 +12,11 @@ export default function EditDataWarga() {
     nama_lengkap: '',
     no_nik: '',
     no_kk: '',
-    alamat: ''
+    alamat: '',
+    tempat_lahir: '',
+    tanggal_lahir: '',
+    jenis_kelamin: '',
+    agama: ''
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +31,11 @@ export default function EditDataWarga() {
             nama_lengkap: data.nama || '',
             no_nik: data.no_nik || '',
             no_kk: data.no_kk || '',
-            alamat: data.alamat || ''
+            alamat: data.alamat || '',
+            tempat_lahir: data.tempat_lahir || '',
+            tanggal_lahir: data.tanggal_lahir ? new Date(data.tanggal_lahir).toISOString().split('T')[0] : '',
+            jenis_kelamin: data.jenis_kelamin || '',
+            agama: data.agama || ''
           });
         })
         .catch(() => {
@@ -40,20 +48,23 @@ export default function EditDataWarga() {
     e.preventDefault();
     setIsLoading(true);
     setError('');
-
+  
     try {
-      if (!formData.nama_lengkap || !formData.no_nik || !formData.no_kk || !formData.alamat) {
+      // Validasi form
+      if (!formData.nama_lengkap || !formData.no_nik || !formData.no_kk || !formData.alamat || 
+        !formData.tempat_lahir || !formData.tanggal_lahir || !formData.jenis_kelamin || !formData.agama) {
         throw new Error('Semua field harus diisi');
       }
-
+  
       if (!/^\d{16}$/.test(formData.no_nik)) {
         throw new Error('NIK harus 16 digit angka');
       }
-
+  
       if (!/^\d{16}$/.test(formData.no_kk)) {
         throw new Error('No KK harus 16 digit angka');
       }
-
+  
+      // Kirim request update
       const response = await fetch(`/api/data-warga/${id}`, {
         method: 'PUT',
         headers: {
@@ -61,13 +72,15 @@ export default function EditDataWarga() {
         },
         body: JSON.stringify(formData),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || 'Gagal memperbarui data');
       }
-
-      router.push('/data-warga');
+  
+      // Redirect menggunakan window.location.href
+      window.location.href = '/data-warga';
+      
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Terjadi kesalahan');
     } finally {
@@ -75,7 +88,7 @@ export default function EditDataWarga() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -99,6 +112,41 @@ export default function EditDataWarga() {
               <InputField label="NIK" name="no_nik" value={formData.no_nik} onChange={handleChange} maxLength={16} pattern="\d{16}" title="NIK harus 16 digit angka" />
               <InputField label="No. KK" name="no_kk" value={formData.no_kk} onChange={handleChange} maxLength={16} pattern="\d{16}" title="No KK harus 16 digit angka" />
               <InputField label="Alamat" name="alamat" value={formData.alamat} onChange={handleChange} />
+              <InputField label="Tempat Lahir" name="tempat_lahir" value={formData.tempat_lahir} onChange={handleChange} />
+              <InputField label="Tanggal Lahir" name="tanggal_lahir" value={formData.tanggal_lahir} onChange={handleChange} type="date" />
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Jenis Kelamin</label>
+                <select
+                  name="jenis_kelamin"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
+                  value={formData.jenis_kelamin}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Pilih Jenis Kelamin</option>
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Agama</label>
+                  <select
+                    name="agama"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
+                    value={formData.agama}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Pilih Agama</option>
+                    <option value="Islam">Islam</option>
+                    <option value="Kristen">Kristen</option>
+                    <option value="Katolik">Katolik</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Buddha">Buddha</option>
+                    <option value="Konghucu">Konghucu</option>
+                  </select>
+                </div>
+
             </div>
 
             <div className="mt-6 flex justify-end space-x-3">
@@ -141,6 +189,7 @@ function InputField({
   maxLength?: number;
   pattern?: string;
   title?: string;
+  type?: string;
 }) {
   return (
     <div>

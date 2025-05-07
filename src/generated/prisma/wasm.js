@@ -126,7 +126,11 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.TemplateSuratScalarFieldEnum = {
   id: 'id',
   judul: 'judul',
-  terakhirDiubah: 'terakhirDiubah'
+  terakhirDiubah: 'terakhirDiubah',
+  warna: 'warna',
+  warnaBtn: 'warnaBtn',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.PengajuanSuratScalarFieldEnum = {
@@ -158,6 +162,10 @@ exports.Prisma.WargaScalarFieldEnum = {
   no_nik: 'no_nik',
   no_kk: 'no_kk',
   alamat: 'alamat',
+  tempat_lahir: 'tempat_lahir',
+  tanggal_lahir: 'tanggal_lahir',
+  agama: 'agama',
+  jenis_kelamin: 'jenis_kelamin',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

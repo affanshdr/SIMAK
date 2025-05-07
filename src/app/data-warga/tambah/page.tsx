@@ -9,6 +9,10 @@ interface WargaData {
   no_nik: string;
   no_kk: string;
   alamat: string;
+  tempat_lahir: string;
+  tanggal_lahir: string;
+  jenis_kelamin: string;
+  agama: string;
 }
 
 export default function TambahDataWarga() {
@@ -17,19 +21,29 @@ export default function TambahDataWarga() {
     nama_lengkap: '',
     no_nik: '',
     no_kk: '',
-    alamat: ''
+    alamat: '',
+    tempat_lahir: '',
+    tanggal_lahir: '',
+    jenis_kelamin: '',
+    agama: ''
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  const agamaOptions = ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu', 'Lainnya'];
+  const jenisKelaminOptions = ['Laki-laki', 'Perempuan'];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
+    setSuccess(false);
     
     try {
       // Validasi
-      if (!formData.nama_lengkap || !formData.no_nik || !formData.no_kk || !formData.alamat) {
+      if (!formData.nama_lengkap || !formData.no_nik || !formData.no_kk || !formData.alamat || 
+          !formData.tempat_lahir || !formData.tanggal_lahir || !formData.jenis_kelamin || !formData.agama) {
         throw new Error('Semua field harus diisi');
       }
       
@@ -40,7 +54,7 @@ export default function TambahDataWarga() {
       if (!/^\d{16}$/.test(formData.no_kk)) {
         throw new Error('No KK harus 16 digit angka');
       }
-
+  
       // Kirim data ke API
       const response = await fetch('/api/data-warga', {
         method: 'POST',
@@ -49,22 +63,28 @@ export default function TambahDataWarga() {
         },
         body: JSON.stringify(formData),
       });
-
+  
+      const responseData = await response.json();
+  
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Gagal menambahkan data');
+        throw new Error(responseData.error || 'Gagal menambahkan data');
       }
-
-      // Redirect setelah berhasil
-      router.push('/data-warga');
+  
+      // Set success state and redirect after a short delay
+      setSuccess(true);
+      setTimeout(() => {
+        router.push('/data-warga');
+      }, 1500); // Redirect after 1.5 seconds to show success message
+      
     } catch (error) {
+      console.error('Error saat menyimpan data:', error);
       setError(error instanceof Error ? error.message : 'Terjadi kesalahan');
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -83,7 +103,14 @@ export default function TambahDataWarga() {
             </div>
           )}
           
+          {success && (
+            <div className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg">
+              Data berhasil disimpan! Mengarahkan ke halaman data warga...
+            </div>
+          )}
+          
           <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
+            {/* Form fields remain the same */}
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
@@ -130,6 +157,67 @@ export default function TambahDataWarga() {
                 />
               </div>
 
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Tempat Lahir</label>
+                  <input
+                    type="text"
+                    name="tempat_lahir"
+                    placeholder="Masukkan tempat lahir ..."
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
+                    value={formData.tempat_lahir}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Tanggal Lahir</label>
+                  <input
+                    type="date"
+                    name="tanggal_lahir"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
+                    value={formData.tanggal_lahir}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Jenis Kelamin</label>
+                  <select
+                    name="jenis_kelamin"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
+                    value={formData.jenis_kelamin}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Pilih Jenis Kelamin</option>
+                    {jenisKelaminOptions.map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Agama</label>
+                  <select
+                    name="agama"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
+                    value={formData.agama}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Pilih Agama</option>
+                    {agamaOptions.map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
                 <input
@@ -156,9 +244,9 @@ export default function TambahDataWarga() {
               <button
                 type="submit"
                 className="px-4 py-2 bg-[#FFD233] hover:bg-[#E6BD2E] text-gray-800 font-medium rounded-lg transition-colors disabled:opacity-50"
-                disabled={isLoading}
+                disabled={isLoading || success}
               >
-                {isLoading ? 'Menyimpan...' : 'Simpan'}
+                {isLoading ? 'Menyimpan...' : success ? 'Berhasil!' : 'Simpan'}
               </button>
             </div>
           </form>
