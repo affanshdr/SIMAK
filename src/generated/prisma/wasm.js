@@ -126,7 +126,11 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.TemplateSuratScalarFieldEnum = {
   id: 'id',
   judul: 'judul',
-  terakhirDiubah: 'terakhirDiubah'
+  terakhirDiubah: 'terakhirDiubah',
+  warna: 'warna',
+  warnaBtn: 'warnaBtn',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.PengajuanSuratScalarFieldEnum = {
@@ -154,10 +158,18 @@ exports.Prisma.PengajuanSuratScalarFieldEnum = {
 
 exports.Prisma.WargaScalarFieldEnum = {
   id: 'id',
-  nama: 'nama',
+  nama_lengkap: 'nama_lengkap',
   no_nik: 'no_nik',
   no_kk: 'no_kk',
   alamat: 'alamat',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AdminScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  password: 'password',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -177,7 +189,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   TemplateSurat: 'TemplateSurat',
   PengajuanSurat: 'PengajuanSurat',
-  Warga: 'Warga'
+  Warga: 'Warga',
+  Admin: 'Admin'
 };
 
 /**
