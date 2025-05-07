@@ -1,24 +1,60 @@
 'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMail, FiLock, FiEye, FiEyeOff, FiAlertCircle } from 'react-icons/fi';
-import { useState } from 'react';
+import Cookies from 'js-cookie';
 import Navbar from '../../components/Navbar';
 
-export default function Masuk() {
+export default function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setError('');
-    
-    // Simulate API call
-    setTimeout(() => {
+    setIsSubmitting(true);
+
+    try {
+      // Panggil API untuk login
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Email atau password salah');
+      }
+
+      // Simpan token di cookie
+      Cookies.set('auth_token', data.token, { expires: 1 }); // Expire dalam 1 hari
+      
+      // Simpan data user jika perlu
+      if (data.user) {
+        localStorage.setItem('user', JSON.stringify(data.user));
+      }
+
+      // Redirect ke dashboard sesuai role
+      if (data.user?.role === 'admin') {
+        router.push('/admin-dashboard');
+      } else {
+        router.push('/dashboard');
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
       setIsSubmitting(false);
-      setError('Email atau password salah!'); // Remove this in production
-    }, 1500);
+    }
   };
 
   return (
@@ -144,6 +180,8 @@ export default function Masuk() {
                     id="email"
                     placeholder="you@example.com"
                     className="w-full px-3 py-2 bg-transparent focus:outline-none"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
@@ -168,6 +206,8 @@ export default function Masuk() {
                     id="password"
                     placeholder="••••••••"
                     className="w-full px-3 py-2 bg-transparent focus:outline-none"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                   <button
@@ -249,7 +289,7 @@ export default function Masuk() {
             >
               Belum punya akun?{' '}
               <motion.a
-                href="#"
+                href="/daftar"
                 className="font-medium text-yellow-600 hover:underline"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
