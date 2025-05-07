@@ -3,8 +3,7 @@
 import React from "react";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import { FaUser, FaEnvelope, FaEnvelopeOpen } from "react-icons/fa";
-import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from "recharts";
 
 const data = [
@@ -24,9 +23,9 @@ const data = [
 
 const DashboardAdmin = () => {
   return (
-    <div className="ml-64 min-h-screen bg-gradient-to-br from-yellow-50 to-white p-6">
+    <div className="ml-64 min-h-screen bg-gradient-to-br from-yellow-50 to-white p-15">
       {/* Navbar */}
-      <NavbarAdmin />
+      <NavbarAdmin currentPath="/Admin-Dashboard" />
 
       {/* Search + Profile */}
       <div className="flex justify-between items-center mb-6">

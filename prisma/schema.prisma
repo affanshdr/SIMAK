@@ -19,3 +19,56 @@ model User {
   name  String
   email String @unique
 }
+
+model TemplateSurat {
+id            String   @id @default(cuid())
+  judul         String
+  terakhirDiubah DateTime
+  warna         String
+  warnaBtn      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  }
+
+model PengajuanSurat {
+  id                      Int      @id @default(autoincrement())
+  // Data Pemohon
+  no_pengajuan            String?
+  nama_lengkap            String
+  no_nik                  String
+  no_kk                   String
+  alamat                  String
+  keterangan              String
+  jenis_surat             String
+  file_ktp                String?
+  file_kk                 String?
+  file_pengantar_rtrw     String?
+  file_surat_permohonan   String?
+  file_izin_usaha         String?
+  file_pas_foto           String?
+  file_pernyataan_tm      String?  // Surat Pernyataan Tidak Mampu
+  file_rekening_listrik   String?
+  status                  String   @default("diajukan")
+  tanggal_pengajuan       DateTime @default(now())
+  tanggal_selesai         DateTime?
+  createdAt               DateTime @default(now())
+
+}
+
+model Warga {
+  id                  Int      @id @default(autoincrement())
+  nama_lengkap        String
+  no_nik              String   @unique
+  no_kk               String
+  alamat              String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

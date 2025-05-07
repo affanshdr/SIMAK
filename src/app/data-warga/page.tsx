@@ -1,74 +1,97 @@
-'use client'; // Tambahkan baris ini
+"use client";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import NavbarAdmin from "@/components/NavbarAdmin";
 
-import { useState, useEffect, SetStateAction } from 'react';
-import { useRouter } from 'next/navigation';
-import NavbarAdmin from "../../components/NavbarAdmin"; // Import NavbarAdmin
+interface Warga {
+  id: number;
+  nama: string;
+  no_nik: string;
+  no_kk: string;
+  alamat: string;
+}
 
 export default function DataWarga() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [wargaData, setWargaData] = useState<Array<{
-    id: number;
-    nama: string;
-    nik: string;
-    noKK: string;
-  }>>([]);
-  const [activeMenu, setActiveMenu] = useState('dataWarga'); // Set activeMenu
+  const [searchQuery, setSearchQuery] = useState("");
+  const [wargaData, setWargaData] = useState<Warga[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   useEffect(() => {
-    const loadData = () => {
+    const fetchData = async () => {
       try {
-        const savedData = localStorage.getItem('wargaData');
-        if (savedData) {
-          setWargaData(JSON.parse(savedData));
-        } else {
-          const initialData = [
-            { id: 1, nama: 'Affan_xD', nik: '3201234567890001', noKK: '3209876543210001' },
-            { id: 2, nama: 'Affan_xD', nik: '3201234567890002', noKK: '3209876543210001' },
-            { id: 3, nama: 'Budi Santoso', nik: '3201234567890003', noKK: '3209876543210002' },
-            { id: 4, nama: 'Citra Dewi', nik: '3201234567890004', noKK: '3209876543210003' },
-            { id: 5, nama: 'Doni Pratama', nik: '3201234567890005', noKK: '3209876543210004' },
-            { id: 6, nama: 'Eka Wijaya', nik: '3201234567890006', noKK: '3209876543210005' },
-          ];
-          setWargaData(initialData);
-          localStorage.setItem('wargaData', JSON.stringify(initialData));
+        const response = await fetch("/api/data-warga");
+        if (!response.ok) {
+          throw new Error("Gagal memuat data");
         }
+        const data = await response.json();
+        setWargaData(data);
       } catch (error) {
-        console.error('Error loading data:', error);
+        setError(error instanceof Error ? error.message : "Terjadi kesalahan");
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    loadData();
+    fetchData();
   }, []);
 
-  const filteredData = wargaData.filter(warga =>
-    warga.nama.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    warga.nik.includes(searchQuery) ||
-    warga.noKK.includes(searchQuery)
-  );
-
-  const handleTambahData = () => {
-    router.push('/data-warga/tambah');
+  const handleDelete = async (id: number) => {
+    if (!confirm("Apakah Anda yakin ingin menghapus data ini?")) return;
+  
+    try {
+      const response = await fetch(`/api/data-warga/${id}`, {
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Gagal menghapus data");
+      }
+  
+      setWargaData(wargaData.filter((warga) => warga.id !== id));
+      alert("Data berhasil dihapus");
+    } catch (error) {
+      console.error("Delete error:", error);
+      alert(error instanceof Error ? error.message : "Terjadi kesalahan");
+    }
   };
 
-  return (
-    <div style={{ fontFamily: 'var(--font-poppins)' }} className="min-h-screen bg-gradient-to-br from-yellow-50 to-white p-6">
-      {/* NavbarAdmin Component */}
-      <NavbarAdmin/> {/* Menetapkan activeMenu dan setActiveMenu */}
+  const filteredData = wargaData.filter(
+    (warga) =>
+      warga.nama.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      warga.no_nik.includes(searchQuery) ||
+      warga.no_kk.includes(searchQuery)
+  );
 
-      {/* Main Content */}
+  return (
+    <div
+      style={{ fontFamily: "var(--font-poppins)" }}
+      className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-0 font-sans flex"
+    >
+      <NavbarAdmin currentPath="/data-warga" />
+
       <div className="flex-1 p-8 overflow-auto ml-64">
         <div className="flex items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800 mr-4">Data Warga</h2>
-          <button 
-            onClick={handleTambahData}
+          <button
+            onClick={() => router.push("/data-warga/tambah")}
             className="bg-[#FFD233] hover:bg-[#E6BD2E] text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors flex items-center"
           >
             <span className="mr-1">+</span> Tambah Data
           </button>
         </div>
 
-        {/* Search Bar */}
+        {error && (
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
+            {error}
+          </div>
+        )}
+
         <div className="mb-6">
           <div className="relative max-w-md">
             <input
@@ -79,36 +102,91 @@ export default function DataWarga() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-               <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-               </svg>
+              <svg
+                className="h-5 w-5 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
             </div>
           </div>
         </div>
 
-        {/* Data Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-[#FFE08A]">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Nama</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">NIK</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">No KK</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredData.map((warga) => (
-                  <tr key={warga.id} className="hover:bg-[#FFF5D9]">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{warga.nama}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{warga.nik}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{warga.noKK}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#FFD233]"></div>
           </div>
-        </div>
+        ) : (
+          <div className="bg-white rounded-lg shadow overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-[#FFE08A]">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      Nama
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      NIK
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      No KK
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      Alamat
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      Aksi
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {filteredData.map((warga) => (
+                    <tr key={warga.id} className="hover:bg-[#FFF5D9]">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {warga.nama}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {warga.no_nik}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {warga.no_kk}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {warga.alamat}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <div className="flex gap-3">
+                          <button
+                            onClick={() =>
+                              router.push(`/data-warga/${warga.id}/edit`)
+                            }
+                            className="px-5 py-2 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-full hover:from-blue-500 hover:to-blue-600 transition-colors"
+                          >
+                            Edit
+                          </button>
+
+                          <button
+                            onClick={() => handleDelete(warga.id)}
+                            className="px-5 py-2 bg-gradient-to-r from-red-400 to-red-500 text-white rounded-full hover:from-red-500 hover:to-red-600 transition-colors"
+                          >
+                            Hapus
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
