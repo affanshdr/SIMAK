@@ -2075,6 +2075,7 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -2093,6 +2094,7 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -3094,6 +3096,7 @@ export namespace Prisma {
      * The data used to create many TemplateSurats.
      */
     data: TemplateSuratCreateManyInput | TemplateSuratCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -3112,6 +3115,7 @@ export namespace Prisma {
      * The data used to create many TemplateSurats.
      */
     data: TemplateSuratCreateManyInput | TemplateSuratCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -3275,7 +3279,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMinAggregateOutputType = {
     id: number | null
-    no_pengajuan: string | null
     nama_lengkap: string | null
     no_nik: string | null
     no_kk: string | null
@@ -3291,6 +3294,7 @@ export namespace Prisma {
     file_pernyataan_tm: string | null
     file_rekening_listrik: string | null
     status: string | null
+    no_pengajuan: string | null
     tanggal_pengajuan: Date | null
     tanggal_selesai: Date | null
     createdAt: Date | null
@@ -3298,7 +3302,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMaxAggregateOutputType = {
     id: number | null
-    no_pengajuan: string | null
     nama_lengkap: string | null
     no_nik: string | null
     no_kk: string | null
@@ -3314,6 +3317,7 @@ export namespace Prisma {
     file_pernyataan_tm: string | null
     file_rekening_listrik: string | null
     status: string | null
+    no_pengajuan: string | null
     tanggal_pengajuan: Date | null
     tanggal_selesai: Date | null
     createdAt: Date | null
@@ -3321,7 +3325,6 @@ export namespace Prisma {
 
   export type PengajuanSuratCountAggregateOutputType = {
     id: number
-    no_pengajuan: number
     nama_lengkap: number
     no_nik: number
     no_kk: number
@@ -3337,6 +3340,7 @@ export namespace Prisma {
     file_pernyataan_tm: number
     file_rekening_listrik: number
     status: number
+    no_pengajuan: number
     tanggal_pengajuan: number
     tanggal_selesai: number
     createdAt: number
@@ -3354,7 +3358,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMinAggregateInputType = {
     id?: true
-    no_pengajuan?: true
     nama_lengkap?: true
     no_nik?: true
     no_kk?: true
@@ -3370,6 +3373,7 @@ export namespace Prisma {
     file_pernyataan_tm?: true
     file_rekening_listrik?: true
     status?: true
+    no_pengajuan?: true
     tanggal_pengajuan?: true
     tanggal_selesai?: true
     createdAt?: true
@@ -3377,7 +3381,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMaxAggregateInputType = {
     id?: true
-    no_pengajuan?: true
     nama_lengkap?: true
     no_nik?: true
     no_kk?: true
@@ -3393,6 +3396,7 @@ export namespace Prisma {
     file_pernyataan_tm?: true
     file_rekening_listrik?: true
     status?: true
+    no_pengajuan?: true
     tanggal_pengajuan?: true
     tanggal_selesai?: true
     createdAt?: true
@@ -3400,7 +3404,6 @@ export namespace Prisma {
 
   export type PengajuanSuratCountAggregateInputType = {
     id?: true
-    no_pengajuan?: true
     nama_lengkap?: true
     no_nik?: true
     no_kk?: true
@@ -3416,6 +3419,7 @@ export namespace Prisma {
     file_pernyataan_tm?: true
     file_rekening_listrik?: true
     status?: true
+    no_pengajuan?: true
     tanggal_pengajuan?: true
     tanggal_selesai?: true
     createdAt?: true
@@ -3510,7 +3514,6 @@ export namespace Prisma {
 
   export type PengajuanSuratGroupByOutputType = {
     id: number
-    no_pengajuan: string | null
     nama_lengkap: string
     no_nik: string
     no_kk: string
@@ -3526,6 +3529,7 @@ export namespace Prisma {
     file_pernyataan_tm: string | null
     file_rekening_listrik: string | null
     status: string
+    no_pengajuan: string | null
     tanggal_pengajuan: Date
     tanggal_selesai: Date | null
     createdAt: Date
@@ -3552,7 +3556,6 @@ export namespace Prisma {
 
   export type PengajuanSuratSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    no_pengajuan?: boolean
     nama_lengkap?: boolean
     no_nik?: boolean
     no_kk?: boolean
@@ -3568,6 +3571,7 @@ export namespace Prisma {
     file_pernyataan_tm?: boolean
     file_rekening_listrik?: boolean
     status?: boolean
+    no_pengajuan?: boolean
     tanggal_pengajuan?: boolean
     tanggal_selesai?: boolean
     createdAt?: boolean
@@ -3575,7 +3579,6 @@ export namespace Prisma {
 
   export type PengajuanSuratSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    no_pengajuan?: boolean
     nama_lengkap?: boolean
     no_nik?: boolean
     no_kk?: boolean
@@ -3591,6 +3594,7 @@ export namespace Prisma {
     file_pernyataan_tm?: boolean
     file_rekening_listrik?: boolean
     status?: boolean
+    no_pengajuan?: boolean
     tanggal_pengajuan?: boolean
     tanggal_selesai?: boolean
     createdAt?: boolean
@@ -3598,7 +3602,6 @@ export namespace Prisma {
 
   export type PengajuanSuratSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    no_pengajuan?: boolean
     nama_lengkap?: boolean
     no_nik?: boolean
     no_kk?: boolean
@@ -3614,6 +3617,7 @@ export namespace Prisma {
     file_pernyataan_tm?: boolean
     file_rekening_listrik?: boolean
     status?: boolean
+    no_pengajuan?: boolean
     tanggal_pengajuan?: boolean
     tanggal_selesai?: boolean
     createdAt?: boolean
@@ -3621,7 +3625,6 @@ export namespace Prisma {
 
   export type PengajuanSuratSelectScalar = {
     id?: boolean
-    no_pengajuan?: boolean
     nama_lengkap?: boolean
     no_nik?: boolean
     no_kk?: boolean
@@ -3637,19 +3640,19 @@ export namespace Prisma {
     file_pernyataan_tm?: boolean
     file_rekening_listrik?: boolean
     status?: boolean
+    no_pengajuan?: boolean
     tanggal_pengajuan?: boolean
     tanggal_selesai?: boolean
     createdAt?: boolean
   }
 
-  export type PengajuanSuratOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "no_pengajuan" | "nama_lengkap" | "no_nik" | "no_kk" | "alamat" | "keterangan" | "jenis_surat" | "file_ktp" | "file_kk" | "file_pengantar_rtrw" | "file_surat_permohonan" | "file_izin_usaha" | "file_pas_foto" | "file_pernyataan_tm" | "file_rekening_listrik" | "status" | "tanggal_pengajuan" | "tanggal_selesai" | "createdAt", ExtArgs["result"]["pengajuanSurat"]>
+  export type PengajuanSuratOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama_lengkap" | "no_nik" | "no_kk" | "alamat" | "keterangan" | "jenis_surat" | "file_ktp" | "file_kk" | "file_pengantar_rtrw" | "file_surat_permohonan" | "file_izin_usaha" | "file_pas_foto" | "file_pernyataan_tm" | "file_rekening_listrik" | "status" | "no_pengajuan" | "tanggal_pengajuan" | "tanggal_selesai" | "createdAt", ExtArgs["result"]["pengajuanSurat"]>
 
   export type $PengajuanSuratPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PengajuanSurat"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      no_pengajuan: string | null
       nama_lengkap: string
       no_nik: string
       no_kk: string
@@ -3665,6 +3668,7 @@ export namespace Prisma {
       file_pernyataan_tm: string | null
       file_rekening_listrik: string | null
       status: string
+      no_pengajuan: string | null
       tanggal_pengajuan: Date
       tanggal_selesai: Date | null
       createdAt: Date
@@ -4092,7 +4096,6 @@ export namespace Prisma {
    */
   interface PengajuanSuratFieldRefs {
     readonly id: FieldRef<"PengajuanSurat", 'Int'>
-    readonly no_pengajuan: FieldRef<"PengajuanSurat", 'String'>
     readonly nama_lengkap: FieldRef<"PengajuanSurat", 'String'>
     readonly no_nik: FieldRef<"PengajuanSurat", 'String'>
     readonly no_kk: FieldRef<"PengajuanSurat", 'String'>
@@ -4108,6 +4111,7 @@ export namespace Prisma {
     readonly file_pernyataan_tm: FieldRef<"PengajuanSurat", 'String'>
     readonly file_rekening_listrik: FieldRef<"PengajuanSurat", 'String'>
     readonly status: FieldRef<"PengajuanSurat", 'String'>
+    readonly no_pengajuan: FieldRef<"PengajuanSurat", 'String'>
     readonly tanggal_pengajuan: FieldRef<"PengajuanSurat", 'DateTime'>
     readonly tanggal_selesai: FieldRef<"PengajuanSurat", 'DateTime'>
     readonly createdAt: FieldRef<"PengajuanSurat", 'DateTime'>
@@ -4316,6 +4320,7 @@ export namespace Prisma {
      * The data used to create many PengajuanSurats.
      */
     data: PengajuanSuratCreateManyInput | PengajuanSuratCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -4334,6 +4339,7 @@ export namespace Prisma {
      * The data used to create many PengajuanSurats.
      */
     data: PengajuanSuratCreateManyInput | PengajuanSuratCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -5369,6 +5375,7 @@ export namespace Prisma {
      * The data used to create many Wargas.
      */
     data: WargaCreateManyInput | WargaCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -5387,6 +5394,7 @@ export namespace Prisma {
      * The data used to create many Wargas.
      */
     data: WargaCreateManyInput | WargaCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -5552,24 +5560,18 @@ export namespace Prisma {
     id: number | null
     username: string | null
     password: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type AdminMaxAggregateOutputType = {
     id: number | null
     username: string | null
     password: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type AdminCountAggregateOutputType = {
     id: number
     username: number
     password: number
-    createdAt: number
-    updatedAt: number
     _all: number
   }
 
@@ -5586,24 +5588,18 @@ export namespace Prisma {
     id?: true
     username?: true
     password?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type AdminMaxAggregateInputType = {
     id?: true
     username?: true
     password?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type AdminCountAggregateInputType = {
     id?: true
     username?: true
     password?: true
-    createdAt?: true
-    updatedAt?: true
     _all?: true
   }
 
@@ -5697,8 +5693,6 @@ export namespace Prisma {
     id: number
     username: string
     password: string
-    createdAt: Date
-    updatedAt: Date
     _count: AdminCountAggregateOutputType | null
     _avg: AdminAvgAggregateOutputType | null
     _sum: AdminSumAggregateOutputType | null
@@ -5724,35 +5718,27 @@ export namespace Prisma {
     id?: boolean
     username?: boolean
     password?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }, ExtArgs["result"]["admin"]>
 
   export type AdminSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     username?: boolean
     password?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }, ExtArgs["result"]["admin"]>
 
   export type AdminSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     username?: boolean
     password?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }, ExtArgs["result"]["admin"]>
 
   export type AdminSelectScalar = {
     id?: boolean
     username?: boolean
     password?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }
 
-  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["admin"]>
+  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password", ExtArgs["result"]["admin"]>
 
   export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Admin"
@@ -5761,8 +5747,6 @@ export namespace Prisma {
       id: number
       username: string
       password: string
-      createdAt: Date
-      updatedAt: Date
     }, ExtArgs["result"]["admin"]>
     composites: {}
   }
@@ -6189,8 +6173,6 @@ export namespace Prisma {
     readonly id: FieldRef<"Admin", 'Int'>
     readonly username: FieldRef<"Admin", 'String'>
     readonly password: FieldRef<"Admin", 'String'>
-    readonly createdAt: FieldRef<"Admin", 'DateTime'>
-    readonly updatedAt: FieldRef<"Admin", 'DateTime'>
   }
     
 
@@ -6396,6 +6378,7 @@ export namespace Prisma {
      * The data used to create many Admins.
      */
     data: AdminCreateManyInput | AdminCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -6414,6 +6397,7 @@ export namespace Prisma {
      * The data used to create many Admins.
      */
     data: AdminCreateManyInput | AdminCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -6560,6 +6544,9 @@ export namespace Prisma {
    */
 
   export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
   };
 
@@ -6590,7 +6577,6 @@ export namespace Prisma {
 
   export const PengajuanSuratScalarFieldEnum: {
     id: 'id',
-    no_pengajuan: 'no_pengajuan',
     nama_lengkap: 'nama_lengkap',
     no_nik: 'no_nik',
     no_kk: 'no_kk',
@@ -6606,6 +6592,7 @@ export namespace Prisma {
     file_pernyataan_tm: 'file_pernyataan_tm',
     file_rekening_listrik: 'file_rekening_listrik',
     status: 'status',
+    no_pengajuan: 'no_pengajuan',
     tanggal_pengajuan: 'tanggal_pengajuan',
     tanggal_selesai: 'tanggal_selesai',
     createdAt: 'createdAt'
@@ -6630,9 +6617,7 @@ export namespace Prisma {
   export const AdminScalarFieldEnum: {
     id: 'id',
     username: 'username',
-    password: 'password',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    password: 'password'
   };
 
   export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
@@ -6644,6 +6629,14 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
   export const NullsOrder: {
@@ -6667,9 +6660,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'String[]'
+   */
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
     
 
 
@@ -6681,9 +6688,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -6801,7 +6822,6 @@ export namespace Prisma {
     OR?: PengajuanSuratWhereInput[]
     NOT?: PengajuanSuratWhereInput | PengajuanSuratWhereInput[]
     id?: IntFilter<"PengajuanSurat"> | number
-    no_pengajuan?: StringNullableFilter<"PengajuanSurat"> | string | null
     nama_lengkap?: StringFilter<"PengajuanSurat"> | string
     no_nik?: StringFilter<"PengajuanSurat"> | string
     no_kk?: StringFilter<"PengajuanSurat"> | string
@@ -6817,6 +6837,7 @@ export namespace Prisma {
     file_pernyataan_tm?: StringNullableFilter<"PengajuanSurat"> | string | null
     file_rekening_listrik?: StringNullableFilter<"PengajuanSurat"> | string | null
     status?: StringFilter<"PengajuanSurat"> | string
+    no_pengajuan?: StringNullableFilter<"PengajuanSurat"> | string | null
     tanggal_pengajuan?: DateTimeFilter<"PengajuanSurat"> | Date | string
     tanggal_selesai?: DateTimeNullableFilter<"PengajuanSurat"> | Date | string | null
     createdAt?: DateTimeFilter<"PengajuanSurat"> | Date | string
@@ -6824,7 +6845,6 @@ export namespace Prisma {
 
   export type PengajuanSuratOrderByWithRelationInput = {
     id?: SortOrder
-    no_pengajuan?: SortOrderInput | SortOrder
     nama_lengkap?: SortOrder
     no_nik?: SortOrder
     no_kk?: SortOrder
@@ -6840,6 +6860,7 @@ export namespace Prisma {
     file_pernyataan_tm?: SortOrderInput | SortOrder
     file_rekening_listrik?: SortOrderInput | SortOrder
     status?: SortOrder
+    no_pengajuan?: SortOrderInput | SortOrder
     tanggal_pengajuan?: SortOrder
     tanggal_selesai?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -6850,7 +6871,6 @@ export namespace Prisma {
     AND?: PengajuanSuratWhereInput | PengajuanSuratWhereInput[]
     OR?: PengajuanSuratWhereInput[]
     NOT?: PengajuanSuratWhereInput | PengajuanSuratWhereInput[]
-    no_pengajuan?: StringNullableFilter<"PengajuanSurat"> | string | null
     nama_lengkap?: StringFilter<"PengajuanSurat"> | string
     no_nik?: StringFilter<"PengajuanSurat"> | string
     no_kk?: StringFilter<"PengajuanSurat"> | string
@@ -6866,6 +6886,7 @@ export namespace Prisma {
     file_pernyataan_tm?: StringNullableFilter<"PengajuanSurat"> | string | null
     file_rekening_listrik?: StringNullableFilter<"PengajuanSurat"> | string | null
     status?: StringFilter<"PengajuanSurat"> | string
+    no_pengajuan?: StringNullableFilter<"PengajuanSurat"> | string | null
     tanggal_pengajuan?: DateTimeFilter<"PengajuanSurat"> | Date | string
     tanggal_selesai?: DateTimeNullableFilter<"PengajuanSurat"> | Date | string | null
     createdAt?: DateTimeFilter<"PengajuanSurat"> | Date | string
@@ -6873,7 +6894,6 @@ export namespace Prisma {
 
   export type PengajuanSuratOrderByWithAggregationInput = {
     id?: SortOrder
-    no_pengajuan?: SortOrderInput | SortOrder
     nama_lengkap?: SortOrder
     no_nik?: SortOrder
     no_kk?: SortOrder
@@ -6889,6 +6909,7 @@ export namespace Prisma {
     file_pernyataan_tm?: SortOrderInput | SortOrder
     file_rekening_listrik?: SortOrderInput | SortOrder
     status?: SortOrder
+    no_pengajuan?: SortOrderInput | SortOrder
     tanggal_pengajuan?: SortOrder
     tanggal_selesai?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -6904,7 +6925,6 @@ export namespace Prisma {
     OR?: PengajuanSuratScalarWhereWithAggregatesInput[]
     NOT?: PengajuanSuratScalarWhereWithAggregatesInput | PengajuanSuratScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"PengajuanSurat"> | number
-    no_pengajuan?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
     nama_lengkap?: StringWithAggregatesFilter<"PengajuanSurat"> | string
     no_nik?: StringWithAggregatesFilter<"PengajuanSurat"> | string
     no_kk?: StringWithAggregatesFilter<"PengajuanSurat"> | string
@@ -6920,6 +6940,7 @@ export namespace Prisma {
     file_pernyataan_tm?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
     file_rekening_listrik?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
     status?: StringWithAggregatesFilter<"PengajuanSurat"> | string
+    no_pengajuan?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
     tanggal_pengajuan?: DateTimeWithAggregatesFilter<"PengajuanSurat"> | Date | string
     tanggal_selesai?: DateTimeNullableWithAggregatesFilter<"PengajuanSurat"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"PengajuanSurat"> | Date | string
@@ -6996,16 +7017,12 @@ export namespace Prisma {
     id?: IntFilter<"Admin"> | number
     username?: StringFilter<"Admin"> | string
     password?: StringFilter<"Admin"> | string
-    createdAt?: DateTimeFilter<"Admin"> | Date | string
-    updatedAt?: DateTimeFilter<"Admin"> | Date | string
   }
 
   export type AdminOrderByWithRelationInput = {
     id?: SortOrder
     username?: SortOrder
     password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AdminWhereUniqueInput = Prisma.AtLeast<{
@@ -7015,16 +7032,12 @@ export namespace Prisma {
     OR?: AdminWhereInput[]
     NOT?: AdminWhereInput | AdminWhereInput[]
     password?: StringFilter<"Admin"> | string
-    createdAt?: DateTimeFilter<"Admin"> | Date | string
-    updatedAt?: DateTimeFilter<"Admin"> | Date | string
   }, "id" | "username">
 
   export type AdminOrderByWithAggregationInput = {
     id?: SortOrder
     username?: SortOrder
     password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     _count?: AdminCountOrderByAggregateInput
     _avg?: AdminAvgOrderByAggregateInput
     _max?: AdminMaxOrderByAggregateInput
@@ -7039,8 +7052,6 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Admin"> | number
     username?: StringWithAggregatesFilter<"Admin"> | string
     password?: StringWithAggregatesFilter<"Admin"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -7153,7 +7164,6 @@ export namespace Prisma {
   }
 
   export type PengajuanSuratCreateInput = {
-    no_pengajuan?: string | null
     nama_lengkap: string
     no_nik: string
     no_kk: string
@@ -7169,6 +7179,7 @@ export namespace Prisma {
     file_pernyataan_tm?: string | null
     file_rekening_listrik?: string | null
     status?: string
+    no_pengajuan?: string | null
     tanggal_pengajuan?: Date | string
     tanggal_selesai?: Date | string | null
     createdAt?: Date | string
@@ -7176,7 +7187,6 @@ export namespace Prisma {
 
   export type PengajuanSuratUncheckedCreateInput = {
     id?: number
-    no_pengajuan?: string | null
     nama_lengkap: string
     no_nik: string
     no_kk: string
@@ -7192,13 +7202,13 @@ export namespace Prisma {
     file_pernyataan_tm?: string | null
     file_rekening_listrik?: string | null
     status?: string
+    no_pengajuan?: string | null
     tanggal_pengajuan?: Date | string
     tanggal_selesai?: Date | string | null
     createdAt?: Date | string
   }
 
   export type PengajuanSuratUpdateInput = {
-    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     nama_lengkap?: StringFieldUpdateOperationsInput | string
     no_nik?: StringFieldUpdateOperationsInput | string
     no_kk?: StringFieldUpdateOperationsInput | string
@@ -7214,6 +7224,7 @@ export namespace Prisma {
     file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
     file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
     tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7221,7 +7232,6 @@ export namespace Prisma {
 
   export type PengajuanSuratUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     nama_lengkap?: StringFieldUpdateOperationsInput | string
     no_nik?: StringFieldUpdateOperationsInput | string
     no_kk?: StringFieldUpdateOperationsInput | string
@@ -7237,6 +7247,7 @@ export namespace Prisma {
     file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
     file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
     tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7244,7 +7255,6 @@ export namespace Prisma {
 
   export type PengajuanSuratCreateManyInput = {
     id?: number
-    no_pengajuan?: string | null
     nama_lengkap: string
     no_nik: string
     no_kk: string
@@ -7260,13 +7270,13 @@ export namespace Prisma {
     file_pernyataan_tm?: string | null
     file_rekening_listrik?: string | null
     status?: string
+    no_pengajuan?: string | null
     tanggal_pengajuan?: Date | string
     tanggal_selesai?: Date | string | null
     createdAt?: Date | string
   }
 
   export type PengajuanSuratUpdateManyMutationInput = {
-    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     nama_lengkap?: StringFieldUpdateOperationsInput | string
     no_nik?: StringFieldUpdateOperationsInput | string
     no_kk?: StringFieldUpdateOperationsInput | string
@@ -7282,6 +7292,7 @@ export namespace Prisma {
     file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
     file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
     tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7289,7 +7300,6 @@ export namespace Prisma {
 
   export type PengajuanSuratUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     nama_lengkap?: StringFieldUpdateOperationsInput | string
     no_nik?: StringFieldUpdateOperationsInput | string
     no_kk?: StringFieldUpdateOperationsInput | string
@@ -7305,6 +7315,7 @@ export namespace Prisma {
     file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
     file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
     tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7380,60 +7391,46 @@ export namespace Prisma {
   export type AdminCreateInput = {
     username: string
     password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AdminUncheckedCreateInput = {
     id?: number
     username: string
     password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AdminUpdateInput = {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AdminUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AdminCreateManyInput = {
     id?: number
     username: string
     password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AdminUpdateManyMutationInput = {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AdminUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7443,8 +7440,8 @@ export namespace Prisma {
 
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7452,6 +7449,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
@@ -7483,8 +7481,8 @@ export namespace Prisma {
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7499,8 +7497,8 @@ export namespace Prisma {
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7508,6 +7506,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -7516,8 +7515,8 @@ export namespace Prisma {
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7557,8 +7556,8 @@ export namespace Prisma {
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7571,8 +7570,8 @@ export namespace Prisma {
 
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7580,13 +7579,14 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7601,7 +7601,6 @@ export namespace Prisma {
 
   export type PengajuanSuratCountOrderByAggregateInput = {
     id?: SortOrder
-    no_pengajuan?: SortOrder
     nama_lengkap?: SortOrder
     no_nik?: SortOrder
     no_kk?: SortOrder
@@ -7617,6 +7616,7 @@ export namespace Prisma {
     file_pernyataan_tm?: SortOrder
     file_rekening_listrik?: SortOrder
     status?: SortOrder
+    no_pengajuan?: SortOrder
     tanggal_pengajuan?: SortOrder
     tanggal_selesai?: SortOrder
     createdAt?: SortOrder
@@ -7628,7 +7628,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMaxOrderByAggregateInput = {
     id?: SortOrder
-    no_pengajuan?: SortOrder
     nama_lengkap?: SortOrder
     no_nik?: SortOrder
     no_kk?: SortOrder
@@ -7644,6 +7643,7 @@ export namespace Prisma {
     file_pernyataan_tm?: SortOrder
     file_rekening_listrik?: SortOrder
     status?: SortOrder
+    no_pengajuan?: SortOrder
     tanggal_pengajuan?: SortOrder
     tanggal_selesai?: SortOrder
     createdAt?: SortOrder
@@ -7651,7 +7651,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMinOrderByAggregateInput = {
     id?: SortOrder
-    no_pengajuan?: SortOrder
     nama_lengkap?: SortOrder
     no_nik?: SortOrder
     no_kk?: SortOrder
@@ -7667,6 +7666,7 @@ export namespace Prisma {
     file_pernyataan_tm?: SortOrder
     file_rekening_listrik?: SortOrder
     status?: SortOrder
+    no_pengajuan?: SortOrder
     tanggal_pengajuan?: SortOrder
     tanggal_selesai?: SortOrder
     createdAt?: SortOrder
@@ -7678,8 +7678,8 @@ export namespace Prisma {
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7687,6 +7687,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
@@ -7695,8 +7696,8 @@ export namespace Prisma {
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7749,8 +7750,6 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AdminAvgOrderByAggregateInput = {
@@ -7761,16 +7760,12 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AdminMinOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
     password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AdminSumOrderByAggregateInput = {
@@ -7803,8 +7798,8 @@ export namespace Prisma {
 
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7814,8 +7809,8 @@ export namespace Prisma {
 
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7828,8 +7823,8 @@ export namespace Prisma {
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7844,8 +7839,8 @@ export namespace Prisma {
 
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -7855,8 +7850,8 @@ export namespace Prisma {
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7872,8 +7867,8 @@ export namespace Prisma {
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7883,8 +7878,8 @@ export namespace Prisma {
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7897,8 +7892,8 @@ export namespace Prisma {
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7911,8 +7906,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7922,8 +7917,8 @@ export namespace Prisma {
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7939,8 +7934,8 @@ export namespace Prisma {
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7950,8 +7945,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>

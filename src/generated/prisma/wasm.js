@@ -114,6 +114,9 @@ Prisma.NullTypes = {
  */
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -135,7 +138,6 @@ exports.Prisma.TemplateSuratScalarFieldEnum = {
 
 exports.Prisma.PengajuanSuratScalarFieldEnum = {
   id: 'id',
-  no_pengajuan: 'no_pengajuan',
   nama_lengkap: 'nama_lengkap',
   no_nik: 'no_nik',
   no_kk: 'no_kk',
@@ -151,6 +153,7 @@ exports.Prisma.PengajuanSuratScalarFieldEnum = {
   file_pernyataan_tm: 'file_pernyataan_tm',
   file_rekening_listrik: 'file_rekening_listrik',
   status: 'status',
+  no_pengajuan: 'no_pengajuan',
   tanggal_pengajuan: 'tanggal_pengajuan',
   tanggal_selesai: 'tanggal_selesai',
   createdAt: 'createdAt'
@@ -169,14 +172,17 @@ exports.Prisma.WargaScalarFieldEnum = {
 exports.Prisma.AdminScalarFieldEnum = {
   id: 'id',
   username: 'username',
-  password: 'password',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  password: 'password'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
 exports.Prisma.NullsOrder = {
