@@ -464,7 +464,7 @@ export default function FormPengajuanSurat() {
   return (
     <div
       style={{ fontFamily: "var(--font-poppins)" }}
-      className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-0 font-sans"
+      className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-50 font-sans"
     >
       {/* Navbar */}
       <Navbar />
@@ -472,8 +472,8 @@ export default function FormPengajuanSurat() {
       {/* Hero Section */}
       <div className="px-6 mt-10 flex flex-col md:flex-row justify-between items-center ml-10 mr-10">
         <div className="ml-10 mb-8 md:mb-0">
-          <h1 className="text-3xl font-bold mb-4">SISTEM INFORMASI</h1>
-          <h1 className="text-3xl font-bold mb-4">MANAJEMEN ADMINISTRASI</h1>
+          <h1 className="text-3xl font-bold mb-4 text-orange-500">SISTEM INFORMASI</h1>
+          <h1 className="text-3xl font-bold mb-4 text-orange-500">MANAJEMEN ADMINISTRASI</h1>
           <p className="text-gray-600">
             Layanan Pengurusan Surat Desa di Kantor Keuchik
           </p>
@@ -508,7 +508,7 @@ export default function FormPengajuanSurat() {
                     type="text"
                     name="noKK"
                     placeholder="Masukkan Nomor KK"
-                    className={`w-full p-3 border ${
+                    className={`w-full p-3 text-gray-700 border ${
                       kkValid === null
                         ? "border-gray-300"
                         : kkValid
@@ -547,7 +547,7 @@ export default function FormPengajuanSurat() {
                     type="text"
                     name="noNIK"
                     placeholder="Masukkan Nomor NIK (16 digit)"
-                    className={`w-full p-3 border ${
+                    className={`w-full p-3 border text-gray-700 ${
                       nikValid === null
                         ? "border-gray-300"
                         : nikValid
@@ -588,7 +588,7 @@ export default function FormPengajuanSurat() {
                   type="text"
                   name="namaLengkap"
                   placeholder="Masukkan Nama Lengkap"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-700"
                   required
                   value={formData.namaLengkap}
                   onChange={handleInputChange}
@@ -603,7 +603,7 @@ export default function FormPengajuanSurat() {
                   type="text"
                   name="alamat"
                   placeholder="Masukkan Alamat Lengkap"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition text-gray-700"
                   required
                   value={formData.alamat}
                   onChange={handleInputChange}
@@ -617,7 +617,7 @@ export default function FormPengajuanSurat() {
                 <textarea
                   name="keterangan"
                   placeholder="Masukkan keterangan tambahan jika diperlukan"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition min-h-[100px]"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition min-h-[100px] text-gray-700"
                   value={formData.keterangan}
                   onChange={handleInputChange}
                 />

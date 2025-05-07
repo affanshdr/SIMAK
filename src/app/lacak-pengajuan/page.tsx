@@ -13,6 +13,9 @@ interface Pengajuan {
   tanggal_pengajuan: string;
 }
 
+// Warna Font
+const font = 'text-orange-600';
+
 export default function LacakPengajuan() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Pengajuan[]>([]);
@@ -100,13 +103,13 @@ export default function LacakPengajuan() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-0 font-sans">
+    <div className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-50 font-sans">
       <Navbar />
 
       {/* Hero Section */}
       <div className="px-6 mt-10 flex flex-col md:flex-row justify-between items-center ml-10 mr-10">
         <div className="ml-10 mb-8 md:mb-0">
-          <h1 className="text-3xl font-bold mb-4">LACAK PENGAJUANMU !</h1>
+          <h1 className="text-3xl font-bold mb-4 text-orange-600">LACAK PENGAJUANMU !</h1>
           <p className="text-gray-600">
             Layanan Pengurusan Surat Desa Kopelma Darussalam
           </p>
@@ -115,7 +118,7 @@ export default function LacakPengajuan() {
             <input
               type="text"
               placeholder="Masukkan NIK atau No Tracking"
-              className="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+              className="flex-grow p-3 border border-gray-600 rounded-lg text-gray-400"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -132,7 +135,7 @@ export default function LacakPengajuan() {
       </div>
 
       <main className="flex-grow container mx-auto px-4 py-8">
-      <h3 className="text-2xl font-semibold mb-4 text-center">Lacak Status Pengajuan</h3>
+      <h3 className="text-2xl font-semibold mb-4 text-center text-gray-400">Lacak Status Pengajuan</h3>
 
         <div className="bg-white p-6 rounded-lg shadow-md mb-8">
           
@@ -140,7 +143,7 @@ export default function LacakPengajuan() {
             <input
               type="text"
               placeholder="Masukkan NIK atau No Tracking"
-              className="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+              className="flex-grow p-3 borde rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
