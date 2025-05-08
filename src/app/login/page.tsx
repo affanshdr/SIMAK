@@ -130,8 +130,8 @@ export default function LoginPage() {
                   Email
                 </label>
                 <div className="flex items-center bg-white/60 border border-gray-300 rounded-lg px-3 transition-all focus-within:border-yellow-400 focus-within:ring-2 focus-within:ring-yellow-200">
-                  <FiMail className="text-gray-500" />
-                  <input type="email" id="email" placeholder="you@example.com" className="w-full px-3 py-2 bg-transparent focus:outline-none" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                  <FiMail className="text-gray-700" />
+                  <input type="email" id="email" placeholder="you@example.com" className="w-full px-3 py-2 bg-transparent focus:outline-none text-gray-700" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
               </motion.div>
 
@@ -146,7 +146,7 @@ export default function LoginPage() {
                     type={showPassword ? "text" : "password"}
                     id="password"
                     placeholder="••••••••"
-                    className="w-full px-3 py-2 bg-transparent focus:outline-none"
+                    className="w-full px-3 py-2 bg-transparent focus:outline-none text-gray-600"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required

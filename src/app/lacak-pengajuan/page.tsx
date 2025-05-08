@@ -14,7 +14,7 @@ interface Pengajuan {
 }
 
 // Warna Font
-const font = 'text-orange-600';
+const font = 'text-gray-600';
 
 export default function LacakPengajuan() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -118,7 +118,7 @@ export default function LacakPengajuan() {
             <input
               type="text"
               placeholder="Masukkan NIK atau No Tracking"
-              className="flex-grow p-3 border border-gray-600 rounded-lg text-gray-400"
+              className="flex-grow p-3 border border-gray-600 rounded-lg text-gray-600"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -135,7 +135,7 @@ export default function LacakPengajuan() {
       </div>
 
       <main className="flex-grow container mx-auto px-4 py-8">
-      <h3 className="text-2xl font-semibold mb-4 text-center text-gray-400">Lacak Status Pengajuan</h3>
+      <h3 className="text-2xl font-semibold mb-4 text-center text-gray-800">Lacak Status Pengajuan</h3>
 
         <div className="bg-white p-6 rounded-lg shadow-md mb-8">
           
@@ -143,7 +143,7 @@ export default function LacakPengajuan() {
             <input
               type="text"
               placeholder="Masukkan NIK atau No Tracking"
-              className="flex-grow p-3 borde rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+              className="flex-grow p-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-600"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />

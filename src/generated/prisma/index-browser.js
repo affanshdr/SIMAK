@@ -130,8 +130,6 @@ exports.Prisma.TemplateSuratScalarFieldEnum = {
   id: 'id',
   judul: 'judul',
   terakhirDiubah: 'terakhirDiubah',
-  warna: 'warna',
-  warnaBtn: 'warnaBtn',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

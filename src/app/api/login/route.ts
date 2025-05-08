@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import prisma from '../../../../lib/prisma'
 
-// Auth
 export async function POST(request: Request) {
     try {
       const { email, password } = await request.json()
@@ -10,7 +9,7 @@ export async function POST(request: Request) {
       const admin = await prisma.admin.findFirst({
         where: {
           email,
-          password // Note: Dalam produksi, password harus di-hash
+          password // Note nanti hash
         }
       })
   

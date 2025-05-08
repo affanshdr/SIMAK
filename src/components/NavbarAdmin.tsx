@@ -136,18 +136,18 @@ const NavbarAdmin = ({ currentPath }: { currentPath: string }) => {
                 </motion.li>
               </Link>
 
-              <Link href="/admin/laporan" passHref>
+              <Link href="/Admin-Laporan" passHref>
                 <motion.li
                   whileHover={{ x: 5 }}
                   className={`flex items-center space-x-3 p-2 rounded-lg transition-colors cursor-pointer ${
-                    isActive("/admin/laporan")
+                    isActive("/Admin-Laporan")
                       ? "bg-orange-200 font-semibold"
                       : "hover:bg-orange-200"
                   }`}
                 >
                   <FaChartBar
                     className={`${
-                      isActive("/admin/laporan")
+                      isActive("/Admin-Laporan")
                         ? "text-orange-600"
                         : "text-orange-500"
                     }`}
@@ -195,7 +195,7 @@ const NavbarAdmin = ({ currentPath }: { currentPath: string }) => {
 
           {/* Logout Button */}
           <div className="flex justify-center">
-            <Link href="/logout" passHref>
+            <Link href="/" passHref>
               <motion.button
                 whileHover={{
                   scale: 1.05,

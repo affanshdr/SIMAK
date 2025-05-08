@@ -1,6 +1,22 @@
-// src/app/api/template-surat/route.ts
 import { NextResponse } from 'next/server';
+import prisma from '../../../../lib/prisma';
 
+export async function GET_DATA() {
+  try {
+    const templates = await prisma.templateSurat.findMany();
+    return NextResponse.json(templates);
+    console.log(templates)
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Gagal mengambil data' },
+      { status: 500 }
+    );
+  }
+}
+
+
+// bagian Default
+// src/app/api/template-surat/route.ts
 let templateSurat = [
   {
     id: 'kurang-mampu',
@@ -63,10 +79,8 @@ export async function POST(request: Request) {
     newTemplate.warnaBtn = btnColors[Math.floor(Math.random() * btnColors.length)];
   }
   
-
   templateSurat.push(newTemplate);
   
-
   return NextResponse.json(templateSurat);
 }
 

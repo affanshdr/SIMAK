@@ -19,7 +19,6 @@ export default function TestPage() {
     }
   }
 
-
   // 3. DELETE Data
   const deleteAdmin = async (id: number) => {
     try {

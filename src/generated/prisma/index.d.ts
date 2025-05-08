@@ -2341,8 +2341,6 @@ export namespace Prisma {
     id: string | null
     judul: string | null
     terakhirDiubah: Date | null
-    warna: string | null
-    warnaBtn: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2351,8 +2349,6 @@ export namespace Prisma {
     id: string | null
     judul: string | null
     terakhirDiubah: Date | null
-    warna: string | null
-    warnaBtn: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2361,8 +2357,6 @@ export namespace Prisma {
     id: number
     judul: number
     terakhirDiubah: number
-    warna: number
-    warnaBtn: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2373,8 +2367,6 @@ export namespace Prisma {
     id?: true
     judul?: true
     terakhirDiubah?: true
-    warna?: true
-    warnaBtn?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2383,8 +2375,6 @@ export namespace Prisma {
     id?: true
     judul?: true
     terakhirDiubah?: true
-    warna?: true
-    warnaBtn?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2393,8 +2383,6 @@ export namespace Prisma {
     id?: true
     judul?: true
     terakhirDiubah?: true
-    warna?: true
-    warnaBtn?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2476,8 +2464,6 @@ export namespace Prisma {
     id: string
     judul: string
     terakhirDiubah: Date
-    warna: string
-    warnaBtn: string
     createdAt: Date
     updatedAt: Date
     _count: TemplateSuratCountAggregateOutputType | null
@@ -2503,8 +2489,6 @@ export namespace Prisma {
     id?: boolean
     judul?: boolean
     terakhirDiubah?: boolean
-    warna?: boolean
-    warnaBtn?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["templateSurat"]>
@@ -2513,8 +2497,6 @@ export namespace Prisma {
     id?: boolean
     judul?: boolean
     terakhirDiubah?: boolean
-    warna?: boolean
-    warnaBtn?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["templateSurat"]>
@@ -2523,8 +2505,6 @@ export namespace Prisma {
     id?: boolean
     judul?: boolean
     terakhirDiubah?: boolean
-    warna?: boolean
-    warnaBtn?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["templateSurat"]>
@@ -2533,13 +2513,11 @@ export namespace Prisma {
     id?: boolean
     judul?: boolean
     terakhirDiubah?: boolean
-    warna?: boolean
-    warnaBtn?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TemplateSuratOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "judul" | "terakhirDiubah" | "warna" | "warnaBtn" | "createdAt" | "updatedAt", ExtArgs["result"]["templateSurat"]>
+  export type TemplateSuratOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "judul" | "terakhirDiubah" | "createdAt" | "updatedAt", ExtArgs["result"]["templateSurat"]>
 
   export type $TemplateSuratPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TemplateSurat"
@@ -2548,8 +2526,6 @@ export namespace Prisma {
       id: string
       judul: string
       terakhirDiubah: Date
-      warna: string
-      warnaBtn: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["templateSurat"]>
@@ -2978,8 +2954,6 @@ export namespace Prisma {
     readonly id: FieldRef<"TemplateSurat", 'String'>
     readonly judul: FieldRef<"TemplateSurat", 'String'>
     readonly terakhirDiubah: FieldRef<"TemplateSurat", 'DateTime'>
-    readonly warna: FieldRef<"TemplateSurat", 'String'>
-    readonly warnaBtn: FieldRef<"TemplateSurat", 'String'>
     readonly createdAt: FieldRef<"TemplateSurat", 'DateTime'>
     readonly updatedAt: FieldRef<"TemplateSurat", 'DateTime'>
   }
@@ -7673,8 +7647,6 @@ export namespace Prisma {
     id: 'id',
     judul: 'judul',
     terakhirDiubah: 'terakhirDiubah',
-    warna: 'warna',
-    warnaBtn: 'warnaBtn',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -7879,8 +7851,6 @@ export namespace Prisma {
     id?: StringFilter<"TemplateSurat"> | string
     judul?: StringFilter<"TemplateSurat"> | string
     terakhirDiubah?: DateTimeFilter<"TemplateSurat"> | Date | string
-    warna?: StringFilter<"TemplateSurat"> | string
-    warnaBtn?: StringFilter<"TemplateSurat"> | string
     createdAt?: DateTimeFilter<"TemplateSurat"> | Date | string
     updatedAt?: DateTimeFilter<"TemplateSurat"> | Date | string
   }
@@ -7889,8 +7859,6 @@ export namespace Prisma {
     id?: SortOrder
     judul?: SortOrder
     terakhirDiubah?: SortOrder
-    warna?: SortOrder
-    warnaBtn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7902,8 +7870,6 @@ export namespace Prisma {
     NOT?: TemplateSuratWhereInput | TemplateSuratWhereInput[]
     judul?: StringFilter<"TemplateSurat"> | string
     terakhirDiubah?: DateTimeFilter<"TemplateSurat"> | Date | string
-    warna?: StringFilter<"TemplateSurat"> | string
-    warnaBtn?: StringFilter<"TemplateSurat"> | string
     createdAt?: DateTimeFilter<"TemplateSurat"> | Date | string
     updatedAt?: DateTimeFilter<"TemplateSurat"> | Date | string
   }, "id">
@@ -7912,8 +7878,6 @@ export namespace Prisma {
     id?: SortOrder
     judul?: SortOrder
     terakhirDiubah?: SortOrder
-    warna?: SortOrder
-    warnaBtn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TemplateSuratCountOrderByAggregateInput
@@ -7928,8 +7892,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"TemplateSurat"> | string
     judul?: StringWithAggregatesFilter<"TemplateSurat"> | string
     terakhirDiubah?: DateTimeWithAggregatesFilter<"TemplateSurat"> | Date | string
-    warna?: StringWithAggregatesFilter<"TemplateSurat"> | string
-    warnaBtn?: StringWithAggregatesFilter<"TemplateSurat"> | string
     createdAt?: DateTimeWithAggregatesFilter<"TemplateSurat"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"TemplateSurat"> | Date | string
   }
@@ -8263,8 +8225,6 @@ export namespace Prisma {
     id?: string
     judul: string
     terakhirDiubah: Date | string
-    warna: string
-    warnaBtn: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8273,8 +8233,6 @@ export namespace Prisma {
     id?: string
     judul: string
     terakhirDiubah: Date | string
-    warna: string
-    warnaBtn: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8283,8 +8241,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     judul?: StringFieldUpdateOperationsInput | string
     terakhirDiubah?: DateTimeFieldUpdateOperationsInput | Date | string
-    warna?: StringFieldUpdateOperationsInput | string
-    warnaBtn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8293,8 +8249,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     judul?: StringFieldUpdateOperationsInput | string
     terakhirDiubah?: DateTimeFieldUpdateOperationsInput | Date | string
-    warna?: StringFieldUpdateOperationsInput | string
-    warnaBtn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8303,8 +8257,6 @@ export namespace Prisma {
     id?: string
     judul: string
     terakhirDiubah: Date | string
-    warna: string
-    warnaBtn: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8313,8 +8265,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     judul?: StringFieldUpdateOperationsInput | string
     terakhirDiubah?: DateTimeFieldUpdateOperationsInput | Date | string
-    warna?: StringFieldUpdateOperationsInput | string
-    warnaBtn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8323,8 +8273,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     judul?: StringFieldUpdateOperationsInput | string
     terakhirDiubah?: DateTimeFieldUpdateOperationsInput | Date | string
-    warna?: StringFieldUpdateOperationsInput | string
-    warnaBtn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8740,8 +8688,6 @@ export namespace Prisma {
     id?: SortOrder
     judul?: SortOrder
     terakhirDiubah?: SortOrder
-    warna?: SortOrder
-    warnaBtn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -8750,8 +8696,6 @@ export namespace Prisma {
     id?: SortOrder
     judul?: SortOrder
     terakhirDiubah?: SortOrder
-    warna?: SortOrder
-    warnaBtn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -8760,8 +8704,6 @@ export namespace Prisma {
     id?: SortOrder
     judul?: SortOrder
     terakhirDiubah?: SortOrder
-    warna?: SortOrder
-    warnaBtn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }

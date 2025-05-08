@@ -19,8 +19,6 @@ model TemplateSurat {
   id             String   @id @default(cuid())
   judul          String
   terakhirDiubah DateTime
-  warna          String
-  warnaBtn       String
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
