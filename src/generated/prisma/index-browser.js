@@ -171,8 +171,15 @@ exports.Prisma.WargaScalarFieldEnum = {
 
 exports.Prisma.AdminScalarFieldEnum = {
   id: 'id',
-  username: 'username',
+  email: 'email',
   password: 'password'
+};
+
+exports.Prisma.TestingScalarFieldEnum = {
+  id: 'id',
+  nama: 'nama',
+  status: 'status',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -196,7 +203,8 @@ exports.Prisma.ModelName = {
   TemplateSurat: 'TemplateSurat',
   PengajuanSurat: 'PengajuanSurat',
   Warga: 'Warga',
-  Admin: 'Admin'
+  Admin: 'Admin',
+  Testing: 'Testing'
 };
 
 /**
