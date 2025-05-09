@@ -23,6 +23,7 @@ interface FormData {
   namaLengkap: string;
   alamat: string;
   keterangan: string;
+  namaUsaha?: string;
 }
 
 // Interface untuk data warga dari API
@@ -421,38 +422,44 @@ export default function FormPengajuanSurat() {
       namaLengkap: "",
       alamat: "",
       keterangan: "",
+      namaUsaha: "", // Tambahkan ini
     });
     setSelectedFiles(initialFileState);
     setPreviews(initialPreviewState);
   };
 
   // Buat FormData untuk dikirim ke API
-  const createFormDataPayload = () => {
-    const formDataToSend = new FormData();
+ const createFormDataPayload = () => {
+  const formDataToSend = new FormData();
 
-    if (!selectedLetter) throw new Error("Jenis surat belum dipilih");
+  if (!selectedLetter) throw new Error("Jenis surat belum dipilih");
 
-    // Data pribadi
-    formDataToSend.append(
-      "jenis_surat",
-      documentRequirements[selectedLetter].label
-    );
-    formDataToSend.append("no_kk", formData.noKK);
-    formDataToSend.append("no_nik", formData.noNIK);
-    formDataToSend.append("nama_lengkap", formData.namaLengkap);
-    formDataToSend.append("alamat", formData.alamat);
-    formDataToSend.append("keterangan", formData.keterangan);
+  // Data pribadi
+  formDataToSend.append(
+    "jenis_surat",
+    documentRequirements[selectedLetter].label
+  );
+  formDataToSend.append("no_kk", formData.noKK);
+  formDataToSend.append("no_nik", formData.noNIK);
+  formDataToSend.append("nama_lengkap", formData.namaLengkap);
+  formDataToSend.append("alamat", formData.alamat);
+  formDataToSend.append("keterangan", formData.keterangan);
+  
+  // Tambahkan nama usaha jika jenis surat izin usaha
+  if (selectedLetter === "surat-keterangan-usaha" && formData.namaUsaha) {
+    formDataToSend.append("nama_usaha", formData.namaUsaha);
+  }
 
-    // File
-    documentRequirements[selectedLetter].docs.forEach((doc) => {
-      const file = selectedFiles[doc];
-      if (file) {
-        formDataToSend.append(doc, file);
-      }
-    });
+  // File
+  documentRequirements[selectedLetter].docs.forEach((doc) => {
+    const file = selectedFiles[doc];
+    if (file) {
+      formDataToSend.append(doc, file);
+    }
+  });
 
-    return formDataToSend;
-  };
+  return formDataToSend;
+};
 
   // Handle submit form
 
@@ -623,6 +630,24 @@ export default function FormPengajuanSurat() {
                 />
               </div>
             </div>
+
+            {/* Tambahkan setelah field Keterangan Tambahan */}
+            {selectedLetter === "surat-keterangan-usaha" && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Nama Usaha <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="namaUsaha"
+                  placeholder="Masukkan Nama Usaha"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
+                  required={selectedLetter === "surat-keterangan-usaha"}
+                  value={formData.namaUsaha || ""}
+                  onChange={handleInputChange}
+                />
+              </div>
+            )}
 
             {/* Pilihan Jenis Surat */}
             <div className="space-y-4">
