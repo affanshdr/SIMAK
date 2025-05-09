@@ -80,7 +80,7 @@ export async function POST(request: Request) {
   try {
     const formData = await request.formData();
     
-    // Process file uploads
+    // Process file uploads (tetap sama)
     const fileFields = {
       KTP: formData.get('KTP') as File | null,
       KK: formData.get('KK') as File | null,
@@ -99,23 +99,49 @@ export async function POST(request: Request) {
       }
     }
 
-    // Extract form fields
+    // Extract form fields - TAMBAHKAN nama_usaha
     const formFields = {
       jenis_surat: formData.get('jenis_surat') as string,
       no_kk: formData.get('no_kk') as string,
       no_nik: formData.get('no_nik') as string,
       nama_lengkap: formData.get('nama_lengkap') as string,
       alamat: formData.get('alamat') as string,
-      keterangan: formData.get('keterangan') as string || ''
+      keterangan: formData.get('keterangan') as string || '',
+      nama_usaha: formData.get('nama_usaha') as string || null // Tambahkan ini
     };
+
+    // Update validasi untuk Surat Keterangan Usaha
+    function validateFields(fields: Record<string, any>) {
+      const requiredFields = [
+        'jenis_surat', 'no_kk', 'no_nik', 'nama_lengkap', 'alamat', 'KTP', 'KK'
+      ];
+      
+      // Jika jenis surat usaha, tambahkan validasi nama usaha
+      if (fields.jenis_surat === 'Surat Keterangan Usaha' && !fields.nama_usaha) {
+        throw new Error('Nama usaha wajib diisi untuk surat keterangan usaha');
+      }
+
+      const missingFields = requiredFields.filter(field => !fields[field]);
+      if (missingFields.length > 0) {
+        throw new Error(`Field wajib tidak lengkap: ${missingFields.join(', ')}`);
+      }
+
+      if (!/^\d{16}$/.test(fields.no_nik)) {
+        throw new Error('NIK harus 16 digit angka');
+      }
+
+      if (!/^\d{16}$/.test(fields.no_kk)) {
+        throw new Error('Nomor KK harus 16 digit angka');
+      }
+    }
 
     // Validate before processing
     validateFields({ ...formFields, ...processedFiles });
 
-    // Generate document number
+    // Generate document number (tetap sama)
     const no_pengajuan = await generateNomorPengajuan(formFields.jenis_surat);
 
-    // Save to database
+    // Save to database - TAMBAHKAN nama_usaha
     const pengajuan = await prisma.pengajuanSurat.create({
       data: {
         no_pengajuan,
@@ -125,6 +151,7 @@ export async function POST(request: Request) {
         nama_lengkap: formFields.nama_lengkap,
         alamat: formFields.alamat,
         keterangan: formFields.keterangan,
+        nama_usaha: formFields.nama_usaha || '', // Ensure it's always a string
         status: 'diajukan',
         tanggal_pengajuan: new Date(),
         file_ktp: processedFiles.KTP || null,
