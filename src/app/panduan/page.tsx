@@ -120,33 +120,6 @@ export default function Panduan() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="px-6 mt-10 flex flex-col md:flex-row justify-between items-center mx-4 md:mx-10">
-        <div className="mb-8 md:mb-0 md:ml-10">
-          <h1 className="text-3xl font-bold mb-4 text-orange-600">
-            CARA MENGAJUKAN SURAT & PERSYARATAN
-          </h1>
-          <p className="text-gray-600 mb-6">
-            Layanan Pengurusan Surat Desa Kopelma Darussalam
-          </p>
-
-          <form className="flex gap-4 max-w-md text-gray-600">
-            <input
-              type="text"
-              placeholder="Cari jenis surat..."
-              className="flex-grow p-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </form>
-        </div>
-
-        <img
-          src="/pengajuan.png"
-          alt="Surat"
-          className="w-full max-w-md md:w-auto md:h-80"
-        />
-      </div>
-
       <main className="container mx-auto px-4 py-12 max-w-6xl">
         {/* Header */}
         <motion.div

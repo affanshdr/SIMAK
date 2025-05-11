@@ -119,7 +119,7 @@ export default function LoginPage() {
                 SIMAK
               </motion.h1>
               <motion.h2 className="text-lg font-semibold text-yellow-600 mt-1" initial={{ y: 20 }} animate={{ y: 0 }} transition={{ delay: 0.6 }}>
-                Masuk ke akunmu
+                Masuk Sebagai Admin
               </motion.h2>
             </motion.div>
 
@@ -131,7 +131,7 @@ export default function LoginPage() {
                 </label>
                 <div className="flex items-center bg-white/60 border border-gray-300 rounded-lg px-3 transition-all focus-within:border-yellow-400 focus-within:ring-2 focus-within:ring-yellow-200">
                   <FiMail className="text-gray-700" />
-                  <input type="email" id="email" placeholder="you@example.com" className="w-full px-3 py-2 bg-transparent focus:outline-none text-gray-700" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                  <input type="email" id="email" placeholder="email kamu@example.com" className="w-full px-3 py-2 bg-transparent focus:outline-none text-gray-700" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
               </motion.div>
 
