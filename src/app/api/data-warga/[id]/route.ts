@@ -61,7 +61,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     const updatedWarga = await prisma.warga.update({
       where: { id: wargaId },
       data: {
-        nama: body.nama_lengkap,
+        nama_lengkap: body.nama_lengkap,
         no_nik: body.no_nik,
         no_kk: body.no_kk,
         alamat: body.alamat
