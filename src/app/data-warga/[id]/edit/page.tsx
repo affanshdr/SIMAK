@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams, useParams } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import NavbarAdmin from '../../../../components/NavbarAdmin';
 
 export default function EditDataWarga() {
@@ -24,7 +24,7 @@ export default function EditDataWarga() {
         .then(res => res.json())
         .then(data => {
           setFormData({
-            nama_lengkap: data.nama || '',
+            nama_lengkap: data.nama_lengkap || '', // Updated to match schema
             no_nik: data.no_nik || '',
             no_kk: data.no_kk || '',
             alamat: data.alamat || ''

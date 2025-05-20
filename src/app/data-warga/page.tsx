@@ -5,7 +5,7 @@ import NavbarAdmin from "@/components/NavbarAdmin";
 
 interface Warga {
   id: number;
-  nama: string;
+  nama_lengkap: string; // Updated to match Prisma schema
   no_nik: string;
   no_kk: string;
   alamat: string;
@@ -63,7 +63,7 @@ export default function DataWarga() {
 
   const filteredData = wargaData.filter(
     (warga) =>
-      warga.nama.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      warga.nama_lengkap.toLowerCase().includes(searchQuery.toLowerCase()) || // Updated to match schema
       warga.no_nik.includes(searchQuery) ||
       warga.no_kk.includes(searchQuery)
   );
@@ -150,7 +150,7 @@ export default function DataWarga() {
                   {filteredData.map((warga) => (
                     <tr key={warga.id} className="hover:bg-[#FFF5D9]">
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {warga.nama}
+                        {warga.nama_lengkap}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {warga.no_nik}

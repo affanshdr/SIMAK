@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import NavbarAdmin from "../../../components/NavbarAdmin";
 
+
+// File data-warga/tambah/page.tsx
+
 interface WargaData {
   id: number;
   nama_lengkap: string;
