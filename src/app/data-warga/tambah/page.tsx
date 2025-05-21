@@ -91,7 +91,7 @@ export default function TambahDataWarga() {
                   type="text"
                   name="nama_lengkap"
                   placeholder="Masukkan nama lengkap ..."
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition text-gray-800"
                   value={formData.nama_lengkap}
                   onChange={handleChange}
                   required
@@ -104,7 +104,7 @@ export default function TambahDataWarga() {
                   type="text"
                   name="no_nik"
                   placeholder="Masukkan NIK (16 digit) ..."
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
+                  className="w-full p-3 border text-gray-800 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
                   value={formData.no_nik}
                   onChange={handleChange}
                   required
@@ -120,7 +120,7 @@ export default function TambahDataWarga() {
                   type="text"
                   name="no_kk"
                   placeholder="Masukkan No. KK (16 digit) ..."
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
+                  className="w-full p-3 border text-gray-800 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
                   value={formData.no_kk}
                   onChange={handleChange}
                   required
@@ -131,12 +131,12 @@ export default function TambahDataWarga() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
+                <label className="block text-sm text-gray-800 font-medium  mb-1">Alamat</label>
                 <input
                   type="text"
                   name="alamat"
                   placeholder="Masukkan alamat lengkap ..."
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
+                  className="w-full p-3 border text-gray-800 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
                   value={formData.alamat}
                   onChange={handleChange}
                   required

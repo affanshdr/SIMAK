@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     // Buat data baru
     const newWarga = await prisma.warga.create({
       data: {
-        nama: body.nama_lengkap,
+        nama_lengkap: body.nama_lengkap,
         no_nik: body.no_nik,
         no_kk: body.no_kk,
         alamat: body.alamat,

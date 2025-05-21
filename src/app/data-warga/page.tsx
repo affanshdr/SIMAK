@@ -5,7 +5,7 @@ import NavbarAdmin from "@/components/NavbarAdmin";
 
 interface Warga {
   id: number;
-  nama: string;
+  nama_lengkap: string;  // Changed from 'nama' to 'nama_lengkap'
   no_nik: string;
   no_kk: string;
   alamat: string;
@@ -63,7 +63,7 @@ export default function DataWarga() {
 
   const filteredData = wargaData.filter(
     (warga) =>
-      warga.nama.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      warga.nama_lengkap.toLowerCase().includes(searchQuery.toLowerCase()) ||
       warga.no_nik.includes(searchQuery) ||
       warga.no_kk.includes(searchQuery)
   );
@@ -97,7 +97,7 @@ export default function DataWarga() {
             <input
               type="text"
               placeholder="Cari Data Warga"
-              className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] bg-white outline-none transition"
+              className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] bg-white outline-none transition text-gray-800"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -150,7 +150,7 @@ export default function DataWarga() {
                   {filteredData.map((warga) => (
                     <tr key={warga.id} className="hover:bg-[#FFF5D9]">
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {warga.nama}
+                        {warga.nama_lengkap}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {warga.no_nik}
