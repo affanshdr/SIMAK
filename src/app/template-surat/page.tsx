@@ -245,7 +245,7 @@ const TemplateSurat = () => {
         </button>
       </div>
 
-      {/* Add Template Button */}
+      {/* Add Template Button
       <div className="mb-6">
         <button
           onClick={handleAddClick}
@@ -256,12 +256,12 @@ const TemplateSurat = () => {
         </button>
       </div>
 
-      {/* Loading indicator */}
+      {/* Loading indicator 
       {isLoading && (
         <div className="flex justify-center my-8">
           <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-orange-500"></div>
         </div>
-      )}
+      )} */}
 
       {/* Template Cards */}
       {!isLoading && (
