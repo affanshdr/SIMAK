@@ -120,33 +120,6 @@ export default function Panduan() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="px-6 mt-10 flex flex-col md:flex-row justify-between items-center mx-4 md:mx-10">
-        <div className="mb-8 md:mb-0 md:ml-10">
-          <h1 className="text-3xl font-bold mb-4">
-            CARA MENGAJUKAN SURAT & PERSYARATAN
-          </h1>
-          <p className="text-gray-600 mb-6">
-            Layanan Pengurusan Surat Desa Kopelma Darussalam
-          </p>
-
-          <form className="flex gap-4 max-w-md">
-            <input
-              type="text"
-              placeholder="Cari jenis surat..."
-              className="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </form>
-        </div>
-
-        <img
-          src="/pengajuan.png"
-          alt="Surat"
-          className="w-full max-w-md md:w-auto md:h-80"
-        />
-      </div>
-
       <main className="container mx-auto px-4 py-12 max-w-6xl">
         {/* Header */}
         <motion.div
@@ -173,7 +146,7 @@ export default function Panduan() {
           className="mb-12"
         >
           <h3 className="text-2xl font-bold mb-6 text-gray-800 flex items-center">
-            <span className="bg-yellow-100 text-yellow-600 p-2 rounded-lg mr-3">
+            <span className="bg-yellow-100 text-gray-600 p-2 rounded-lg mr-3 ">
               📄
             </span>
             Pilih Jenis Surat
@@ -185,7 +158,7 @@ export default function Panduan() {
               onChange={handleLetterChange}
               className="w-full p-4 pr-10 text-lg border border-gray-300 rounded-xl appearance-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 bg-white cursor-pointer transition-all hover:shadow-md"
             >
-              <option value="" disabled className="text-gray-400">
+              <option value="" disabled className="text-gray-600">
                 Pilih jenis surat...
               </option>
               {letterTypes
@@ -203,7 +176,7 @@ export default function Panduan() {
                 ))}
             </select>
 
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-yellow-600 transition-colors">
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 group-hover:text-yellow-600 transition-colors">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"

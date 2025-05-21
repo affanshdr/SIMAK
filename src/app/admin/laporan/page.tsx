@@ -2,7 +2,7 @@
 
 import React from "react";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-import { FaUser, FaEnvelope, FaEnvelopeOpen, FaSearch, FaPrint } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaEnvelopeOpen } from "react-icons/fa";
 import {
   BarChart,
   Bar,
@@ -41,19 +41,20 @@ const COLORS = {
 
 const LaporanAdmin = () => {
   return (
-    <div className="ml-64 min-h-screen bg-gradient-to-br from-yellow-50 to-white p-6">
+    <div 
+      className="ml-64 min-h-screen bg-gradient-to-br from-yellow-50 to-white p-6"
+      style={{ fontFamily: "var(--font-poppins)" }}
+    >
       <NavbarAdmin currentPath="/Admin-Laporan" />
 
-      {/* Search + Profile */}
+      {/* Header Laporan + Profile */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-        <div className="relative w-full md:w-1/2">
-          <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Cari Nama / Nomor Surat..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent shadow-sm bg-white"
-          />
-        </div>
+        <h1 
+          className="text-2xl font-bold text-gray-800"
+          style={{ fontFamily: "var(--font-poppins)" }}
+        >
+          Laporan
+        </h1>
         <div className="flex items-center space-x-3 bg-white p-2 rounded-full shadow-sm">
           <span className="text-gray-700">Indra</span>
           <div className="w-9 h-9 rounded-full bg-indigo-100 flex items-center justify-center overflow-hidden">
@@ -112,15 +113,9 @@ const LaporanAdmin = () => {
           </div>
         </div>
 
-        {/* Pie Chart - Fixed button positioning */}
+        {/* Pie Chart */}
         <div className="bg-yellow p-6 rounded-xl shadow-md">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="font-bold text-lg text-gray-800">Status Penyelesaian</h2>
-            <button className="flex items-center gap-2 bg-orange-400 hover:bg-orange-500 text-white font-medium py-2 px-4 rounded-lg transition-colors">
-              <FaPrint className="text-sm" />
-              <span className="text-sm">Cetak</span>
-            </button>
-          </div>
+          <h2 className="font-bold text-lg text-gray-800 mb-4">Status Penyelesaian</h2>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>

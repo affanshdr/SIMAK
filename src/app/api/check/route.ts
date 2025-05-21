@@ -60,7 +60,7 @@ export async function GET(request: Request) {
           id: true,
           no_nik: true,
           no_kk: true,
-          nama: true,
+          nama_lengkap: true,
           alamat: true
         }
       });
@@ -80,7 +80,7 @@ export async function GET(request: Request) {
           id: true,
           no_nik: true,
           no_kk: true,
-          nama: true,
+          nama_lengkap: true,
           alamat: true
         }
       });
@@ -99,7 +99,7 @@ export async function GET(request: Request) {
           id: true,
           no_nik: true,
           no_kk: true,
-          nama: true,
+          nama_lengkap: true,
           alamat: true
         }
       });

@@ -472,9 +472,9 @@ export default function FormPengajuanSurat() {
       {/* Hero Section */}
       <div className="px-6 mt-10 flex flex-col md:flex-row justify-between items-center ml-10 mr-10">
         <div className="ml-10 mb-8 md:mb-0">
-          <h1 className="text-3xl font-bold mb-4 text-orange-500">SISTEM INFORMASI</h1>
-          <h1 className="text-3xl font-bold mb-4 text-orange-500">MANAJEMEN ADMINISTRASI</h1>
-          <p className="text-gray-600">
+          <h1 className="text-4xl font-bold mb-4 text-orange-500">SISTEM INFORMASI</h1>
+          <h1 className="text-4xl font-bold mb-4 text-orange-500">MANAJEMEN ADMINISTRASI</h1>
+          <p className="text-gray-600 text-xl">
             Layanan Pengurusan Surat Desa di Kantor Keuchik
           </p>
         </div>

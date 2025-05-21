@@ -1,81 +1,94 @@
 // src/app/api/template-surat/route.ts
 import { NextResponse } from 'next/server';
+import prisma from '../../../../lib/prisma';
 
-let templateSurat = [
-  {
-    id: 'kurang-mampu',
-    judul: 'Surat Keterangan Kurang Mampu',
-    terakhirDiubah: '2024-04-12',
-    warna: '#BDB176',
-    warnaBtn: '#EBDDC6'
-  },
-  {
-    id: 'belum-menikah',
-    judul: 'Surat Keterangan Belum Menikah',
-    terakhirDiubah: '2024-04-12',
-    warna: '#68BAA6',
-    warnaBtn: '#C6EDD9'
-  },
-  {
-    id: 'kehilangan',
-    judul: 'Surat Keterangan Kehilangan',
-    terakhirDiubah: '2024-04-12',
-    warna: '#797A9E',
-    warnaBtn: '#C6EDD9'
-  },
-  {
-    id: 'usaha',
-    judul: 'Surat Keterangan Usaha',
-    terakhirDiubah: '2024-04-12',
-    warna: '#D9B4A9',
-    warnaBtn: '#E9E9C7'
-  }
-];
-
+// GET: Mengambil semua template surat
 export async function GET() {
-  return NextResponse.json(templateSurat);
+  try {
+    const templates = await prisma.templateSurat.findMany();
+    return NextResponse.json(templates);
+  } catch (error) {
+    console.error('Error fetching templates:', error);
+    return NextResponse.json(
+      { error: 'Gagal mengambil data' },
+      { status: 500 }
+    );
+  }
 }
 
+// PUT: Memperbarui template surat yang ada
 export async function PUT(request: Request) {
-  const updated = await request.json();
-  
-  templateSurat = templateSurat.map(template => 
-    template.id === updated.id ? updated : template
-  );
-  
-  return NextResponse.json(templateSurat);
+  try {
+    const updated = await request.json();
+    
+    // Pastikan terakhirDiubah dalam format yang benar untuk DateTime
+    const terakhirDiubah = new Date();
+    
+    const updatedTemplate = await prisma.templateSurat.update({
+      where: { id: updated.id },
+      data: {
+        judul: updated.judul,
+        terakhirDiubah: terakhirDiubah
+      }
+    });
+    
+    return NextResponse.json(updatedTemplate);
+  } catch (error) {
+    console.error('Error updating template:', error);
+    return NextResponse.json(
+      { error: 'Gagal memperbarui data' },
+      { status: 500 }
+    );
+  }
 }
 
+// POST: Membuat template surat baru
 export async function POST(request: Request) {
-  const newTemplate = await request.json();
-  
-
-  newTemplate.id = newTemplate.judul.toLowerCase().replace(/\s+/g, '-');
-  newTemplate.terakhirDiubah = new Date().toISOString().split('T')[0];
-  
-
-  if (!newTemplate.warna) {
-    const colors = ['#BDB176', '#68BAA6', '#797A9E', '#D9B4A9'];
-    newTemplate.warna = colors[Math.floor(Math.random() * colors.length)];
+  try {
+    const newTemplate = await request.json();
+    
+    // Buat slug dari judul untuk id (pastikan unique)
+    const baseId = newTemplate.judul.toLowerCase().replace(/\s+/g, '-');
+    const timestamp = Date.now().toString().slice(-4); // Tambahkan 4 digit timestamp untuk menghindari duplikasi
+    const id = `${baseId}-${timestamp}`;
+    const terakhirDiubah = new Date();
+    
+    const createdTemplate = await prisma.templateSurat.create({
+      data: {
+        id: id,
+        judul: newTemplate.judul,
+        terakhirDiubah: terakhirDiubah
+      }
+    });
+    
+    return NextResponse.json(createdTemplate);
+  } catch (error) {
+    console.error('Error creating template:', error);
+    return NextResponse.json(
+      { error: 'Gagal menambahkan data' },
+      { status: 500 }
+    );
   }
-  if (!newTemplate.warnaBtn) {
-    const btnColors = ['#EBDDC6', '#C6EDD9', '#E9E9C7'];
-    newTemplate.warnaBtn = btnColors[Math.floor(Math.random() * btnColors.length)];
-  }
-  
-
-  templateSurat.push(newTemplate);
-  
-
-  return NextResponse.json(templateSurat);
 }
 
+// DELETE: Menghapus template surat
 export async function DELETE(request: Request) {
-  const { id } = await request.json();
-  
-
-  templateSurat = templateSurat.filter(template => template.id !== id);
-  
-
-  return NextResponse.json(templateSurat);
+  try {
+    const { id } = await request.json();
+    
+    await prisma.templateSurat.delete({
+      where: { id }
+    });
+    
+    // Ambil data terbaru setelah penghapusan
+    const templates = await prisma.templateSurat.findMany();
+    
+    return NextResponse.json(templates);
+  } catch (error) {
+    console.error('Error deleting template:', error);
+    return NextResponse.json(
+      { error: 'Gagal menghapus data' },
+      { status: 500 }
+    );
+  }
 }

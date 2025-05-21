@@ -38,6 +38,11 @@ export type Warga = $Result.DefaultSelection<Prisma.$WargaPayload>
  * 
  */
 export type Admin = $Result.DefaultSelection<Prisma.$AdminPayload>
+/**
+ * Model Testing
+ * 
+ */
+export type Testing = $Result.DefaultSelection<Prisma.$TestingPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -213,6 +218,16 @@ export class PrismaClient<
     * ```
     */
   get admin(): Prisma.AdminDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.testing`: Exposes CRUD operations for the **Testing** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Testings
+    * const testings = await prisma.testing.findMany()
+    * ```
+    */
+  get testing(): Prisma.TestingDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +672,8 @@ export namespace Prisma {
     TemplateSurat: 'TemplateSurat',
     PengajuanSurat: 'PengajuanSurat',
     Warga: 'Warga',
-    Admin: 'Admin'
+    Admin: 'Admin',
+    Testing: 'Testing'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "templateSurat" | "pengajuanSurat" | "warga" | "admin"
+      modelProps: "user" | "templateSurat" | "pengajuanSurat" | "warga" | "admin" | "testing"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1050,6 +1066,80 @@ export namespace Prisma {
           }
         }
       }
+      Testing: {
+        payload: Prisma.$TestingPayload<ExtArgs>
+        fields: Prisma.TestingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TestingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TestingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+          }
+          findFirst: {
+            args: Prisma.TestingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TestingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+          }
+          findMany: {
+            args: Prisma.TestingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestingPayload>[]
+          }
+          create: {
+            args: Prisma.TestingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+          }
+          createMany: {
+            args: Prisma.TestingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TestingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestingPayload>[]
+          }
+          delete: {
+            args: Prisma.TestingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+          }
+          update: {
+            args: Prisma.TestingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+          }
+          deleteMany: {
+            args: Prisma.TestingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TestingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TestingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestingPayload>[]
+          }
+          upsert: {
+            args: Prisma.TestingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TestingPayload>
+          }
+          aggregate: {
+            args: Prisma.TestingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTesting>
+          }
+          groupBy: {
+            args: Prisma.TestingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TestingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TestingCountArgs<ExtArgs>
+            result: $Utils.Optional<TestingCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1139,6 +1229,7 @@ export namespace Prisma {
     pengajuanSurat?: PengajuanSuratOmit
     warga?: WargaOmit
     admin?: AdminOmit
+    testing?: TestingOmit
   }
 
   /* Types for Logging */
@@ -2075,6 +2166,7 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -2093,6 +2185,7 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -2248,8 +2341,6 @@ export namespace Prisma {
     id: string | null
     judul: string | null
     terakhirDiubah: Date | null
-    warna: string | null
-    warnaBtn: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2258,8 +2349,6 @@ export namespace Prisma {
     id: string | null
     judul: string | null
     terakhirDiubah: Date | null
-    warna: string | null
-    warnaBtn: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2268,8 +2357,6 @@ export namespace Prisma {
     id: number
     judul: number
     terakhirDiubah: number
-    warna: number
-    warnaBtn: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2280,8 +2367,6 @@ export namespace Prisma {
     id?: true
     judul?: true
     terakhirDiubah?: true
-    warna?: true
-    warnaBtn?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2290,8 +2375,6 @@ export namespace Prisma {
     id?: true
     judul?: true
     terakhirDiubah?: true
-    warna?: true
-    warnaBtn?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2300,8 +2383,6 @@ export namespace Prisma {
     id?: true
     judul?: true
     terakhirDiubah?: true
-    warna?: true
-    warnaBtn?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2383,8 +2464,6 @@ export namespace Prisma {
     id: string
     judul: string
     terakhirDiubah: Date
-    warna: string
-    warnaBtn: string
     createdAt: Date
     updatedAt: Date
     _count: TemplateSuratCountAggregateOutputType | null
@@ -2410,8 +2489,6 @@ export namespace Prisma {
     id?: boolean
     judul?: boolean
     terakhirDiubah?: boolean
-    warna?: boolean
-    warnaBtn?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["templateSurat"]>
@@ -2420,8 +2497,6 @@ export namespace Prisma {
     id?: boolean
     judul?: boolean
     terakhirDiubah?: boolean
-    warna?: boolean
-    warnaBtn?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["templateSurat"]>
@@ -2430,8 +2505,6 @@ export namespace Prisma {
     id?: boolean
     judul?: boolean
     terakhirDiubah?: boolean
-    warna?: boolean
-    warnaBtn?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["templateSurat"]>
@@ -2440,13 +2513,11 @@ export namespace Prisma {
     id?: boolean
     judul?: boolean
     terakhirDiubah?: boolean
-    warna?: boolean
-    warnaBtn?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TemplateSuratOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "judul" | "terakhirDiubah" | "warna" | "warnaBtn" | "createdAt" | "updatedAt", ExtArgs["result"]["templateSurat"]>
+  export type TemplateSuratOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "judul" | "terakhirDiubah" | "createdAt" | "updatedAt", ExtArgs["result"]["templateSurat"]>
 
   export type $TemplateSuratPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TemplateSurat"
@@ -2455,8 +2526,6 @@ export namespace Prisma {
       id: string
       judul: string
       terakhirDiubah: Date
-      warna: string
-      warnaBtn: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["templateSurat"]>
@@ -2885,8 +2954,6 @@ export namespace Prisma {
     readonly id: FieldRef<"TemplateSurat", 'String'>
     readonly judul: FieldRef<"TemplateSurat", 'String'>
     readonly terakhirDiubah: FieldRef<"TemplateSurat", 'DateTime'>
-    readonly warna: FieldRef<"TemplateSurat", 'String'>
-    readonly warnaBtn: FieldRef<"TemplateSurat", 'String'>
     readonly createdAt: FieldRef<"TemplateSurat", 'DateTime'>
     readonly updatedAt: FieldRef<"TemplateSurat", 'DateTime'>
   }
@@ -3094,6 +3161,7 @@ export namespace Prisma {
      * The data used to create many TemplateSurats.
      */
     data: TemplateSuratCreateManyInput | TemplateSuratCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -3112,6 +3180,7 @@ export namespace Prisma {
      * The data used to create many TemplateSurats.
      */
     data: TemplateSuratCreateManyInput | TemplateSuratCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -3275,7 +3344,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMinAggregateOutputType = {
     id: number | null
-    no_pengajuan: string | null
     nama_lengkap: string | null
     no_nik: string | null
     no_kk: string | null
@@ -3291,6 +3359,7 @@ export namespace Prisma {
     file_pernyataan_tm: string | null
     file_rekening_listrik: string | null
     status: string | null
+    no_pengajuan: string | null
     tanggal_pengajuan: Date | null
     tanggal_selesai: Date | null
     createdAt: Date | null
@@ -3298,7 +3367,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMaxAggregateOutputType = {
     id: number | null
-    no_pengajuan: string | null
     nama_lengkap: string | null
     no_nik: string | null
     no_kk: string | null
@@ -3314,6 +3382,7 @@ export namespace Prisma {
     file_pernyataan_tm: string | null
     file_rekening_listrik: string | null
     status: string | null
+    no_pengajuan: string | null
     tanggal_pengajuan: Date | null
     tanggal_selesai: Date | null
     createdAt: Date | null
@@ -3321,7 +3390,6 @@ export namespace Prisma {
 
   export type PengajuanSuratCountAggregateOutputType = {
     id: number
-    no_pengajuan: number
     nama_lengkap: number
     no_nik: number
     no_kk: number
@@ -3337,6 +3405,7 @@ export namespace Prisma {
     file_pernyataan_tm: number
     file_rekening_listrik: number
     status: number
+    no_pengajuan: number
     tanggal_pengajuan: number
     tanggal_selesai: number
     createdAt: number
@@ -3354,7 +3423,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMinAggregateInputType = {
     id?: true
-    no_pengajuan?: true
     nama_lengkap?: true
     no_nik?: true
     no_kk?: true
@@ -3370,6 +3438,7 @@ export namespace Prisma {
     file_pernyataan_tm?: true
     file_rekening_listrik?: true
     status?: true
+    no_pengajuan?: true
     tanggal_pengajuan?: true
     tanggal_selesai?: true
     createdAt?: true
@@ -3377,7 +3446,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMaxAggregateInputType = {
     id?: true
-    no_pengajuan?: true
     nama_lengkap?: true
     no_nik?: true
     no_kk?: true
@@ -3393,6 +3461,7 @@ export namespace Prisma {
     file_pernyataan_tm?: true
     file_rekening_listrik?: true
     status?: true
+    no_pengajuan?: true
     tanggal_pengajuan?: true
     tanggal_selesai?: true
     createdAt?: true
@@ -3400,7 +3469,6 @@ export namespace Prisma {
 
   export type PengajuanSuratCountAggregateInputType = {
     id?: true
-    no_pengajuan?: true
     nama_lengkap?: true
     no_nik?: true
     no_kk?: true
@@ -3416,6 +3484,7 @@ export namespace Prisma {
     file_pernyataan_tm?: true
     file_rekening_listrik?: true
     status?: true
+    no_pengajuan?: true
     tanggal_pengajuan?: true
     tanggal_selesai?: true
     createdAt?: true
@@ -3510,7 +3579,6 @@ export namespace Prisma {
 
   export type PengajuanSuratGroupByOutputType = {
     id: number
-    no_pengajuan: string | null
     nama_lengkap: string
     no_nik: string
     no_kk: string
@@ -3526,6 +3594,7 @@ export namespace Prisma {
     file_pernyataan_tm: string | null
     file_rekening_listrik: string | null
     status: string
+    no_pengajuan: string | null
     tanggal_pengajuan: Date
     tanggal_selesai: Date | null
     createdAt: Date
@@ -3552,7 +3621,6 @@ export namespace Prisma {
 
   export type PengajuanSuratSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    no_pengajuan?: boolean
     nama_lengkap?: boolean
     no_nik?: boolean
     no_kk?: boolean
@@ -3568,6 +3636,7 @@ export namespace Prisma {
     file_pernyataan_tm?: boolean
     file_rekening_listrik?: boolean
     status?: boolean
+    no_pengajuan?: boolean
     tanggal_pengajuan?: boolean
     tanggal_selesai?: boolean
     createdAt?: boolean
@@ -3575,7 +3644,6 @@ export namespace Prisma {
 
   export type PengajuanSuratSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    no_pengajuan?: boolean
     nama_lengkap?: boolean
     no_nik?: boolean
     no_kk?: boolean
@@ -3591,6 +3659,7 @@ export namespace Prisma {
     file_pernyataan_tm?: boolean
     file_rekening_listrik?: boolean
     status?: boolean
+    no_pengajuan?: boolean
     tanggal_pengajuan?: boolean
     tanggal_selesai?: boolean
     createdAt?: boolean
@@ -3598,7 +3667,6 @@ export namespace Prisma {
 
   export type PengajuanSuratSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    no_pengajuan?: boolean
     nama_lengkap?: boolean
     no_nik?: boolean
     no_kk?: boolean
@@ -3614,6 +3682,7 @@ export namespace Prisma {
     file_pernyataan_tm?: boolean
     file_rekening_listrik?: boolean
     status?: boolean
+    no_pengajuan?: boolean
     tanggal_pengajuan?: boolean
     tanggal_selesai?: boolean
     createdAt?: boolean
@@ -3621,7 +3690,6 @@ export namespace Prisma {
 
   export type PengajuanSuratSelectScalar = {
     id?: boolean
-    no_pengajuan?: boolean
     nama_lengkap?: boolean
     no_nik?: boolean
     no_kk?: boolean
@@ -3637,19 +3705,19 @@ export namespace Prisma {
     file_pernyataan_tm?: boolean
     file_rekening_listrik?: boolean
     status?: boolean
+    no_pengajuan?: boolean
     tanggal_pengajuan?: boolean
     tanggal_selesai?: boolean
     createdAt?: boolean
   }
 
-  export type PengajuanSuratOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "no_pengajuan" | "nama_lengkap" | "no_nik" | "no_kk" | "alamat" | "keterangan" | "jenis_surat" | "file_ktp" | "file_kk" | "file_pengantar_rtrw" | "file_surat_permohonan" | "file_izin_usaha" | "file_pas_foto" | "file_pernyataan_tm" | "file_rekening_listrik" | "status" | "tanggal_pengajuan" | "tanggal_selesai" | "createdAt", ExtArgs["result"]["pengajuanSurat"]>
+  export type PengajuanSuratOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama_lengkap" | "no_nik" | "no_kk" | "alamat" | "keterangan" | "jenis_surat" | "file_ktp" | "file_kk" | "file_pengantar_rtrw" | "file_surat_permohonan" | "file_izin_usaha" | "file_pas_foto" | "file_pernyataan_tm" | "file_rekening_listrik" | "status" | "no_pengajuan" | "tanggal_pengajuan" | "tanggal_selesai" | "createdAt", ExtArgs["result"]["pengajuanSurat"]>
 
   export type $PengajuanSuratPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PengajuanSurat"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      no_pengajuan: string | null
       nama_lengkap: string
       no_nik: string
       no_kk: string
@@ -3665,6 +3733,7 @@ export namespace Prisma {
       file_pernyataan_tm: string | null
       file_rekening_listrik: string | null
       status: string
+      no_pengajuan: string | null
       tanggal_pengajuan: Date
       tanggal_selesai: Date | null
       createdAt: Date
@@ -4092,7 +4161,6 @@ export namespace Prisma {
    */
   interface PengajuanSuratFieldRefs {
     readonly id: FieldRef<"PengajuanSurat", 'Int'>
-    readonly no_pengajuan: FieldRef<"PengajuanSurat", 'String'>
     readonly nama_lengkap: FieldRef<"PengajuanSurat", 'String'>
     readonly no_nik: FieldRef<"PengajuanSurat", 'String'>
     readonly no_kk: FieldRef<"PengajuanSurat", 'String'>
@@ -4108,6 +4176,7 @@ export namespace Prisma {
     readonly file_pernyataan_tm: FieldRef<"PengajuanSurat", 'String'>
     readonly file_rekening_listrik: FieldRef<"PengajuanSurat", 'String'>
     readonly status: FieldRef<"PengajuanSurat", 'String'>
+    readonly no_pengajuan: FieldRef<"PengajuanSurat", 'String'>
     readonly tanggal_pengajuan: FieldRef<"PengajuanSurat", 'DateTime'>
     readonly tanggal_selesai: FieldRef<"PengajuanSurat", 'DateTime'>
     readonly createdAt: FieldRef<"PengajuanSurat", 'DateTime'>
@@ -4316,6 +4385,7 @@ export namespace Prisma {
      * The data used to create many PengajuanSurats.
      */
     data: PengajuanSuratCreateManyInput | PengajuanSuratCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -4334,6 +4404,7 @@ export namespace Prisma {
      * The data used to create many PengajuanSurats.
      */
     data: PengajuanSuratCreateManyInput | PengajuanSuratCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -5369,6 +5440,7 @@ export namespace Prisma {
      * The data used to create many Wargas.
      */
     data: WargaCreateManyInput | WargaCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -5387,6 +5459,7 @@ export namespace Prisma {
      * The data used to create many Wargas.
      */
     data: WargaCreateManyInput | WargaCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -5550,26 +5623,20 @@ export namespace Prisma {
 
   export type AdminMinAggregateOutputType = {
     id: number | null
-    username: string | null
+    email: string | null
     password: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type AdminMaxAggregateOutputType = {
     id: number | null
-    username: string | null
+    email: string | null
     password: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type AdminCountAggregateOutputType = {
     id: number
-    username: number
+    email: number
     password: number
-    createdAt: number
-    updatedAt: number
     _all: number
   }
 
@@ -5584,26 +5651,20 @@ export namespace Prisma {
 
   export type AdminMinAggregateInputType = {
     id?: true
-    username?: true
+    email?: true
     password?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type AdminMaxAggregateInputType = {
     id?: true
-    username?: true
+    email?: true
     password?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type AdminCountAggregateInputType = {
     id?: true
-    username?: true
+    email?: true
     password?: true
-    createdAt?: true
-    updatedAt?: true
     _all?: true
   }
 
@@ -5695,10 +5756,8 @@ export namespace Prisma {
 
   export type AdminGroupByOutputType = {
     id: number
-    username: string
+    email: string
     password: string
-    createdAt: Date
-    updatedAt: Date
     _count: AdminCountAggregateOutputType | null
     _avg: AdminAvgAggregateOutputType | null
     _sum: AdminSumAggregateOutputType | null
@@ -5722,47 +5781,37 @@ export namespace Prisma {
 
   export type AdminSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    username?: boolean
+    email?: boolean
     password?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }, ExtArgs["result"]["admin"]>
 
   export type AdminSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    username?: boolean
+    email?: boolean
     password?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }, ExtArgs["result"]["admin"]>
 
   export type AdminSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    username?: boolean
+    email?: boolean
     password?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }, ExtArgs["result"]["admin"]>
 
   export type AdminSelectScalar = {
     id?: boolean
-    username?: boolean
+    email?: boolean
     password?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }
 
-  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["admin"]>
+  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password", ExtArgs["result"]["admin"]>
 
   export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Admin"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      username: string
+      email: string
       password: string
-      createdAt: Date
-      updatedAt: Date
     }, ExtArgs["result"]["admin"]>
     composites: {}
   }
@@ -6187,10 +6236,8 @@ export namespace Prisma {
    */
   interface AdminFieldRefs {
     readonly id: FieldRef<"Admin", 'Int'>
-    readonly username: FieldRef<"Admin", 'String'>
+    readonly email: FieldRef<"Admin", 'String'>
     readonly password: FieldRef<"Admin", 'String'>
-    readonly createdAt: FieldRef<"Admin", 'DateTime'>
-    readonly updatedAt: FieldRef<"Admin", 'DateTime'>
   }
     
 
@@ -6396,6 +6443,7 @@ export namespace Prisma {
      * The data used to create many Admins.
      */
     data: AdminCreateManyInput | AdminCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -6414,6 +6462,7 @@ export namespace Prisma {
      * The data used to create many Admins.
      */
     data: AdminCreateManyInput | AdminCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -6556,10 +6605,1029 @@ export namespace Prisma {
 
 
   /**
+   * Model Testing
+   */
+
+  export type AggregateTesting = {
+    _count: TestingCountAggregateOutputType | null
+    _avg: TestingAvgAggregateOutputType | null
+    _sum: TestingSumAggregateOutputType | null
+    _min: TestingMinAggregateOutputType | null
+    _max: TestingMaxAggregateOutputType | null
+  }
+
+  export type TestingAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type TestingSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type TestingMinAggregateOutputType = {
+    id: number | null
+    nama: string | null
+    status: string | null
+    createdAt: Date | null
+  }
+
+  export type TestingMaxAggregateOutputType = {
+    id: number | null
+    nama: string | null
+    status: string | null
+    createdAt: Date | null
+  }
+
+  export type TestingCountAggregateOutputType = {
+    id: number
+    nama: number
+    status: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type TestingAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type TestingSumAggregateInputType = {
+    id?: true
+  }
+
+  export type TestingMinAggregateInputType = {
+    id?: true
+    nama?: true
+    status?: true
+    createdAt?: true
+  }
+
+  export type TestingMaxAggregateInputType = {
+    id?: true
+    nama?: true
+    status?: true
+    createdAt?: true
+  }
+
+  export type TestingCountAggregateInputType = {
+    id?: true
+    nama?: true
+    status?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type TestingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Testing to aggregate.
+     */
+    where?: TestingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Testings to fetch.
+     */
+    orderBy?: TestingOrderByWithRelationInput | TestingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TestingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Testings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Testings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Testings
+    **/
+    _count?: true | TestingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TestingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TestingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TestingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TestingMaxAggregateInputType
+  }
+
+  export type GetTestingAggregateType<T extends TestingAggregateArgs> = {
+        [P in keyof T & keyof AggregateTesting]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTesting[P]>
+      : GetScalarType<T[P], AggregateTesting[P]>
+  }
+
+
+
+
+  export type TestingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TestingWhereInput
+    orderBy?: TestingOrderByWithAggregationInput | TestingOrderByWithAggregationInput[]
+    by: TestingScalarFieldEnum[] | TestingScalarFieldEnum
+    having?: TestingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TestingCountAggregateInputType | true
+    _avg?: TestingAvgAggregateInputType
+    _sum?: TestingSumAggregateInputType
+    _min?: TestingMinAggregateInputType
+    _max?: TestingMaxAggregateInputType
+  }
+
+  export type TestingGroupByOutputType = {
+    id: number
+    nama: string
+    status: string
+    createdAt: Date
+    _count: TestingCountAggregateOutputType | null
+    _avg: TestingAvgAggregateOutputType | null
+    _sum: TestingSumAggregateOutputType | null
+    _min: TestingMinAggregateOutputType | null
+    _max: TestingMaxAggregateOutputType | null
+  }
+
+  type GetTestingGroupByPayload<T extends TestingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TestingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TestingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TestingGroupByOutputType[P]>
+            : GetScalarType<T[P], TestingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TestingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nama?: boolean
+    status?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["testing"]>
+
+  export type TestingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nama?: boolean
+    status?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["testing"]>
+
+  export type TestingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nama?: boolean
+    status?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["testing"]>
+
+  export type TestingSelectScalar = {
+    id?: boolean
+    nama?: boolean
+    status?: boolean
+    createdAt?: boolean
+  }
+
+  export type TestingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "status" | "createdAt", ExtArgs["result"]["testing"]>
+
+  export type $TestingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Testing"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nama: string
+      status: string
+      createdAt: Date
+    }, ExtArgs["result"]["testing"]>
+    composites: {}
+  }
+
+  type TestingGetPayload<S extends boolean | null | undefined | TestingDefaultArgs> = $Result.GetResult<Prisma.$TestingPayload, S>
+
+  type TestingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TestingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TestingCountAggregateInputType | true
+    }
+
+  export interface TestingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Testing'], meta: { name: 'Testing' } }
+    /**
+     * Find zero or one Testing that matches the filter.
+     * @param {TestingFindUniqueArgs} args - Arguments to find a Testing
+     * @example
+     * // Get one Testing
+     * const testing = await prisma.testing.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TestingFindUniqueArgs>(args: SelectSubset<T, TestingFindUniqueArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Testing that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TestingFindUniqueOrThrowArgs} args - Arguments to find a Testing
+     * @example
+     * // Get one Testing
+     * const testing = await prisma.testing.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TestingFindUniqueOrThrowArgs>(args: SelectSubset<T, TestingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Testing that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestingFindFirstArgs} args - Arguments to find a Testing
+     * @example
+     * // Get one Testing
+     * const testing = await prisma.testing.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TestingFindFirstArgs>(args?: SelectSubset<T, TestingFindFirstArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Testing that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestingFindFirstOrThrowArgs} args - Arguments to find a Testing
+     * @example
+     * // Get one Testing
+     * const testing = await prisma.testing.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TestingFindFirstOrThrowArgs>(args?: SelectSubset<T, TestingFindFirstOrThrowArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Testings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Testings
+     * const testings = await prisma.testing.findMany()
+     * 
+     * // Get first 10 Testings
+     * const testings = await prisma.testing.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const testingWithIdOnly = await prisma.testing.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TestingFindManyArgs>(args?: SelectSubset<T, TestingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Testing.
+     * @param {TestingCreateArgs} args - Arguments to create a Testing.
+     * @example
+     * // Create one Testing
+     * const Testing = await prisma.testing.create({
+     *   data: {
+     *     // ... data to create a Testing
+     *   }
+     * })
+     * 
+     */
+    create<T extends TestingCreateArgs>(args: SelectSubset<T, TestingCreateArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Testings.
+     * @param {TestingCreateManyArgs} args - Arguments to create many Testings.
+     * @example
+     * // Create many Testings
+     * const testing = await prisma.testing.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TestingCreateManyArgs>(args?: SelectSubset<T, TestingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Testings and returns the data saved in the database.
+     * @param {TestingCreateManyAndReturnArgs} args - Arguments to create many Testings.
+     * @example
+     * // Create many Testings
+     * const testing = await prisma.testing.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Testings and only return the `id`
+     * const testingWithIdOnly = await prisma.testing.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TestingCreateManyAndReturnArgs>(args?: SelectSubset<T, TestingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Testing.
+     * @param {TestingDeleteArgs} args - Arguments to delete one Testing.
+     * @example
+     * // Delete one Testing
+     * const Testing = await prisma.testing.delete({
+     *   where: {
+     *     // ... filter to delete one Testing
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TestingDeleteArgs>(args: SelectSubset<T, TestingDeleteArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Testing.
+     * @param {TestingUpdateArgs} args - Arguments to update one Testing.
+     * @example
+     * // Update one Testing
+     * const testing = await prisma.testing.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TestingUpdateArgs>(args: SelectSubset<T, TestingUpdateArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Testings.
+     * @param {TestingDeleteManyArgs} args - Arguments to filter Testings to delete.
+     * @example
+     * // Delete a few Testings
+     * const { count } = await prisma.testing.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TestingDeleteManyArgs>(args?: SelectSubset<T, TestingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Testings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Testings
+     * const testing = await prisma.testing.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TestingUpdateManyArgs>(args: SelectSubset<T, TestingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Testings and returns the data updated in the database.
+     * @param {TestingUpdateManyAndReturnArgs} args - Arguments to update many Testings.
+     * @example
+     * // Update many Testings
+     * const testing = await prisma.testing.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Testings and only return the `id`
+     * const testingWithIdOnly = await prisma.testing.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TestingUpdateManyAndReturnArgs>(args: SelectSubset<T, TestingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Testing.
+     * @param {TestingUpsertArgs} args - Arguments to update or create a Testing.
+     * @example
+     * // Update or create a Testing
+     * const testing = await prisma.testing.upsert({
+     *   create: {
+     *     // ... data to create a Testing
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Testing we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TestingUpsertArgs>(args: SelectSubset<T, TestingUpsertArgs<ExtArgs>>): Prisma__TestingClient<$Result.GetResult<Prisma.$TestingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Testings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestingCountArgs} args - Arguments to filter Testings to count.
+     * @example
+     * // Count the number of Testings
+     * const count = await prisma.testing.count({
+     *   where: {
+     *     // ... the filter for the Testings we want to count
+     *   }
+     * })
+    **/
+    count<T extends TestingCountArgs>(
+      args?: Subset<T, TestingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TestingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Testing.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TestingAggregateArgs>(args: Subset<T, TestingAggregateArgs>): Prisma.PrismaPromise<GetTestingAggregateType<T>>
+
+    /**
+     * Group by Testing.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TestingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TestingGroupByArgs['orderBy'] }
+        : { orderBy?: TestingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TestingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTestingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Testing model
+   */
+  readonly fields: TestingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Testing.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TestingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Testing model
+   */
+  interface TestingFieldRefs {
+    readonly id: FieldRef<"Testing", 'Int'>
+    readonly nama: FieldRef<"Testing", 'String'>
+    readonly status: FieldRef<"Testing", 'String'>
+    readonly createdAt: FieldRef<"Testing", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Testing findUnique
+   */
+  export type TestingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+    /**
+     * Filter, which Testing to fetch.
+     */
+    where: TestingWhereUniqueInput
+  }
+
+  /**
+   * Testing findUniqueOrThrow
+   */
+  export type TestingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+    /**
+     * Filter, which Testing to fetch.
+     */
+    where: TestingWhereUniqueInput
+  }
+
+  /**
+   * Testing findFirst
+   */
+  export type TestingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+    /**
+     * Filter, which Testing to fetch.
+     */
+    where?: TestingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Testings to fetch.
+     */
+    orderBy?: TestingOrderByWithRelationInput | TestingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Testings.
+     */
+    cursor?: TestingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Testings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Testings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Testings.
+     */
+    distinct?: TestingScalarFieldEnum | TestingScalarFieldEnum[]
+  }
+
+  /**
+   * Testing findFirstOrThrow
+   */
+  export type TestingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+    /**
+     * Filter, which Testing to fetch.
+     */
+    where?: TestingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Testings to fetch.
+     */
+    orderBy?: TestingOrderByWithRelationInput | TestingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Testings.
+     */
+    cursor?: TestingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Testings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Testings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Testings.
+     */
+    distinct?: TestingScalarFieldEnum | TestingScalarFieldEnum[]
+  }
+
+  /**
+   * Testing findMany
+   */
+  export type TestingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+    /**
+     * Filter, which Testings to fetch.
+     */
+    where?: TestingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Testings to fetch.
+     */
+    orderBy?: TestingOrderByWithRelationInput | TestingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Testings.
+     */
+    cursor?: TestingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Testings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Testings.
+     */
+    skip?: number
+    distinct?: TestingScalarFieldEnum | TestingScalarFieldEnum[]
+  }
+
+  /**
+   * Testing create
+   */
+  export type TestingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Testing.
+     */
+    data: XOR<TestingCreateInput, TestingUncheckedCreateInput>
+  }
+
+  /**
+   * Testing createMany
+   */
+  export type TestingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Testings.
+     */
+    data: TestingCreateManyInput | TestingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Testing createManyAndReturn
+   */
+  export type TestingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+    /**
+     * The data used to create many Testings.
+     */
+    data: TestingCreateManyInput | TestingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Testing update
+   */
+  export type TestingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Testing.
+     */
+    data: XOR<TestingUpdateInput, TestingUncheckedUpdateInput>
+    /**
+     * Choose, which Testing to update.
+     */
+    where: TestingWhereUniqueInput
+  }
+
+  /**
+   * Testing updateMany
+   */
+  export type TestingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Testings.
+     */
+    data: XOR<TestingUpdateManyMutationInput, TestingUncheckedUpdateManyInput>
+    /**
+     * Filter which Testings to update
+     */
+    where?: TestingWhereInput
+    /**
+     * Limit how many Testings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Testing updateManyAndReturn
+   */
+  export type TestingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+    /**
+     * The data used to update Testings.
+     */
+    data: XOR<TestingUpdateManyMutationInput, TestingUncheckedUpdateManyInput>
+    /**
+     * Filter which Testings to update
+     */
+    where?: TestingWhereInput
+    /**
+     * Limit how many Testings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Testing upsert
+   */
+  export type TestingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Testing to update in case it exists.
+     */
+    where: TestingWhereUniqueInput
+    /**
+     * In case the Testing found by the `where` argument doesn't exist, create a new Testing with this data.
+     */
+    create: XOR<TestingCreateInput, TestingUncheckedCreateInput>
+    /**
+     * In case the Testing was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TestingUpdateInput, TestingUncheckedUpdateInput>
+  }
+
+  /**
+   * Testing delete
+   */
+  export type TestingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+    /**
+     * Filter which Testing to delete.
+     */
+    where: TestingWhereUniqueInput
+  }
+
+  /**
+   * Testing deleteMany
+   */
+  export type TestingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Testings to delete
+     */
+    where?: TestingWhereInput
+    /**
+     * Limit how many Testings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Testing without action
+   */
+  export type TestingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Testing
+     */
+    select?: TestingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Testing
+     */
+    omit?: TestingOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
   export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
   };
 
@@ -6579,8 +7647,6 @@ export namespace Prisma {
     id: 'id',
     judul: 'judul',
     terakhirDiubah: 'terakhirDiubah',
-    warna: 'warna',
-    warnaBtn: 'warnaBtn',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -6590,7 +7656,6 @@ export namespace Prisma {
 
   export const PengajuanSuratScalarFieldEnum: {
     id: 'id',
-    no_pengajuan: 'no_pengajuan',
     nama_lengkap: 'nama_lengkap',
     no_nik: 'no_nik',
     no_kk: 'no_kk',
@@ -6606,6 +7671,7 @@ export namespace Prisma {
     file_pernyataan_tm: 'file_pernyataan_tm',
     file_rekening_listrik: 'file_rekening_listrik',
     status: 'status',
+    no_pengajuan: 'no_pengajuan',
     tanggal_pengajuan: 'tanggal_pengajuan',
     tanggal_selesai: 'tanggal_selesai',
     createdAt: 'createdAt'
@@ -6629,13 +7695,21 @@ export namespace Prisma {
 
   export const AdminScalarFieldEnum: {
     id: 'id',
-    username: 'username',
-    password: 'password',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    email: 'email',
+    password: 'password'
   };
 
   export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+  export const TestingScalarFieldEnum: {
+    id: 'id',
+    nama: 'nama',
+    status: 'status',
+    createdAt: 'createdAt'
+  };
+
+  export type TestingScalarFieldEnum = (typeof TestingScalarFieldEnum)[keyof typeof TestingScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6644,6 +7718,14 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
   export const NullsOrder: {
@@ -6667,9 +7749,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'String[]'
+   */
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
     
 
 
@@ -6681,9 +7777,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -6741,8 +7851,6 @@ export namespace Prisma {
     id?: StringFilter<"TemplateSurat"> | string
     judul?: StringFilter<"TemplateSurat"> | string
     terakhirDiubah?: DateTimeFilter<"TemplateSurat"> | Date | string
-    warna?: StringFilter<"TemplateSurat"> | string
-    warnaBtn?: StringFilter<"TemplateSurat"> | string
     createdAt?: DateTimeFilter<"TemplateSurat"> | Date | string
     updatedAt?: DateTimeFilter<"TemplateSurat"> | Date | string
   }
@@ -6751,8 +7859,6 @@ export namespace Prisma {
     id?: SortOrder
     judul?: SortOrder
     terakhirDiubah?: SortOrder
-    warna?: SortOrder
-    warnaBtn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6764,8 +7870,6 @@ export namespace Prisma {
     NOT?: TemplateSuratWhereInput | TemplateSuratWhereInput[]
     judul?: StringFilter<"TemplateSurat"> | string
     terakhirDiubah?: DateTimeFilter<"TemplateSurat"> | Date | string
-    warna?: StringFilter<"TemplateSurat"> | string
-    warnaBtn?: StringFilter<"TemplateSurat"> | string
     createdAt?: DateTimeFilter<"TemplateSurat"> | Date | string
     updatedAt?: DateTimeFilter<"TemplateSurat"> | Date | string
   }, "id">
@@ -6774,8 +7878,6 @@ export namespace Prisma {
     id?: SortOrder
     judul?: SortOrder
     terakhirDiubah?: SortOrder
-    warna?: SortOrder
-    warnaBtn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TemplateSuratCountOrderByAggregateInput
@@ -6790,8 +7892,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"TemplateSurat"> | string
     judul?: StringWithAggregatesFilter<"TemplateSurat"> | string
     terakhirDiubah?: DateTimeWithAggregatesFilter<"TemplateSurat"> | Date | string
-    warna?: StringWithAggregatesFilter<"TemplateSurat"> | string
-    warnaBtn?: StringWithAggregatesFilter<"TemplateSurat"> | string
     createdAt?: DateTimeWithAggregatesFilter<"TemplateSurat"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"TemplateSurat"> | Date | string
   }
@@ -6801,7 +7901,6 @@ export namespace Prisma {
     OR?: PengajuanSuratWhereInput[]
     NOT?: PengajuanSuratWhereInput | PengajuanSuratWhereInput[]
     id?: IntFilter<"PengajuanSurat"> | number
-    no_pengajuan?: StringNullableFilter<"PengajuanSurat"> | string | null
     nama_lengkap?: StringFilter<"PengajuanSurat"> | string
     no_nik?: StringFilter<"PengajuanSurat"> | string
     no_kk?: StringFilter<"PengajuanSurat"> | string
@@ -6817,6 +7916,7 @@ export namespace Prisma {
     file_pernyataan_tm?: StringNullableFilter<"PengajuanSurat"> | string | null
     file_rekening_listrik?: StringNullableFilter<"PengajuanSurat"> | string | null
     status?: StringFilter<"PengajuanSurat"> | string
+    no_pengajuan?: StringNullableFilter<"PengajuanSurat"> | string | null
     tanggal_pengajuan?: DateTimeFilter<"PengajuanSurat"> | Date | string
     tanggal_selesai?: DateTimeNullableFilter<"PengajuanSurat"> | Date | string | null
     createdAt?: DateTimeFilter<"PengajuanSurat"> | Date | string
@@ -6824,7 +7924,6 @@ export namespace Prisma {
 
   export type PengajuanSuratOrderByWithRelationInput = {
     id?: SortOrder
-    no_pengajuan?: SortOrderInput | SortOrder
     nama_lengkap?: SortOrder
     no_nik?: SortOrder
     no_kk?: SortOrder
@@ -6840,6 +7939,7 @@ export namespace Prisma {
     file_pernyataan_tm?: SortOrderInput | SortOrder
     file_rekening_listrik?: SortOrderInput | SortOrder
     status?: SortOrder
+    no_pengajuan?: SortOrderInput | SortOrder
     tanggal_pengajuan?: SortOrder
     tanggal_selesai?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -6850,7 +7950,6 @@ export namespace Prisma {
     AND?: PengajuanSuratWhereInput | PengajuanSuratWhereInput[]
     OR?: PengajuanSuratWhereInput[]
     NOT?: PengajuanSuratWhereInput | PengajuanSuratWhereInput[]
-    no_pengajuan?: StringNullableFilter<"PengajuanSurat"> | string | null
     nama_lengkap?: StringFilter<"PengajuanSurat"> | string
     no_nik?: StringFilter<"PengajuanSurat"> | string
     no_kk?: StringFilter<"PengajuanSurat"> | string
@@ -6866,6 +7965,7 @@ export namespace Prisma {
     file_pernyataan_tm?: StringNullableFilter<"PengajuanSurat"> | string | null
     file_rekening_listrik?: StringNullableFilter<"PengajuanSurat"> | string | null
     status?: StringFilter<"PengajuanSurat"> | string
+    no_pengajuan?: StringNullableFilter<"PengajuanSurat"> | string | null
     tanggal_pengajuan?: DateTimeFilter<"PengajuanSurat"> | Date | string
     tanggal_selesai?: DateTimeNullableFilter<"PengajuanSurat"> | Date | string | null
     createdAt?: DateTimeFilter<"PengajuanSurat"> | Date | string
@@ -6873,7 +7973,6 @@ export namespace Prisma {
 
   export type PengajuanSuratOrderByWithAggregationInput = {
     id?: SortOrder
-    no_pengajuan?: SortOrderInput | SortOrder
     nama_lengkap?: SortOrder
     no_nik?: SortOrder
     no_kk?: SortOrder
@@ -6889,6 +7988,7 @@ export namespace Prisma {
     file_pernyataan_tm?: SortOrderInput | SortOrder
     file_rekening_listrik?: SortOrderInput | SortOrder
     status?: SortOrder
+    no_pengajuan?: SortOrderInput | SortOrder
     tanggal_pengajuan?: SortOrder
     tanggal_selesai?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -6904,7 +8004,6 @@ export namespace Prisma {
     OR?: PengajuanSuratScalarWhereWithAggregatesInput[]
     NOT?: PengajuanSuratScalarWhereWithAggregatesInput | PengajuanSuratScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"PengajuanSurat"> | number
-    no_pengajuan?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
     nama_lengkap?: StringWithAggregatesFilter<"PengajuanSurat"> | string
     no_nik?: StringWithAggregatesFilter<"PengajuanSurat"> | string
     no_kk?: StringWithAggregatesFilter<"PengajuanSurat"> | string
@@ -6920,6 +8019,7 @@ export namespace Prisma {
     file_pernyataan_tm?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
     file_rekening_listrik?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
     status?: StringWithAggregatesFilter<"PengajuanSurat"> | string
+    no_pengajuan?: StringNullableWithAggregatesFilter<"PengajuanSurat"> | string | null
     tanggal_pengajuan?: DateTimeWithAggregatesFilter<"PengajuanSurat"> | Date | string
     tanggal_selesai?: DateTimeNullableWithAggregatesFilter<"PengajuanSurat"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"PengajuanSurat"> | Date | string
@@ -6994,37 +8094,29 @@ export namespace Prisma {
     OR?: AdminWhereInput[]
     NOT?: AdminWhereInput | AdminWhereInput[]
     id?: IntFilter<"Admin"> | number
-    username?: StringFilter<"Admin"> | string
+    email?: StringFilter<"Admin"> | string
     password?: StringFilter<"Admin"> | string
-    createdAt?: DateTimeFilter<"Admin"> | Date | string
-    updatedAt?: DateTimeFilter<"Admin"> | Date | string
   }
 
   export type AdminOrderByWithRelationInput = {
     id?: SortOrder
-    username?: SortOrder
+    email?: SortOrder
     password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AdminWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    username?: string
+    email?: string
     AND?: AdminWhereInput | AdminWhereInput[]
     OR?: AdminWhereInput[]
     NOT?: AdminWhereInput | AdminWhereInput[]
     password?: StringFilter<"Admin"> | string
-    createdAt?: DateTimeFilter<"Admin"> | Date | string
-    updatedAt?: DateTimeFilter<"Admin"> | Date | string
-  }, "id" | "username">
+  }, "id" | "email">
 
   export type AdminOrderByWithAggregationInput = {
     id?: SortOrder
-    username?: SortOrder
+    email?: SortOrder
     password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     _count?: AdminCountOrderByAggregateInput
     _avg?: AdminAvgOrderByAggregateInput
     _max?: AdminMaxOrderByAggregateInput
@@ -7037,10 +8129,57 @@ export namespace Prisma {
     OR?: AdminScalarWhereWithAggregatesInput[]
     NOT?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Admin"> | number
-    username?: StringWithAggregatesFilter<"Admin"> | string
+    email?: StringWithAggregatesFilter<"Admin"> | string
     password?: StringWithAggregatesFilter<"Admin"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
+  }
+
+  export type TestingWhereInput = {
+    AND?: TestingWhereInput | TestingWhereInput[]
+    OR?: TestingWhereInput[]
+    NOT?: TestingWhereInput | TestingWhereInput[]
+    id?: IntFilter<"Testing"> | number
+    nama?: StringFilter<"Testing"> | string
+    status?: StringFilter<"Testing"> | string
+    createdAt?: DateTimeFilter<"Testing"> | Date | string
+  }
+
+  export type TestingOrderByWithRelationInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TestingWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TestingWhereInput | TestingWhereInput[]
+    OR?: TestingWhereInput[]
+    NOT?: TestingWhereInput | TestingWhereInput[]
+    nama?: StringFilter<"Testing"> | string
+    status?: StringFilter<"Testing"> | string
+    createdAt?: DateTimeFilter<"Testing"> | Date | string
+  }, "id">
+
+  export type TestingOrderByWithAggregationInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    _count?: TestingCountOrderByAggregateInput
+    _avg?: TestingAvgOrderByAggregateInput
+    _max?: TestingMaxOrderByAggregateInput
+    _min?: TestingMinOrderByAggregateInput
+    _sum?: TestingSumOrderByAggregateInput
+  }
+
+  export type TestingScalarWhereWithAggregatesInput = {
+    AND?: TestingScalarWhereWithAggregatesInput | TestingScalarWhereWithAggregatesInput[]
+    OR?: TestingScalarWhereWithAggregatesInput[]
+    NOT?: TestingScalarWhereWithAggregatesInput | TestingScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Testing"> | number
+    nama?: StringWithAggregatesFilter<"Testing"> | string
+    status?: StringWithAggregatesFilter<"Testing"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Testing"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -7086,8 +8225,6 @@ export namespace Prisma {
     id?: string
     judul: string
     terakhirDiubah: Date | string
-    warna: string
-    warnaBtn: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7096,8 +8233,6 @@ export namespace Prisma {
     id?: string
     judul: string
     terakhirDiubah: Date | string
-    warna: string
-    warnaBtn: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7106,8 +8241,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     judul?: StringFieldUpdateOperationsInput | string
     terakhirDiubah?: DateTimeFieldUpdateOperationsInput | Date | string
-    warna?: StringFieldUpdateOperationsInput | string
-    warnaBtn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7116,8 +8249,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     judul?: StringFieldUpdateOperationsInput | string
     terakhirDiubah?: DateTimeFieldUpdateOperationsInput | Date | string
-    warna?: StringFieldUpdateOperationsInput | string
-    warnaBtn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7126,8 +8257,6 @@ export namespace Prisma {
     id?: string
     judul: string
     terakhirDiubah: Date | string
-    warna: string
-    warnaBtn: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7136,8 +8265,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     judul?: StringFieldUpdateOperationsInput | string
     terakhirDiubah?: DateTimeFieldUpdateOperationsInput | Date | string
-    warna?: StringFieldUpdateOperationsInput | string
-    warnaBtn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7146,14 +8273,11 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     judul?: StringFieldUpdateOperationsInput | string
     terakhirDiubah?: DateTimeFieldUpdateOperationsInput | Date | string
-    warna?: StringFieldUpdateOperationsInput | string
-    warnaBtn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PengajuanSuratCreateInput = {
-    no_pengajuan?: string | null
     nama_lengkap: string
     no_nik: string
     no_kk: string
@@ -7169,6 +8293,7 @@ export namespace Prisma {
     file_pernyataan_tm?: string | null
     file_rekening_listrik?: string | null
     status?: string
+    no_pengajuan?: string | null
     tanggal_pengajuan?: Date | string
     tanggal_selesai?: Date | string | null
     createdAt?: Date | string
@@ -7176,7 +8301,6 @@ export namespace Prisma {
 
   export type PengajuanSuratUncheckedCreateInput = {
     id?: number
-    no_pengajuan?: string | null
     nama_lengkap: string
     no_nik: string
     no_kk: string
@@ -7192,13 +8316,13 @@ export namespace Prisma {
     file_pernyataan_tm?: string | null
     file_rekening_listrik?: string | null
     status?: string
+    no_pengajuan?: string | null
     tanggal_pengajuan?: Date | string
     tanggal_selesai?: Date | string | null
     createdAt?: Date | string
   }
 
   export type PengajuanSuratUpdateInput = {
-    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     nama_lengkap?: StringFieldUpdateOperationsInput | string
     no_nik?: StringFieldUpdateOperationsInput | string
     no_kk?: StringFieldUpdateOperationsInput | string
@@ -7214,6 +8338,7 @@ export namespace Prisma {
     file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
     file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
     tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7221,7 +8346,6 @@ export namespace Prisma {
 
   export type PengajuanSuratUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     nama_lengkap?: StringFieldUpdateOperationsInput | string
     no_nik?: StringFieldUpdateOperationsInput | string
     no_kk?: StringFieldUpdateOperationsInput | string
@@ -7237,6 +8361,7 @@ export namespace Prisma {
     file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
     file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
     tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7244,7 +8369,6 @@ export namespace Prisma {
 
   export type PengajuanSuratCreateManyInput = {
     id?: number
-    no_pengajuan?: string | null
     nama_lengkap: string
     no_nik: string
     no_kk: string
@@ -7260,13 +8384,13 @@ export namespace Prisma {
     file_pernyataan_tm?: string | null
     file_rekening_listrik?: string | null
     status?: string
+    no_pengajuan?: string | null
     tanggal_pengajuan?: Date | string
     tanggal_selesai?: Date | string | null
     createdAt?: Date | string
   }
 
   export type PengajuanSuratUpdateManyMutationInput = {
-    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     nama_lengkap?: StringFieldUpdateOperationsInput | string
     no_nik?: StringFieldUpdateOperationsInput | string
     no_kk?: StringFieldUpdateOperationsInput | string
@@ -7282,6 +8406,7 @@ export namespace Prisma {
     file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
     file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
     tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7289,7 +8414,6 @@ export namespace Prisma {
 
   export type PengajuanSuratUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     nama_lengkap?: StringFieldUpdateOperationsInput | string
     no_nik?: StringFieldUpdateOperationsInput | string
     no_kk?: StringFieldUpdateOperationsInput | string
@@ -7305,6 +8429,7 @@ export namespace Prisma {
     file_pernyataan_tm?: NullableStringFieldUpdateOperationsInput | string | null
     file_rekening_listrik?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    no_pengajuan?: NullableStringFieldUpdateOperationsInput | string | null
     tanggal_pengajuan?: DateTimeFieldUpdateOperationsInput | Date | string
     tanggal_selesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7378,62 +8503,94 @@ export namespace Prisma {
   }
 
   export type AdminCreateInput = {
-    username: string
+    email: string
     password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AdminUncheckedCreateInput = {
     id?: number
-    username: string
+    email: string
     password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AdminUpdateInput = {
-    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AdminUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AdminCreateManyInput = {
     id?: number
-    username: string
+    email: string
     password: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AdminUpdateManyMutationInput = {
-    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AdminUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TestingCreateInput = {
+    nama: string
+    status?: string
+    createdAt?: Date | string
+  }
+
+  export type TestingUncheckedCreateInput = {
+    id?: number
+    nama: string
+    status?: string
+    createdAt?: Date | string
+  }
+
+  export type TestingUpdateInput = {
+    nama?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TestingUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nama?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TestingCreateManyInput = {
+    id?: number
+    nama: string
+    status?: string
+    createdAt?: Date | string
+  }
+
+  export type TestingUpdateManyMutationInput = {
+    nama?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TestingUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nama?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7443,8 +8600,8 @@ export namespace Prisma {
 
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7452,6 +8609,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
@@ -7483,8 +8641,8 @@ export namespace Prisma {
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7499,8 +8657,8 @@ export namespace Prisma {
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7508,6 +8666,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -7516,8 +8675,8 @@ export namespace Prisma {
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7529,8 +8688,6 @@ export namespace Prisma {
     id?: SortOrder
     judul?: SortOrder
     terakhirDiubah?: SortOrder
-    warna?: SortOrder
-    warnaBtn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7539,8 +8696,6 @@ export namespace Prisma {
     id?: SortOrder
     judul?: SortOrder
     terakhirDiubah?: SortOrder
-    warna?: SortOrder
-    warnaBtn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7549,16 +8704,14 @@ export namespace Prisma {
     id?: SortOrder
     judul?: SortOrder
     terakhirDiubah?: SortOrder
-    warna?: SortOrder
-    warnaBtn?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7571,8 +8724,8 @@ export namespace Prisma {
 
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7580,13 +8733,14 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7601,7 +8755,6 @@ export namespace Prisma {
 
   export type PengajuanSuratCountOrderByAggregateInput = {
     id?: SortOrder
-    no_pengajuan?: SortOrder
     nama_lengkap?: SortOrder
     no_nik?: SortOrder
     no_kk?: SortOrder
@@ -7617,6 +8770,7 @@ export namespace Prisma {
     file_pernyataan_tm?: SortOrder
     file_rekening_listrik?: SortOrder
     status?: SortOrder
+    no_pengajuan?: SortOrder
     tanggal_pengajuan?: SortOrder
     tanggal_selesai?: SortOrder
     createdAt?: SortOrder
@@ -7628,7 +8782,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMaxOrderByAggregateInput = {
     id?: SortOrder
-    no_pengajuan?: SortOrder
     nama_lengkap?: SortOrder
     no_nik?: SortOrder
     no_kk?: SortOrder
@@ -7644,6 +8797,7 @@ export namespace Prisma {
     file_pernyataan_tm?: SortOrder
     file_rekening_listrik?: SortOrder
     status?: SortOrder
+    no_pengajuan?: SortOrder
     tanggal_pengajuan?: SortOrder
     tanggal_selesai?: SortOrder
     createdAt?: SortOrder
@@ -7651,7 +8805,6 @@ export namespace Prisma {
 
   export type PengajuanSuratMinOrderByAggregateInput = {
     id?: SortOrder
-    no_pengajuan?: SortOrder
     nama_lengkap?: SortOrder
     no_nik?: SortOrder
     no_kk?: SortOrder
@@ -7667,6 +8820,7 @@ export namespace Prisma {
     file_pernyataan_tm?: SortOrder
     file_rekening_listrik?: SortOrder
     status?: SortOrder
+    no_pengajuan?: SortOrder
     tanggal_pengajuan?: SortOrder
     tanggal_selesai?: SortOrder
     createdAt?: SortOrder
@@ -7678,8 +8832,8 @@ export namespace Prisma {
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7687,6 +8841,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
@@ -7695,8 +8850,8 @@ export namespace Prisma {
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7747,10 +8902,8 @@ export namespace Prisma {
 
   export type AdminCountOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
+    email?: SortOrder
     password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AdminAvgOrderByAggregateInput = {
@@ -7759,21 +8912,46 @@ export namespace Prisma {
 
   export type AdminMaxOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
+    email?: SortOrder
     password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AdminMinOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
+    email?: SortOrder
     password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AdminSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type TestingCountOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TestingAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type TestingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TestingMinOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TestingSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -7803,8 +8981,8 @@ export namespace Prisma {
 
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7814,8 +8992,8 @@ export namespace Prisma {
 
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7828,8 +9006,8 @@ export namespace Prisma {
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7844,8 +9022,8 @@ export namespace Prisma {
 
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -7855,8 +9033,8 @@ export namespace Prisma {
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7872,8 +9050,8 @@ export namespace Prisma {
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7883,8 +9061,8 @@ export namespace Prisma {
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7897,8 +9075,8 @@ export namespace Prisma {
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7911,8 +9089,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7922,8 +9100,8 @@ export namespace Prisma {
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7939,8 +9117,8 @@ export namespace Prisma {
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7950,8 +9128,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
