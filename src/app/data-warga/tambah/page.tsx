@@ -70,7 +70,7 @@ export default function TambahDataWarga() {
   };
 
   return (
-    <div style={{ fontFamily: 'var(--font-poppins)' }} className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-0 font-sans flex">
+    <div style={{ fontFamily: 'var(--font-poppins)' }} className="min-h-screen bg-gradient-to-br from-yellow-50 to-white font-sans flex">
       <NavbarAdmin currentPath={''}/>
       
       <div className="flex-1 ml-64 p-8 overflow-auto">

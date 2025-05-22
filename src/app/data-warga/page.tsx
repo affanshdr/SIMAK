@@ -71,7 +71,7 @@ export default function DataWarga() {
   return (
     <div
       style={{ fontFamily: "var(--font-poppins)" }}
-      className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-0 font-sans flex"
+      className="min-h-screen bg-gradient-to-br from-yellow-50 to-white font-sans flex"
     >
       <NavbarAdmin currentPath="/data-warga" />
 

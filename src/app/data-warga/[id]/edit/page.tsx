@@ -81,7 +81,7 @@ export default function EditDataWarga() {
   };
 
   return (
-    <div style={{ fontFamily: 'var(--font-poppins)' }} className="min-h-screen bg-gradient-to-b from-yellow-100 to-yellow-0 font-sans flex">
+    <div style={{ fontFamily: 'var(--font-poppins)' }} className="min-h-screen bg-gradient-to-br from-yellow-50 to-white font-sans flex">
       <NavbarAdmin currentPath={''} />
       <div className="flex-1 ml-64 p-8 overflow-auto">
         <div className="max-w-2xl mx-auto">
@@ -149,7 +149,7 @@ function InputField({
         type="text"
         name={name}
         placeholder={`Masukkan ${label.toLowerCase()} ...`}
-        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition"
+        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FFD233] focus:border-[#FFD233] outline-none transition text-gray-600"
         value={value}
         onChange={onChange}
         required

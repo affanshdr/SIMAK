@@ -177,9 +177,12 @@ export default function PengajuanMasukPage() {
                         className={`px-2.5 py-1 rounded-full text-xs font-medium ${
                           surat.status === "selesai"
                             ? "text-green-600"
+                            : surat.status === "diajukan"
+                            ? "text-blue-600"
                             : surat.status === "diproses"
                             ? "text-yellow-600"
                             : "text-rose-500"
+                            
                         }`}
                       >
                         ● {surat.status.charAt(0).toUpperCase() + surat.status.slice(1)}
