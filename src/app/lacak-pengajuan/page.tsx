@@ -222,17 +222,17 @@ export default function LacakPengajuan() {
                 <button
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1 || isLoading}
-                  className="px-4 py-2 border rounded-md disabled:opacity-50"
+                  className="px-4 py-2 border rounded-md disabled:opacity-50 text-gray-800"
                 >
                   Sebelumnya
                 </button>
-                <span>
+                <span className="text-gray-800">
                   Halaman {currentPage} dari {totalPages}
                 </span>
                 <button
                   onClick={() => setCurrentPage(prev => prev + 1)}
                   disabled={currentPage >= totalPages || isLoading}
-                  className="px-4 py-2 border rounded-md disabled:opacity-50"
+                  className="px-4 py-2 border rounded-md disabled:opacity-50 text-gray-800"
                 >
                   Berikutnya
                 </button>

@@ -200,10 +200,7 @@ export default function LoginPage() {
 
             {/* Footer */}
             <motion.div className="text-center mt-6 text-sm text-gray-600" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
-              Belum punya akun?{" "}
-              <motion.a href="/daftar" className="font-medium text-yellow-600 hover:underline" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                Daftar disini
-              </motion.a>
+        
             </motion.div>
           </motion.div>
         </div>

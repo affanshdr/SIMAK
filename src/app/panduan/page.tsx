@@ -156,7 +156,7 @@ export default function Panduan() {
             <select
               value={selectedLetter}
               onChange={handleLetterChange}
-              className="w-full p-4 pr-10 text-lg border border-gray-300 rounded-xl appearance-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 bg-white cursor-pointer transition-all hover:shadow-md"
+              className="w-full p-4 pr-10 text-lg border border-gray-300 rounded-xl appearance-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 bg-white cursor-pointer transition-all hover:shadow-md text-gray-600"
             >
               <option value="" disabled className="text-gray-600">
                 Pilih jenis surat...

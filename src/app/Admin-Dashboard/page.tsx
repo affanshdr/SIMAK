@@ -1,11 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import { FaUser, FaEnvelope, FaEnvelopeOpen } from "react-icons/fa";
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from "recharts";
 
+// Dummy chart data (masih statis)
 const data = [
   { name: 'Jan', masuk: 20, keluar: 15, pengguna: 25 },
   { name: 'Feb', masuk: 25, keluar: 22, pengguna: 30 },
@@ -22,33 +24,35 @@ const data = [
 ];
 
 const DashboardAdmin = () => {
+  const [stats, setStats] = useState({ masuk: 0, keluar: 0, pengguna: 0 });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await fetch("/api/dashboard-stats");
+        const json = await res.json();
+        if (json.success) {
+          setStats(json.data);
+        }
+      } catch (err) {
+        console.error("Gagal mengambil statistik dashboard", err);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
   return (
-    <div className="ml-64 min-h-screen bg-gradient-to-br from-yellow-50 to-white p-15">
-      {/* Navbar */}
-      <NavbarAdmin currentPath="/Admin-Dashboard" />
+    <div className="ml-64  min-h-screen bg-gradient-to-br from-yellow-50 to-white p-15">
+      <NavbarAdmin currentPath="/Admin-Dashboard"  />
 
-      {/* Search + Profile */}
-      <div className="flex justify-between items-center mb-6">
-        <input
-          type="text"
-          placeholder="Cari Nama / Nomor Surat . . ."
-          className="w-1/2 p-3 rounded border shadow-sm"
-        />
-        <div className="flex items-center space-x-3">
-          <span>Indra</span>
-          <img src="/avatar.png" className="w-10 h-10 rounded-full" alt="Avatar" />
-        </div>
-      </div>
-
-      {/* Welcome Message */}
-      <div className="bg-green-200 text-green-800 px-4 py-3 rounded-md mb-6 shadow">
+      <div className="bg-green-200 text-green-800 px-4 py-3 rounded-md mb-6 shadow mt-10">
         <p className="flex items-center gap-2">
           <FaUser />
-          Selamat datang kembali <strong>Indra</strong> di Aplikasi SIMAK, anda login sebagai <strong>Admin</strong>
+          Selamat datang kembali di Aplikasi SIMAK, anda login sebagai <strong>Admin</strong>
         </p>
       </div>
 
-      {/* Chart */}
       <div className="bg-white p-6 rounded-lg shadow-md mb-6">
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data}>
@@ -64,12 +68,11 @@ const DashboardAdmin = () => {
         </ResponsiveContainer>
       </div>
 
-      {/* Info Boxes */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-cyan-100 border-l-4 border-cyan-400 p-4 rounded shadow flex items-center justify-between">
           <div>
             <p className="text-cyan-700 font-bold">Surat Masuk</p>
-            <p className="text-xl">3</p>
+            <p className="text-xl text-cyan-700">{stats.masuk}</p>
           </div>
           <FaEnvelope className="text-cyan-700 text-2xl" />
         </div>
@@ -77,7 +80,7 @@ const DashboardAdmin = () => {
         <div className="bg-green-100 border-l-4 border-green-400 p-4 rounded shadow flex items-center justify-between">
           <div>
             <p className="text-green-700 font-bold">Surat Keluar</p>
-            <p className="text-xl">5</p>
+            <p className="text-xl text-green-700">{stats.keluar}</p>
           </div>
           <FaEnvelopeOpen className="text-green-700 text-2xl" />
         </div>
@@ -85,7 +88,7 @@ const DashboardAdmin = () => {
         <div className="bg-rose-100 border-l-4 border-rose-400 p-4 rounded shadow flex items-center justify-between">
           <div>
             <p className="text-rose-700 font-bold">Pengguna</p>
-            <p className="text-xl">12</p>
+            <p className="text-xl text-rose-700">{stats.pengguna}</p>
           </div>
           <FaUser className="text-rose-700 text-2xl" />
         </div>

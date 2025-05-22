@@ -227,22 +227,16 @@ export default function PengajuanMasukPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari Nama / Nomor Surat / NIK..."
-              className="w-full pl-4 pr-10 py-3 border bg-white border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
+              className="w-full pl-4 pr-10 py-3 border bg-white border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none text-gray-800"
             />
             <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
 
           <div className="flex items-center space-x-3 ml-4">
-            <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden border-2 border-orange-400">
-              <img
-                src="/user-avatar.jpg"
-                alt="User Avatar"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          
             <div className="text-right">
-              <p className="font-medium text-gray-800">Admin</p>
-              <p className="text-sm text-gray-500">Administrator</p>
+              <p className="font-medium text-gray-800 text-4xl">Admin</p>
+              <p className=" text-gray-500 text-2xl">Administrator</p>
             </div>
           </div>
         </div>
@@ -304,7 +298,7 @@ export default function PengajuanMasukPage() {
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-6">
-          <h1 className="text-xl font-bold mb-4">
+          <h1 className="text-xl font-bold mb-4 text-gray-700">
             {getStatusLabel(activeStatus)} ({getStatusCount(activeStatus)})
           </h1>
 
@@ -313,7 +307,7 @@ export default function PengajuanMasukPage() {
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
             </div>
           ) : filteredData.length === 0 ? (
-            <div className="p-8 text-center text-gray-500">
+            <div className="p-8 text-center text-gray-800">
               Tidak ada data pengajuan dengan status{" "}
               {getStatusLabel(activeStatus)}
             </div>
@@ -459,7 +453,7 @@ export default function PengajuanMasukPage() {
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold">Dokumen Pengajuan</h3>
+                <h3 className="text-xl font-bold text-gray-800">Dokumen Pengajuan</h3>
                 <button
                   onClick={() => setSelectedPengajuan(null)}
                   className="text-gray-500 hover:text-gray-700"
@@ -481,7 +475,7 @@ export default function PengajuanMasukPage() {
               </div>
 
               <div className="mb-4">
-                <h4 className="font-medium mb-2">Detail Pengajuan</h4>
+                <h4 className="font-medium mb-2 text-gray-800">Detail Pengajuan</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-sm text-gray-600">
@@ -512,8 +506,8 @@ export default function PengajuanMasukPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {selectedPengajuan.fileKTP && (
-                  <div className="border rounded-lg p-4">
-                    <h4 className="font-medium mb-2">KTP</h4>
+                  <div className="border border-gray-400 rounded-lg p-4">
+                    <h4 className="font-medium mb-2 text-gray-700">KTP</h4>
                     {selectedPengajuan.fileKTP.startsWith("/uploads/") ? (
                       <img
                         src={selectedPengajuan.fileKTP}
@@ -531,8 +525,8 @@ export default function PengajuanMasukPage() {
                 )}
 
                 {selectedPengajuan.fileKK && (
-                  <div className="border rounded-lg p-4">
-                    <h4 className="font-medium mb-2">Kartu Keluarga</h4>
+                  <div className="border border-gray-400 rounded-lg p-4">
+                    <h4 className="font-medium mb-2 text-gray-700">Kartu Keluarga</h4>
                     {selectedPengajuan.fileKK.startsWith("/uploads/") ? (
                       <img
                         src={selectedPengajuan.fileKK}
@@ -550,8 +544,8 @@ export default function PengajuanMasukPage() {
                 )}
 
                 {selectedPengajuan.filePengantarRT && (
-                  <div className="border rounded-lg p-4">
-                    <h4 className="font-medium mb-2">Surat Pengantar RT/RW</h4>
+                  <div className="border border-gray-400 rounded-lg p-4">
+                    <h4 className="font-medium mb-2 text-gray-700">Surat Pengantar RT/RW</h4>
                     {selectedPengajuan.filePengantarRT.endsWith(".pdf") ? (
                       <iframe
                         src={
@@ -583,8 +577,8 @@ export default function PengajuanMasukPage() {
                 )}
 
                 {selectedPengajuan.filePermohonan && (
-                  <div className="border rounded-lg p-4">
-                    <h4 className="font-medium mb-2">Surat Permohonan</h4>
+                  <div className="border border-gray-400 rounded-lg p-4">
+                    <h4 className="font-medium mb-2 text-gray-700">Surat Permohonan</h4>
                     {selectedPengajuan.filePermohonan.endsWith(".pdf") ? (
                       <iframe
                         src={
@@ -617,8 +611,8 @@ export default function PengajuanMasukPage() {
 
                 {selectedPengajuan.jenisSurat === "Keterangan Usaha" &&
                   selectedPengajuan.fileIzinUsaha && (
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-medium mb-2">Izin Usaha</h4>
+                    <div className="border border-gray-400 rounded-lg p-4">
+                      <h4 className="font-medium mb-2 text-gray-700">Izin Usaha</h4>
                       {selectedPengajuan.fileIzinUsaha.endsWith(".pdf") ? (
                         <iframe
                           src={
@@ -651,8 +645,8 @@ export default function PengajuanMasukPage() {
 
                 {selectedPengajuan.jenisSurat === "Keterangan Kurang Mampu" &&
                   selectedPengajuan.filePernyataan && (
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-medium mb-2">
+                    <div className="border border-gray-400 rounded-lg p-4">
+                      <h4 className="font-medium mb-2 text-gray-700">
                         Pernyataan Tidak Mampu
                       </h4>
                       {selectedPengajuan.filePernyataan.endsWith(".pdf") ? (
